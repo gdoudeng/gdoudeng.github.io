@@ -55,7 +55,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz","app_key":"GghUuBNsfm9f6gjneTVolb3s","server_url":"https://leancloud.iplus-studio.top"}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -156,7 +156,7 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -201,6 +201,14 @@
 
   
   
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
 </div>
 
             
@@ -216,11 +224,11 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
@@ -261,7 +269,7 @@
 <h2 id="transition-过渡"><a href="#transition-过渡" class="headerlink" title="transition 过渡"></a>transition 过渡</h2><blockquote>
 <p>拥有修改执行变换的属性，时长，速率和延迟时间的能力</p>
 </blockquote>
-<p><img src="http://qiniu.iplus-studio.top/Snipaste_2020-12-25_17-20-10.png" srcset="/img/loading.gif" alt="&#39;&#39;&#39;"></p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-25_17-20-10.png" srcset="/img/loading.gif"></p>
 <figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-comment">/* Apply to 1 property */</span><br>    <span class="hljs-comment">/* property name | duration */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span>;<br><br>    <span class="hljs-comment">/* property name | duration | delay */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span> <span class="hljs-number">1s</span>;<br><br>    <span class="hljs-comment">/* property name | duration | timing function */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span> ease-in-out;<br><br>    <span class="hljs-comment">/* property name | duration | timing function | delay */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span> ease-in-out <span class="hljs-number">1s</span>;<br><br>    <span class="hljs-comment">/* Apply to 2 properties */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span>, color <span class="hljs-number">1s</span>;<br><br>    <span class="hljs-comment">/* Apply to all changed properties */</span><br>    <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.5s</span> ease-out;<br><br>    <span class="hljs-comment">/* Global values */</span><br>    <span class="hljs-attribute">transition</span>: inherit;<br>    <span class="hljs-attribute">transition</span>: initial;<br>    <span class="hljs-attribute">transition</span>: unset;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
 
 <ul>
@@ -368,7 +376,7 @@
 
 <h3 id="animation-timing-function"><a href="#animation-timing-function" class="headerlink" title="animation-timing-function"></a>animation-timing-function</h3><p>常见值有：<code>linear、ease、ease-in、ease-out、ease-in-out</code>。</p>
 <p>这些值其实都是 <code>cubic-bezier(n,n,n,n)</code> 的特例。它们被称为贝塞尔曲线。</p>
-<p>一个在线调试贝塞尔曲线的网站：<a href="cubic-bezier.com">cubic-bezier.com</a>。</p>
+<p>一个在线调试贝塞尔曲线的网站：<a target="_blank" rel="noopener" href="https://cubic-bezier.com/#.17,.67,.83,.67">cubic-bezier.com</a>。</p>
 <h3 id="animation-fill-mode-重点"><a href="#animation-fill-mode-重点" class="headerlink" title="animation-fill-mode (重点)"></a>animation-fill-mode (重点)</h3><p>除了默认值 <code>none</code> 外，还有另外 3 个值：</p>
 <ul>
 <li><code>forwards</code>，表示，动画完成后，元素状态保持为最后一帧的状态。</li>
@@ -380,20 +388,20 @@
 <figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> move&#123;<br>  0%&#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100px</span>,<span class="hljs-number">0</span>);<br>  &#125;<br>  100%&#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">200px</span>,<span class="hljs-number">0</span>);<br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
 <p>设置填充模式为 <code>forwards</code> 时，动画最后停留在 200px 处：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/16/16ac0310ff7ba99a?imageslim" srcset="/img/loading.gif" alt="&#39;&#39;&#39;"></p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac0310ff7ba99a.gif" srcset="/img/loading.gif"></p>
 <p>设置动画延迟 1s 后执行，且填充模式为 <code>backwards</code> 时，可以看到动画在开始前是处于 100px 处，动画结束后回到 0px 处：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/16/16ac035a53f40b08?imageslim" srcset="/img/loading.gif" alt="&#39;&#39;&#39;"></p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac035a53f40b08.gif" srcset="/img/loading.gif"></p>
 <p>最后设置填充模式为 <code>both</code> 的情形：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/16/16ac0380ae444be8?imageslim" srcset="/img/loading.gif" alt="&#39;&#39;&#39;"></p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac0380ae444be8.gif" srcset="/img/loading.gif"></p>
 <p>动画结束后，保持动画最后一帧的状态，这个太有用了.</p>
 <p>一个例子</p>
 <figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">10px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(#<span class="hljs-number">0</span>ff,#<span class="hljs-number">0</span>ff);<br>    <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>    <span class="hljs-attribute">background-size</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">animation</span>: move <span class="hljs-number">2s</span> linear forwards;<br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> move&#123;<br>    100%&#123;<br>        <span class="hljs-attribute">background-size</span>: <span class="hljs-number">100%</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/16/16ac0435e14da43a?imageslim" srcset="/img/loading.gif" alt="&#39;&#39;&#39;"></p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac0435e14da43a.gif" srcset="/img/loading.gif"></p>
 <h3 id="animation-delay"><a href="#animation-delay" class="headerlink" title="animation-delay"></a>animation-delay</h3><p>不为大家注意的是，延迟可以为负数。负延迟表示动画仿佛开始前就已经运行过了那么长时间。<br>拿上述进度条为例子，原动画用了 2s 是从 0% 加载到 100% 的。如果设置延迟为 -1s。这动画会从 50% 加载到 100%。仿佛已经运行了 1s 一样：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/16/16ac04adc7f87ab6?imageslim" srcset="/img/loading.gif" alt="&#39;&#39;&#39;"></p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac04adc7f87ab6.gif" srcset="/img/loading.gif"></p>
 <h3 id="animation-play-state"><a href="#animation-play-state" class="headerlink" title="animation-play-state"></a>animation-play-state</h3><p>CSS 动画是可以暂停的。属性 animation-play-state 表示动画播放状态，默认值 <code>running</code> 表示播放， <code>paused</code> 表示暂停</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/16/16ac050679097040?imageslim" srcset="/img/loading.gif" alt="&#39;&#39;&#39;"></p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac050679097040.gif" srcset="/img/loading.gif"></p>
 <h3 id="animation-iteration-count"><a href="#animation-iteration-count" class="headerlink" title="animation-iteration-count"></a>animation-iteration-count</h3><p>表示动画播放次数。它很好懂，只有一点要注意，无限播放时使用 infinite</p>
 <h3 id="animation-direction"><a href="#animation-direction" class="headerlink" title="animation-direction"></a>animation-direction</h3><p>它的意思说指定动画按照指定顺序来播放 @keyframes 定义的关键帧</p>
 <ul>
@@ -437,7 +445,7 @@
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -483,7 +491,7 @@
           lang: "zh-CN",
           highlight: false,
           recordIP: false,
-          serverURLs: "leancloud.iplus-studio.top",
+          serverURLs: "https://leancloud.iplus-studio.top",
         });
       });
     });
@@ -554,6 +562,31 @@
      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
 
   
   <!-- 备案信息 -->
@@ -593,11 +626,8 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
   <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
     NProgress.start()
-    document.addEventListener('DOMContentLoaded', function() {
-      window.NProgress && window.NProgress.inc();
-    })
     window.addEventListener('load', function() {
       NProgress.done();
     })
@@ -640,6 +670,8 @@
 
 
 
+  <script defer src="/js/leancloud.js" ></script>
+
 
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
@@ -676,6 +708,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 
