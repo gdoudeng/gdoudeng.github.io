@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>Mac OSX安装MongoDB</title>
+    <link href="/2020/12/29/Mac-OSX%E5%AE%89%E8%A3%85MongoDB/"/>
+    <url>/2020/12/29/Mac-OSX%E5%AE%89%E8%A3%85MongoDB/</url>
+    
+    <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/">官网教程</a></p><p>通过<code>Homebrew</code>安装，方便快捷省事。</p><p>按照官网教程装完后：</p><ul><li><p>配置文件 (<code>/usr/local/etc/mongod.conf</code>)</p></li><li><p>日志目录路径 (<code>/usr/local/var/log/mongodb</code>)</p></li><li><p>数据目录路径 (<code>/usr/local/var/mongodb</code>) 数据库文件都存在这里</p></li></ul><p>此时运行  <code>mongod -version</code>  会打印出安装版本证明安装成功</p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_21-17-55.png"></p><h1 id="启动-MongoDB-服务"><a href="#启动-MongoDB-服务" class="headerlink" title="启动 MongoDB 服务"></a>启动 MongoDB 服务</h1><ul><li>使用 <code>brew</code> 将 <code>MongoDB</code> 作为 <code>macOS</code> 服务运行</li></ul><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 启动</span><br>brew services start mongodb-community@4.4<br><span class="hljs-comment"># 停止</span><br>brew services stop mongodb-community@4.4<br></code></pre></div></td></tr></table></figure><ul><li>作为后台启动</li></ul><p><code>mongod --config /usr/local/etc/mongod.conf --fork</code></p><ul><li>可以通过下面命令查看正在运行的 <code>MongoDB</code> 服务 </li></ul><p><code>brew services list</code></p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_21-25-33.png"></p><ul><li>如果是后台启动的</li></ul><p><code>ps aux | grep -v grep | grep mongod</code></p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_21-26-36.png"></p><h1 id="连接并使用-MongoDB"><a href="#连接并使用-MongoDB" class="headerlink" title="连接并使用 MongoDB"></a>连接并使用 MongoDB</h1><p>启动了<code>MongoDB</code>后，就可以连接使用了。</p><p>运行  <code>mongo</code>  连接服务，可以看到成功连接 <code>mongo</code> 服务。</p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_21-22-35.png"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>css伪类和伪元素</title>
     <link href="/2020/12/29/css%E4%BC%AA%E7%B1%BB%E5%92%8C%E4%BC%AA%E5%85%83%E7%B4%A0/"/>
     <url>/2020/12/29/css%E4%BC%AA%E7%B1%BB%E5%92%8C%E4%BC%AA%E5%85%83%E7%B4%A0/</url>
