@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      2.2k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26
+      28
        分钟
     </span>
   
@@ -235,7 +235,30 @@
             <h1 style="display: none">css3动画</h1>
             
             <div class="markdown-body">
-              <h1 id="3个重要属性"><a href="#3个重要属性" class="headerlink" title="3个重要属性"></a>3个重要属性</h1><h2 id="transform-变形"><a href="#transform-变形" class="headerlink" title="transform 变形"></a>transform 变形</h2><blockquote>
+              <h1 id="20210108更新"><a href="#20210108更新" class="headerlink" title="20210108更新"></a>20210108更新</h1><h2 id="怎么监听css3动画结束后的事件"><a href="#怎么监听css3动画结束后的事件" class="headerlink" title="怎么监听css3动画结束后的事件"></a>怎么监听css3动画结束后的事件</h2><p>在执行完一段css3动画后需要进行一些业务操作或者页面操作等等，咋搞呢？</p>
+<p>我们可以使用js来监听两个事件</p>
+<ul>
+<li>动画播放过程会触发两类事件：</li>
+</ul>
+<ol>
+<li><code>AnimationEvent</code></li>
+<li><code>TransitionEvent</code></li>
+</ol>
+<ul>
+<li>动画结束的事件的两个实现分别是：</li>
+</ul>
+<ol>
+<li><code>animationend</code></li>
+<li><code>transitionend</code></li>
+</ol>
+<p>Demo页面在这里，只测试过Chrome</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/longtian/pen/jEyrzN">https://codepen.io/longtian/pen/jEyrzN</a></p>
+<p>兼容性大坑可以看AngularUI的这部分源码</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/angular-ui/bootstrap/blob/7512b93fecb6f27df4f5aeba4c756c0c36aebbf2/src/transition/transition.js#L59">https://github.com/angular-ui/bootstrap/blob/7512b93fecb6f27df4f5aeba4c756c0c36aebbf2/src/transition/transition.js#L59</a></p>
+<p>比如监听一个动画结束</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;div id=<span class="hljs-string">&quot;animend&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;floating&quot;</span>&gt;animationend&lt;/div&gt;<br><br><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;animend&quot;</span>).addEventListener(<span class="hljs-string">&quot;webkitAnimationEnd&quot;</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> &#123;<br>  <span class="hljs-comment">// todo ...</span><br>  <br>    &#125;, <span class="hljs-literal">false</span>);<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="3个重要属性"><a href="#3个重要属性" class="headerlink" title="3个重要属性"></a>3个重要属性</h1><h2 id="transform-变形"><a href="#transform-变形" class="headerlink" title="transform 变形"></a>transform 变形</h2><blockquote>
 <p>transform（变形）允许你旋转，缩放，倾斜或平移给定元素</p>
 </blockquote>
 <p>拥有 <code>rotate</code> 旋转 <code>skew</code> 扭曲 <code>scale</code> 缩放 <code>translate</code> 移动 <code>matrix</code> 矩阵变形五大特效</p>
