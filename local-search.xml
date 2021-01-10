@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>iOS企业签名无开发者账号使用XCode打包ipa</title>
+    <link href="/2021/01/10/iOS%E4%BC%81%E4%B8%9A%E7%AD%BE%E5%90%8D%E6%97%A0%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8XCode%E6%89%93%E5%8C%85ipa/"/>
+    <url>/2021/01/10/iOS%E4%BC%81%E4%B8%9A%E7%AD%BE%E5%90%8D%E6%97%A0%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8XCode%E6%89%93%E5%8C%85ipa/</url>
+    
+    <content type="html"><![CDATA[<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>一个外包项目，对过来，对方说不上架，没有开发者账号，使用购买企业签名的方式来进行分发，咋搞呢？</p><p>一般来说没有开发者账号确实没法打包，曲线救国，我们可以通过Payload方式进行打包。</p><h1 id="通过Payload方式"><a href="#通过Payload方式" class="headerlink" title="通过Payload方式"></a>通过Payload方式</h1><h2 id="1-和Xcode自带打包方式一样，设置好相关证书和编辑Edit-Scheme。"><a href="#1-和Xcode自带打包方式一样，设置好相关证书和编辑Edit-Scheme。" class="headerlink" title="1. 和Xcode自带打包方式一样，设置好相关证书和编辑Edit Scheme。"></a>1. 和Xcode自带打包方式一样，设置好相关证书和编辑Edit Scheme。</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-08-03.png"></p><h2 id="2-在edit-scheme中设置run的模式为-release"><a href="#2-在edit-scheme中设置run的模式为-release" class="headerlink" title="2. 在edit scheme中设置run的模式为 release"></a>2. 在edit scheme中设置run的模式为 <code>release</code></h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-12-35.png"></p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-12-54.png"></p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-14-52.png"></p><h2 id="3-command-B-编译一下工程，等待编译完成"><a href="#3-command-B-编译一下工程，等待编译完成" class="headerlink" title="3. command+B 编译一下工程，等待编译完成"></a>3. <code>command+B</code> 编译一下工程，等待编译完成</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-16-41.png"></p><h2 id="4-展开工程Product目录，右键show-in-finder，可以看到-app扩展名文件"><a href="#4-展开工程Product目录，右键show-in-finder，可以看到-app扩展名文件" class="headerlink" title="4. 展开工程Product目录，右键show in finder，可以看到.app扩展名文件"></a>4. 展开工程<code>Product</code>目录，右键<code>show in finder</code>，可以看到.app扩展名文件</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-18-06.png"></p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-19-50.png"></p><h2 id="5-在桌面创建文件夹Payload，名称一定不要打错，然后将刚刚那个-app文件拷贝到该文件中，鼠标右键，选择压缩文件夹，压缩成功后，将-zip扩展名改为-ipa。到此，ipa包已经成功生成。"><a href="#5-在桌面创建文件夹Payload，名称一定不要打错，然后将刚刚那个-app文件拷贝到该文件中，鼠标右键，选择压缩文件夹，压缩成功后，将-zip扩展名改为-ipa。到此，ipa包已经成功生成。" class="headerlink" title="5. 在桌面创建文件夹Payload，名称一定不要打错，然后将刚刚那个.app文件拷贝到该文件中，鼠标右键，选择压缩文件夹，压缩成功后，将.zip扩展名改为.ipa。到此，ipa包已经成功生成。"></a>5. 在桌面创建文件夹<code>Payload</code>，名称一定不要打错，然后将刚刚那个.app文件拷贝到该文件中，鼠标右键，选择压缩文件夹，压缩成功后，将.zip扩展名改为.ipa。到此，ipa包已经成功生成。</h2><p><img src="https://picture-transmission.iplus-studio.top/image.png"></p><h2 id="6-和Xcode自带打包方式生成ipa包一样，将ipa上产到不同平台进行分发。"><a href="#6-和Xcode自带打包方式生成ipa包一样，将ipa上产到不同平台进行分发。" class="headerlink" title="6. 和Xcode自带打包方式生成ipa包一样，将ipa上产到不同平台进行分发。"></a>6. 和Xcode自带打包方式生成ipa包一样，将ipa上产到不同平台进行分发。</h2><p><img src="https://picture-transmission.iplus-studio.top/image2.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>移动端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>iOS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>送给react开发者的八条优化建议</title>
     <link href="/2021/01/04/%E9%80%81%E7%BB%99react%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E5%85%AB%E6%9D%A1%E4%BC%98%E5%8C%96%E5%BB%BA%E8%AE%AE/"/>
     <url>/2021/01/04/%E9%80%81%E7%BB%99react%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E5%85%AB%E6%9D%A1%E4%BC%98%E5%8C%96%E5%BB%BA%E8%AE%AE/</url>
