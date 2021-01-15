@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      788 字
+      1.3k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      17
        分钟
     </span>
   
@@ -280,6 +280,27 @@
 <p>到目前为止呢，我们已经将<code>js bundle</code>包和图片资源导入到<code>iOS</code>项目中，接下来我们就可以发布我们的<code>iOS</code>应用了。</p>
 <p><code>RN</code> 应用和纯<code>iOS</code>应用打包唯一不同的是上面两步，按照这个教程执行完第二步，剩下的步骤就和<code>iOS</code>正常<code>APP</code>打包一样了</p>
 <p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-50-48.png" srcset="/img/loading.gif"></p>
+<h1 id="安卓友盟统计-多渠道打包"><a href="#安卓友盟统计-多渠道打包" class="headerlink" title="安卓友盟统计+多渠道打包"></a>安卓友盟统计+多渠道打包</h1><blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/k571039838k/article/details/82625295">https://blog.csdn.net/k571039838k/article/details/82625295</a><br>搬运：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904013171785741">https://juejin.cn/post/6844904013171785741</a></p>
+</blockquote>
+<p>友盟集成配置自己看文档，集成的问题应该都不大，毕竟当时没有任何移动端开发经验的我都集成成功了</p>
+<p>要多渠道打包主要是修改几个文件</p>
+<h2 id="android-app-build-gradle"><a href="#android-app-build-gradle" class="headerlink" title="android/app/build.gradle"></a><code>android/app/build.gradle</code></h2><figure class="highlight gradle"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs gradle">android &#123;<br>    defaultConfig &#123;<br>        ...<br>        +++<br>        manifestPlaceholders=[UMENG_CHANNEL_VALUE: <span class="hljs-string">&quot;Umeng&quot;</span>]<br>        flavorDimensions <span class="hljs-string">&quot;versionCode&quot;</span><br>    &#125;<br>    ...<br>    <span class="hljs-comment">// 配置多渠道包支持</span><br>    productFlavors&#123;<br>      Tencent &#123;<span class="hljs-comment">//投放应用宝市场</span><br>              &#125;<br>      Baidu &#123;<span class="hljs-comment">//投放百度市场</span><br>      &#125;<br>      Wandoujia &#123;<span class="hljs-comment">//投放豌豆荚市场</span><br>      &#125;<br>      Vivo &#123;<span class="hljs-comment">//投放vivo市场</span><br>      &#125;<br>      Oppo &#123;<span class="hljs-comment">//投放oppo市场</span><br>      &#125;<br>      Xiaomi &#123;<span class="hljs-comment">//投放小米市场</span><br>      &#125;<br>      Meizu &#123;<span class="hljs-comment">//投放魅族市场</span><br>      &#125;<br>      Huawei &#123;<span class="hljs-comment">//投放华为应用市场</span><br>      &#125;<br>      Lenovo &#123;<span class="hljs-comment">//投放联想市场</span><br>      &#125;<br>      Letv &#123;<span class="hljs-comment">//投放乐视市场</span><br>      &#125;<br>      Gionee &#123;<span class="hljs-comment">//投放金立市场</span><br>      &#125;<br>      HiMarket &#123;<span class="hljs-comment">//投放安卓市场</span><br>      &#125;<br>    &#125;<br>    productFlavors.all &#123; flavor -&gt;<br>        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]<br>    &#125;<br> <br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<h2 id="android-app-src-main-AndroidManifest-xml"><a href="#android-app-src-main-AndroidManifest-xml" class="headerlink" title="android/app/src/main/AndroidManifest.xml"></a><code>android/app/src/main/AndroidManifest.xml</code></h2><figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">application</span>&gt;</span> <br>    ...<br>    +++<br>    <span class="hljs-comment">&lt;!--友盟--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span> <span class="hljs-attr">android:value</span>=<span class="hljs-string">&quot;友盟的appkey&quot;</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;UMENG_APPKEY&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;UMENG_CHANNEL&quot;</span> <span class="hljs-attr">android:value</span>=<span class="hljs-string">&quot;$&#123;UMENG_CHANNEL_VALUE&#125;&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>其他地方我就当你已经自己完美集成了友盟，因为其他地方跟普通集成友盟没有任何不同，不同的只有上面的地方。</p>
+<h2 id="添加友盟多渠道后使用react-native-run-android-报错"><a href="#添加友盟多渠道后使用react-native-run-android-报错" class="headerlink" title="添加友盟多渠道后使用react-native run-android 报错"></a>添加友盟多渠道后使用<code>react-native run-android</code> 报错</h2><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">react-native run-android --variant channelNameDebug<br><br>//channelName是渠道的名字，例如Oppo的是<br>react-native run-android --variant OppoDebug <br><br>//百度的是<br>react-native run-android --variant BaiduDebug <br></code></pre></div></td></tr></table></figure>
+
+<p>我一般直接写在 <code>package.json</code> 文件</p>
+<figure class="highlight json"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs json">&#123;<br><span class="hljs-attr">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;android&quot;</span>: <span class="hljs-string">&quot;react-native run-android --variant OppoDebug&quot;</span>,<br>    <span class="hljs-attr">&quot;ios&quot;</span>: <span class="hljs-string">&quot;react-native run-ios&quot;</span>,<br>    <span class="hljs-attr">&quot;start&quot;</span>: <span class="hljs-string">&quot;react-native start&quot;</span>,<br>    <span class="hljs-attr">&quot;test&quot;</span>: <span class="hljs-string">&quot;jest&quot;</span>,<br>    <span class="hljs-attr">&quot;lint&quot;</span>: <span class="hljs-string">&quot;eslint . --ext .js,.jsx,.ts,.tsx&quot;</span>,<br>    <span class="hljs-attr">&quot;bundle-ios&quot;</span>: <span class="hljs-string">&quot;react-native bundle --platform ios --entry-file index.js --bundle-output ./bundles/main.jsbundle --assets-dest  ./bundles --dev false&quot;</span><br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>然后跟以前一样<code>yarn android</code></p>
+<p>现在正常运行安卓打包命令，已经可以进行多渠道打包了</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-15_18-11-14.png" srcset="/img/loading.gif"></p>
+<p>输出的文件名是我自定义的，跟多渠道打包无关哈～</p>
+<p>测试两个渠道，正常！</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-15_18-12-32.png" srcset="/img/loading.gif"></p>
 
             </div>
             <hr>
