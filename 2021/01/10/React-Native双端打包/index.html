@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      21
        分钟
     </span>
   
@@ -301,6 +301,28 @@
 <p>输出的文件名是我自定义的，跟多渠道打包无关哈～</p>
 <p>测试两个渠道，正常！</p>
 <p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-15_18-12-32.png" srcset="/img/loading.gif"></p>
+<h1 id="360多渠道加固打包"><a href="#360多渠道加固打包" class="headerlink" title="360多渠道加固打包"></a>360多渠道加固打包</h1><p>之前只想到多渠道打包，没想到加固，等下想回来的时候，我不可能把打包好的十几个apk一个一个再拿去加固吧？</p>
+<p>不用代码，直接用360加固客户端，点几下搞定，速度还行。</p>
+<p>先看图。</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_17-45-58.png" srcset="/img/loading.gif"></p>
+<p>已经把渠道都打包好，而且还加固了，还签名了！</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>先设置好你的渠道，我举个例子。</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_17-52-20.png" srcset="/img/loading.gif"></p>
+<p>点击导入后，他会自动跳转到多渠道模板的，一个txt双击导入。</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_17-55-04.png" srcset="/img/loading.gif"></p>
+<p>要修改也可以直接在模版上修改，更加的效率。</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_17-53-37.png" srcset="/img/loading.gif"></p>
+<p>图中两个地方一定要勾选，不然就是白搞。</p>
+<p>接下来就直接上传打包好的apk，等待就行，他会自动给你分渠道和加固。那么360加固究竟干了啥子东西？</p>
+<h2 id="他做了啥"><a href="#他做了啥" class="headerlink" title="他做了啥"></a>他做了啥</h2><p>首先我们清楚看到有个<code>UMENG_CHANNEL</code> 在，这个明显就是友盟统计啊大哥，360加固会自动在<code>AndroidManifest.xml</code>上加上这么一段代码</p>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml">&lt;meta-data<br>       android:name=&quot;UMENG_CHANNEL&quot;<br>       android:value=&quot;qihu360&quot; /&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p>很熟悉，这就是友盟统计的渠道。</p>
+<p>此处注意，360是会在最后加上这么一段代码，不会覆盖的，所以之前有自己写<code>UMENG_CHANNEL</code>的，记得去掉。</p>
+<p>我们用as打开一个apk看下究竟是不是这样。</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_18-01-20.png" srcset="/img/loading.gif"></p>
+<p>事实上是的。</p>
+<p>接下来我测试一下。</p>
 
             </div>
             <hr>
