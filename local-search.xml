@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>_property vs self.property</title>
+    <link href="/2021/05/14/property-vs-self-property/"/>
+    <url>/2021/05/14/property-vs-self-property/</url>
+    
+    <content type="html"><![CDATA[<p><code>SomeClass.h</code></p><figure class="highlight less"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs less"><span class="hljs-variable">@interface</span> <span class="hljs-attribute">SomeClass </span>: NSObject<br><br><span class="hljs-variable">@property</span> NSString *property;<br><br><span class="hljs-variable">@end</span><br></code></pre></div></td></tr></table></figure><p>实际使用中我们是可以有两种方式使用的：</p><ul><li><p><code>_property</code></p></li><li><p><code>self.property</code></p></li></ul><p>那么究竟什么时候用第一种什么时候用第二种？</p><p>一般来说你可能会在getter/setter/init/dealloc方法种用到<code>_property</code>，其他任何情况都应该是用<code>self.property</code></p><h2 id="为什么？"><a href="#为什么？" class="headerlink" title="为什么？"></a>为什么？</h2><p>因为调用<code>self.property</code>实际上是去访问了这个属性的getter方法，如果是<code>self.property = @&quot;something&quot;</code>则是去调用这个属性的setter方法。</p><p>而<code>_property</code>则是直接访问这个变量。</p><figure class="highlight crmsh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crmsh">- (<span class="hljs-keyword">Type</span>)<span class="hljs-keyword">property</span><span class="hljs-title"></span>&#123;<br>    return <span class="hljs-number">2</span>*_property;<br>&#125;<br><br>// <span class="hljs-keyword">AND</span>/<span class="hljs-keyword">OR</span><br><br>- (void)setProperty:(<span class="hljs-keyword">Type</span>)<span class="hljs-keyword">property</span><span class="hljs-title"></span><br>&#123;<br>    _property = <span class="hljs-number">2</span>*<span class="hljs-keyword">property</span><span class="hljs-title"></span>;<br>&#125;<br></code></pre></div></td></tr></table></figure><p>所以如果有复写这个属性的getter方法和setter方法，那么<code>_property</code>和<code>self.property</code>就会变得不同。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>移动端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>iOS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>RN版百度语音识别与一个UI组件</title>
     <link href="/2021/03/06/RN%E7%89%88%E7%99%BE%E5%BA%A6%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E4%B8%8E%E4%B8%80%E4%B8%AAUI%E7%BB%84%E4%BB%B6-Dialog%E5%92%8CToast/"/>
     <url>/2021/03/06/RN%E7%89%88%E7%99%BE%E5%BA%A6%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E4%B8%8E%E4%B8%80%E4%B8%AAUI%E7%BB%84%E4%BB%B6-Dialog%E5%92%8CToast/</url>
