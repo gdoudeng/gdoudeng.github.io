@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>反编译及二次打包</title>
+    <link href="/2021/06/29/%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BB%A5%E5%8F%8A%E4%BA%8C%E6%AC%A1%E6%89%93%E5%8C%85/"/>
+    <url>/2021/06/29/%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BB%A5%E5%8F%8A%E4%BA%8C%E6%AC%A1%E6%89%93%E5%8C%85/</url>
+    
+    <content type="html"><![CDATA[<h1 id="使用ApkTool反编译APK得到xml文件、AndroidManifest-xml和图片"><a href="#使用ApkTool反编译APK得到xml文件、AndroidManifest-xml和图片" class="headerlink" title="使用ApkTool反编译APK得到xml文件、AndroidManifest.xml和图片"></a>使用ApkTool反编译APK得到xml文件、AndroidManifest.xml和图片</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>brew install apktool</code></p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><code>apktool d ez.apk</code></p><p>该命令执行后会在同级目录下生成一个与你编译的apk同名的目录</p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_15-21-07.png"></p><h2 id="修改源码"><a href="#修改源码" class="headerlink" title="修改源码"></a>修改源码</h2><p><a href="https://github.com/AlexeySoshin/smali2java/tree/v1.0">smali2java</a></p><p>smali2java没有mac版的。</p><p>打开源码后，会有一些资源文件已经成了一些十六进制的代码呈现在我们眼前，这就蛋疼了，天知道这是啥呢？</p><p>路径：<code>res/values/public.xml</code></p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_15-24-01.png"></p><h2 id="重新打包"><a href="#重新打包" class="headerlink" title="重新打包"></a>重新打包</h2><p>apktool b ez -o demofake.apk</p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-28_21-58-38.png"></p><h2 id="重新签名"><a href="#重新签名" class="headerlink" title="重新签名"></a>重新签名</h2><p><code>jarsigner -verbose -keystore [您的私钥存放路径] -signedjar [签名后文件存放路径] [未签名的文件路径] [您的证书别名]</code></p><ul><li>完整例子</li></ul><p><code>jarsigner -verbose -keystore my-release-key.keystore -signedjar ./demofake-signed.apk ./demofake.apk my-key-alia</code></p><h1 id="dex2jar将dex反编译成jar"><a href="#dex2jar将dex反编译成jar" class="headerlink" title="dex2jar将dex反编译成jar"></a>dex2jar将dex反编译成jar</h1><h2 id="使用解压软件将apk进行解压：得到-dex文件"><a href="#使用解压软件将apk进行解压：得到-dex文件" class="headerlink" title="使用解压软件将apk进行解压：得到.dex文件"></a>使用解压软件将apk进行解压：得到.dex文件</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_15-25-46.png"></p><ul><li>将dex文件反编译成jar可读文件：</li></ul><p><code>sh d2j-dex2jar.sh classes.dex</code></p><p>通过上述命令会得到1个.jar文件</p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_15-27-29.png"></p><h1 id="使用JD-GUI查看反编译后的程序源码"><a href="#使用JD-GUI查看反编译后的程序源码" class="headerlink" title="使用JD-GUI查看反编译后的程序源码"></a>使用JD-GUI查看反编译后的程序源码</h1><p>将dex转换成jar之后接下来我们就可以使用JD-GUI来查看反编译后的程序源码</p><p>将classes-dex2jar.jar拖拽到JD-GUI界面上即可</p><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_15-29-10.png"></p><p>这个app可以说完全的裸奔。</p><p>我没试过脱壳，加固过的我一般直接放弃不搞。所以小伙子不要怕麻烦，一定要加固。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>移动端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Android</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>_property vs self.property</title>
     <link href="/2021/05/14/property-vs-self-property/"/>
     <url>/2021/05/14/property-vs-self-property/</url>
