@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="WELCOME">
+  <meta name="author" content="邓伟彬">
+  <meta name="keywords" content="">
+  <title>css伪类和伪元素 - dwb</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz","app_key":"GghUuBNsfm9f6gjneTVolb3s","server_url":"https://leancloud.iplus-studio.top"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>dwb</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="css伪类和伪元素">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-29 09:24" pubdate>
+        2020年12月29日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      73
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">css伪类和伪元素</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements">https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements</a></p>
+</blockquote>
+<h1 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h1><p>伪类选择器（简称：伪类）通过冒号来定义，它定义了元素的状态，如点击按下，点击完成等，通过伪类可以为元素的状态修改样式。</p>
+<blockquote>
+<p>:pseudo-class-name</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">article</span> <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:first-child</span> &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">120%</span>;<br>    <span class="hljs-attribute">font-weight</span>: bold;<br>&#125; <br></code></pre></div></td></tr></table></figure>
+
+<p>下面逐一详细看一下</p>
+<ul>
+<li><a href="#active">:active</a></li>
+<li><a href="#any-link">:any-link</a></li>
+<li><a href="#checked">:checked</a></li>
+<li><a href="#default">:default</a></li>
+<li><a href="#dir">:dir</a></li>
+<li><a href="#disabled">:disabled</a></li>
+<li><a href="#enabled">:enabled</a></li>
+<li><a href="#empty">:empty</a></li>
+<li><a href="#first-child">:first-child</a></li>
+<li><a href="#last-child">:last-child</a></li>
+<li><a href="#nth-child">:nth-child</a></li>
+<li><a href="#only-child">:only-child</a></li>
+<li><a href="#first-of-type">:first-of-type</a></li>
+<li><a href="#last-of-type">:last-of-type</a></li>
+<li><a href="#focus">:focus</a></li>
+<li><a href="#focus-within">:focus-within</a></li>
+<li><a href="#hover">:hover</a></li>
+<li><a href="#indeterminate">:indeterminate</a></li>
+<li><a href="#in-range">:in-range</a></li>
+<li><a href="#out-of-range">:out-of-range</a></li>
+<li><a href="#invalid">:invalid</a></li>
+<li><a href="#valid">:valid</a></li>
+<li><a href="#lang">:lang</a></li>
+<li><a href="#link">:link</a></li>
+<li><a href="#visited">:visited</a></li>
+<li><a href="#is">:is</a></li>
+<li><a href="#not">:not</a></li>
+<li><a href="#optional">:optional</a></li>
+<li><a href="#playing">:playing</a></li>
+<li><a href="#paused">:paused</a></li>
+<li><a href="#read-only">:read-only</a></li>
+<li><a href="#read-write">:read-write</a></li>
+<li><a href="#required">:required</a></li>
+<li><a href="#root">:root</a></li>
+</ul>
+<h2 id="active"><a href="#active" class="headerlink" title="active"></a>active</h2><blockquote>
+<p>在用户激活（例如点击）元素的时候匹配。这个是比较常用的。</p>
+</blockquote>
+<p>当用鼠标交互时，它代表的是用户<strong>按下按键和松开按键之间的时间</strong>。</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:active</span> &#123;<br>    <span class="hljs-attribute">color</span>: red;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>为保证样式生效，需要把 <code>:active</code> 的样式放在所有链接相关的样式之后。这种链接伪类先后顺序被称为 <em>LVHA</em> 顺序：<code>:link</code> — <code>:visited</code> — <code>:hover</code> — <code>:active</code>。</p>
+<h2 id="any-link"><a href="#any-link" class="headerlink" title="any-link"></a>any-link</h2><blockquote>
+<p>匹配任意一个链接的:link和:visited状态。</p>
+</blockquote>
+<p>它会匹配每一个有 <code>href</code> 属性的 <code>&lt;a&gt;</code>、<code>&lt;area&gt;</code> 或 <code>&lt;link&gt;</code> 元素</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 选中任意匹配 :link 和 :visited 元素*/</span><br><span class="hljs-selector-pseudo">:any-link</span> &#123;<br>    <span class="hljs-attribute">color</span>: green;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="checked"><a href="#checked" class="headerlink" title="checked"></a>checked</h2><blockquote>
+<p>匹配处于选中状态的单选或者复选框。</p>
+</blockquote>
+<p>用户通过勾选/选中元素或取消勾选/取消选中，来改变该元素的 <code>:checked</code> 状态。</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 匹配任意被勾选/选中的radio(单选按钮),checkbox(复选框),或者option(select中的一项) */</span><br><span class="hljs-selector-pseudo">:checked</span> &#123;<br>    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">25px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid blue;<br>&#125; <br></code></pre></div></td></tr></table></figure>
+
+<h2 id="default"><a href="#default" class="headerlink" title="default"></a>default</h2><blockquote>
+<p>表示一组相关元素中的默认表单元素</p>
+</blockquote>
+<p>该选择器可以在 <code>&lt;button&gt;</code>, <code>&lt;input type=&quot;checkbox&quot;&gt;</code>, <code>&lt;input type=&quot;radio&quot;&gt;</code>, 以及 <code>&lt;option&gt;</code> 上使用。</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* Selects any default &lt;input&gt; */</span><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:default</span> &#123;<br>    <span class="hljs-attribute">background-color</span>: lime;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h2><blockquote>
+<p><code>:dir</code>伪类选择文档中指定了语言方向的元素。换句话说，为了使用<code>:dir</code>伪类，需要在标记中为相关元素指定<code>dir</code>属性。</p>
+</blockquote>
+<p>语言方向目前有两种：<code>ltr</code>（从左到右）和 <code>rtl</code>（从右往左）。</p>
+<p>写这篇文章时，支持:<code>dir</code>伪类的只有Firefox（<code>-moz-dir()</code>），</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">dir</span>=<span class="hljs-string">&quot;rtl&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>التدليك واحد من أقدم العلوم الصحية التي عرفها الانسان والذي يتم استخدامه لأغراض الشفاء منذ ولاده الطفل.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 带前缀 */</span><br><span class="hljs-selector-tag">article</span> <span class="hljs-selector-pseudo">:-moz-dir(rtl)</span> &#123;<br>    <span class="hljs-attribute">color</span>: orange;<br>&#125;<br><br><span class="hljs-comment">/* 不带前缀 */</span><br><span class="hljs-selector-tag">article</span> <span class="hljs-selector-pseudo">:dir(rtl)</span> &#123;<br>    <span class="hljs-attribute">color</span>: orange;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="disabled"><a href="#disabled" class="headerlink" title="disabled"></a>disabled</h2><blockquote>
+<p><code>:disabled</code>伪类选择禁用状态的表单元素</p>
+</blockquote>
+<p>处于禁用状态的元素，不能被选中、勾选，不能获得焦点。</p>
+<p>在下面的例子中，<code>name</code>输入框处于禁用状态，因此会半透明。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">disabled</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:disabled</span> &#123;<br>    <span class="hljs-attribute">opacity</span>: .<span class="hljs-number">5</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="enabled"><a href="#enabled" class="headerlink" title="enabled"></a>enabled</h2><blockquote>
+<p>与<code>disabled</code>相反，所有表单元素默认都是启用的，除非在标记中添加了disabled属性。</p>
+</blockquote>
+<p>通过<code>:enabled</code>和<code>:disabled</code>可以提供视觉上的反馈，改善用户体验。</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 选择任何启用状态的 &lt;input&gt; */</span><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:enabled</span> &#123;<br>    <span class="hljs-attribute">color</span>: blue;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>看示例：<a target="_blank" rel="noopener" href="http://codepen.io/ricardozea/pen/zqYQxq">http://codepen.io/ricardozea/pen/zqYQxq</a></p>
+<h2 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h2><blockquote>
+<p>代表没有子元素的元素。子元素只可以是元素节点或文本（包括空格）。</p>
+</blockquote>
+<p>只要包含一个字母、其他HTML元素，甚至一个空格，都不算空。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-comment">&lt;!-- I will be lime --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>I will be pink<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- I will be red because of the whitespace around this comment --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: pink;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">80px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:empty</span> &#123;<br>    <span class="hljs-attribute">background</span>: lime;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_12-07-45.png" srcset="/img/loading.gif"></p>
+<h2 id="first-child"><a href="#first-child" class="headerlink" title="first-child"></a>first-child</h2><blockquote>
+<p><code>:first-child</code>表示在一组兄弟元素中的第一个元素。这个是比较常用的。</p>
+</blockquote>
+<p>下面的例子中，只有第一个p标签会应用到样式。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This text is selected!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This text isn&#x27;t selected.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>This text isn&#x27;t selected: it&#x27;s not a `p`.<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This text isn&#x27;t selected.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:first-child</span> &#123;<br>    <span class="hljs-attribute">color</span>: lime;<br>    <span class="hljs-attribute">background-color</span>: black;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_14-31-53.png" srcset="/img/loading.gif"></p>
+<p>再看一个常用在<code>ul</code> <code>li</code>中的。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3<br>        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3.1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3.2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3.3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">li</span> &#123;<br>    <span class="hljs-attribute">color</span>: blue;<br>&#125;<br><br><span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:first-child</span> &#123;<br>    <span class="hljs-attribute">color</span>: red;<br>    <span class="hljs-attribute">font-weight</span>: bold;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_14-32-02.png" srcset="/img/loading.gif"></p>
+<h2 id="last-child"><a href="#last-child" class="headerlink" title="last-child"></a>last-child</h2><blockquote>
+<p>代表父元素的最后一个子元素。这个是比较常用的。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>此元素背景色不是lime<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>我的也不是lime。<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>我的才是lime！ :)<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:last-child</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: lime;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_15-51-32.png" srcset="/img/loading.gif"></p>
+<h2 id="nth-child"><a href="#nth-child" class="headerlink" title="nth-child"></a>nth-child</h2><blockquote>
+<p>首先找到所有当前元素的兄弟元素，然后按照位置先后顺序从1开始排序，选择的结果为CSS伪类<code>:nth-child</code>括号中表达式<code>（an+b）</code>匹配到的元素集合<code>（n=0，1，2，3...）</code></p>
+</blockquote>
+<p>示例：</p>
+<ul>
+<li><p><code>0n+3</code> 或简单的 3 匹配第三个元素。</p>
+</li>
+<li><p><code>1n+0</code> 或简单的 n 匹配每个元素。（兼容性提醒：在 Android 浏览器 4.3 以下的版本 n 和 1n 的匹配方式不一致。1n 和 1n+0 是一致的，可根据喜好任选其一来使用。）</p>
+</li>
+<li><p><code>2n+0</code> 或简单的 2n 匹配位置为 2、4、6、8…的元素（n=0时，2n+0=0，第0个元素不存在，因为是从1开始排序)。你可以使用关键字 even 来替换此表达式。</p>
+</li>
+<li><p><code>2n+1</code> 匹配位置为 1、3、5、7…的元素。你可以使用关键字 odd 来替换此表达式。</p>
+</li>
+<li><p><code>3n+4</code> 匹配位置为 4、7、10、13…的元素。</p>
+</li>
+<li><p><code>tr:nth-child(2n+1)</code><br>  表示HTML表格中的奇数行。</p>
+</li>
+<li><p><code>tr:nth-child(odd)</code><br>  表示HTML表格中的奇数行。</p>
+</li>
+<li><p><code>tr:nth-child(2n)</code><br>  表示HTML表格中的偶数行。</p>
+</li>
+<li><p><code>tr:nth-child(even)</code><br>  表示HTML表格中的偶数行。</p>
+</li>
+<li><p><code>span:nth-child(0n+1)</code><br>  表示子元素中第一个且为span的元素，与 :first-child 选择器作用相同。</p>
+</li>
+<li><p><code>span:nth-child(1)</code><br>  表示父元素中子元素为第一的并且名字为span的标签被选中</p>
+</li>
+<li><p><code>span:nth-child(-n+3)</code><br>  匹配前三个子元素中的span元素。</p>
+</li>
+</ul>
+<h2 id="only-child"><a href="#only-child" class="headerlink" title="only-child"></a>only-child</h2><blockquote>
+<p>选择父元素中唯一的子元素。</p>
+</blockquote>
+<p>在下面的例子中，第一个<code>ul</code>只有一个子元素，因此该子元素将变成橙色。第二个<code>ul</code>有多个子元素，因此其子元素不会受<code>:only-child</code>伪类影响。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>This text will be orange.<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Lorem ipsum dolor sit amet.<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Lorem ipsum dolor sit amet.<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">ul</span> <span class="hljs-selector-pseudo">:only-child</span> &#123;<br>    <span class="hljs-attribute">color</span>: orange;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="first-of-type"><a href="#first-of-type" class="headerlink" title="first-of-type"></a>first-of-type</h2><blockquote>
+<p>选择父元素容器内任意类型子元素的第一个元素。</p>
+</blockquote>
+<p>在下面的例子中，第一个<code>li</code>元素和第一个<code>span</code>元素的文本才是橙色的。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>This text will be orange.<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Lorem ipsum dolor sit amet. <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>This text will be orange.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Lorem ipsum dolor sit amet.<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">ul</span> <span class="hljs-selector-pseudo">:first-of-type</span> &#123;<br>    <span class="hljs-attribute">color</span>: orange;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="last-of-type"><a href="#last-of-type" class="headerlink" title="last-of-type"></a>last-of-type</h2><blockquote>
+<p><code>:last-of-type</code>伪类选择父元素容器内任意类型子元素的最后一个元素。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">em</span><span class="hljs-selector-pseudo">:last-of-type</span> &#123;<br>  <span class="hljs-attribute">color</span>: lime;<br>&#125;<br>``` <br><br>```<span class="hljs-selector-tag">html</span><br>&lt;<span class="hljs-selector-tag">p</span>&gt;<br>  &lt;<span class="hljs-selector-tag">em</span>&gt;我没有颜色 <span class="hljs-selector-pseudo">:(</span>&lt;/<span class="hljs-selector-tag">em</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;<span class="hljs-selector-tag">strong</span>&gt;我没有颜色 <span class="hljs-selector-pseudo">:(</span>&lt;/<span class="hljs-selector-tag">strong</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;<span class="hljs-selector-tag">em</span>&gt;我有颜色 <span class="hljs-selector-pseudo">:D</span>&lt;/<span class="hljs-selector-tag">em</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;<span class="hljs-selector-tag">strong</span>&gt;我也没有颜色 <span class="hljs-selector-pseudo">:(</span>&lt;/<span class="hljs-selector-tag">strong</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>&lt;/<span class="hljs-selector-tag">p</span>&gt;<br><br>&lt;<span class="hljs-selector-tag">p</span>&gt;<br>  &lt;<span class="hljs-selector-tag">em</span>&gt;我没有颜色 <span class="hljs-selector-pseudo">:(</span>&lt;/<span class="hljs-selector-tag">em</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;<span class="hljs-selector-tag">span</span>&gt;&lt;<span class="hljs-selector-tag">em</span>&gt;我有颜色!&lt;/<span class="hljs-selector-tag">em</span>&gt;&lt;/<span class="hljs-selector-tag">span</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;<span class="hljs-selector-tag">strong</span>&gt;我没有颜色 <span class="hljs-selector-pseudo">:(</span>&lt;/<span class="hljs-selector-tag">strong</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;<span class="hljs-selector-tag">em</span>&gt;我有颜色 <span class="hljs-selector-pseudo">:D</span>&lt;/<span class="hljs-selector-tag">em</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;<span class="hljs-selector-tag">span</span>&gt;<br>    &lt;<span class="hljs-selector-tag">em</span>&gt;我在子元素里，但没有颜色!&lt;/<span class="hljs-selector-tag">em</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>    &lt;span style=&quot;text-decoration:line-through;&quot;&gt; 我没有颜色 &lt;/span&gt;&lt;br&gt;<br>    &lt;<span class="hljs-selector-tag">em</span>&gt;我却有颜色！&lt;/<span class="hljs-selector-tag">em</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;/<span class="hljs-selector-tag">span</span>&gt;&lt;<span class="hljs-selector-tag">br</span>&gt;<br>  &lt;<span class="hljs-selector-tag">strong</span>&gt;我也没有颜色 <span class="hljs-selector-pseudo">:(</span>&lt;/<span class="hljs-selector-tag">strong</span>&gt;<br>&lt;/<span class="hljs-selector-tag">p</span>&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_15-53-20.png" srcset="/img/loading.gif"></p>
+<h2 id="focus"><a href="#focus" class="headerlink" title="focus"></a>focus</h2><blockquote>
+<p><code>:focus</code>表示获得焦点的元素（如表单输入）。当用户点击或触摸元素或通过键盘的 “tab” 键选择它时会被触发。</p>
+</blockquote>
+<p>在表单里使用得非常多。</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* Selects any &lt;input&gt; when focused */</span><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>    <span class="hljs-attribute">color</span>: red;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="focus-within"><a href="#focus-within" class="headerlink" title="focus-within"></a>focus-within</h2><blockquote>
+<p>表示一个元素获得焦点，或，该元素的后代元素获得焦点。换句话说，元素自身或者它的某个后代匹配 <code>:focus</code> 伪类。</p>
+</blockquote>
+<p>该选择器非常实用。举个通俗的例子：表单中的某个 <code>&lt;input&gt;</code> 字段获得焦点时，整个表单的 <code>&lt;form&gt;</code> 元素都可被高亮。</p>
+<p>此例子中，当表单某个文本输入框获得焦点后，表单会被设置颜色样式。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>试试在这个表单中输入点什么。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;given_name&quot;</span>&gt;</span>Given Name:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;given_name&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;family_name&quot;</span>&gt;</span>Family Name:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;family_name&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">form</span> &#123;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>    <span class="hljs-attribute">color</span>: gray;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">4px</span>;<br>&#125;<br><br><span class="hljs-selector-tag">form</span><span class="hljs-selector-pseudo">:focus-within</span> &#123;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-number">#ff8</span>;<br>    <span class="hljs-attribute">color</span>: black;<br>&#125;<br><br><span class="hljs-selector-tag">input</span> &#123;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">4px</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Kapture%202020-12-29%20at%2015.10.35.gif" srcset="/img/loading.gif"></p>
+<h2 id="hover"><a href="#hover" class="headerlink" title="hover"></a>hover</h2><blockquote>
+<p>在用户指针悬停时生效。而且它不只可以用于链接，<code>:hover</code>伪类可以任何伪元素上使用。这个是比较常用的。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>    <span class="hljs-attribute">color</span>: orange;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>看示例：<a target="_blank" rel="noopener" href="https://codepen.io/ricardozea/pen/vGEzJK">https://codepen.io/ricardozea/pen/vGEzJK</a></p>
+<h2 id="indeterminate"><a href="#indeterminate" class="headerlink" title="indeterminate"></a>indeterminate</h2><blockquote>
+<p><code>:indeterminate</code>伪类选择单选按钮或复选框在页面加载时没有被勾选的。</p>
+</blockquote>
+<p>比如，页面加载后，一组单选按钮中没有默认或预先勾选的，或者一个复选框已经通过<code>JavaScript</code>设置为<code>indeterminate</code>状态。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;checkbox&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;checkbox&quot;</span>&gt;</span>Background should be green<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;radio&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;radio&quot;</span>&gt;</span>Background should be green<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">var</span> inputs = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&quot;input&quot;</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; inputs.length; i++) &#123;<br>  inputs[i].indeterminate = <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">input</span>, <span class="hljs-selector-tag">span</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>&#125;<br><br><span class="hljs-selector-pseudo">:indeterminate</span>, <span class="hljs-selector-pseudo">:indeterminate</span> + <span class="hljs-selector-tag">label</span> &#123;<br>    <span class="hljs-attribute">background</span>: lime;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>页面一进来的时候：</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_15-29-03.png" srcset="/img/loading.gif"></p>
+<p>选中之后：</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_15-29-13.png" srcset="/img/loading.gif"></p>
+<h2 id="in-range"><a href="#in-range" class="headerlink" title="in-range"></a>in-range</h2><blockquote>
+<p>代表一个 <code>&lt;input&gt;</code> 元素，其当前值处于属性 <code>min</code> 和 <code>max</code> 限定的范围之内.</p>
+</blockquote>
+<h2 id="out-of-range"><a href="#out-of-range" class="headerlink" title="out-of-range"></a>out-of-range</h2><blockquote>
+<p>表示一个 <code>&lt;input&gt;</code> 元素，其当前值处于属性 <code>min</code> 和 <code>max</code> 限定的范围外。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;form1&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>Values between 1 and 10 are valid.<br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;value1&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;value1&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;1 to 10&quot;</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;12&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;value1&quot;</span>&gt;</span>Your value is <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">li</span> &#123;<br>    <span class="hljs-attribute">list-style</span>: none;<br>    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">1em</span>;<br>&#125;<br><br><span class="hljs-selector-tag">input</span> &#123;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid black;<br>&#125;<br><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:in-range</span> &#123;<br>    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.25</span>);<br>&#125;<br><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:out-of-range</span> &#123;<br>    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.25</span>);<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid red;<br>&#125;<br><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:in-range</span> + <span class="hljs-selector-tag">label</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;okay.&#x27;</span>;<br>&#125;<br><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:out-of-range</span> + <span class="hljs-selector-tag">label</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;out of range!&#x27;</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>当<code>input</code>在范围当时候：</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_15-34-53.png" srcset="/img/loading.gif"></p>
+<p>当<code>input</code>不在范围当时候：</p>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_15-35-01.png" srcset="/img/loading.gif"></p>
+<h2 id="invalid"><a href="#invalid" class="headerlink" title="invalid"></a>invalid</h2><blockquote>
+<p><code>:invalid</code>伪类选择输入格式不符合要求的表单元素。这个伪类对于突出显示用户的字段错误非常有用。</p>
+</blockquote>
+<p>在下面的例子中，email输入框中的电子邮箱格式不正确，因此这个输入框会被认为无效，将出现橙色边框：</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=email]</span><span class="hljs-selector-pseudo">:invalid</span> &#123;<br>    <span class="hljs-attribute">background</span>: orange;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>看示例：<a target="_blank" rel="noopener" href="http://codepen.io/ricardozea/pen/bEzqVg">http://codepen.io/ricardozea/pen/bEzqVg</a></p>
+<h2 id="valid"><a href="#valid" class="headerlink" title="valid"></a>valid</h2><blockquote>
+<p>CSS 伪类表示内容验证正确的 <code>&lt;input&gt;</code> 或其他 <code>&lt;form&gt;</code> 元素。这能简单地将校验字段展示为一种能让用户辨别出其输入数据的正确性的样式。</p>
+</blockquote>
+<p>该伪类对于高亮正确字段是很有用的。</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* Selects any valid &lt;input&gt; */</span><br><span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:valid</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: powderblue;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="lang"><a href="#lang" class="headerlink" title="lang"></a>lang</h2><blockquote>
+<p>基于元素语言来匹配页面元素。</p>
+</blockquote>
+<p>通过<code>lang=&quot;&quot;</code>属性、相应的<code>meta</code>元素以及<code>HTTP</code>首部的协议信息来确定。</p>
+<p><code>lang=&quot;&quot;</code>属性常用于<code>html</code>标签，其实也可以用于其他标签。</p>
+<p>下面看看怎么通过CSS来添加引用标记。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>This English quote has a<span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>nested<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;<span class="hljs-name">quote</span></span> inside.<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;fr&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>This French quote has a<span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>nested<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;<span class="hljs-name">quote</span></span> inside.<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;de&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>This German quote has a<span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>nested<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;<span class="hljs-name">quote</span></span> inside.<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:lang(en)</span> &gt; <span class="hljs-selector-tag">q</span> &#123; <span class="hljs-attribute">quotes</span>: <span class="hljs-string">&#x27;\201C&#x27;</span> <span class="hljs-string">&#x27;\201D&#x27;</span> <span class="hljs-string">&#x27;\2018&#x27;</span> <span class="hljs-string">&#x27;\2019&#x27;</span>; &#125;<br><span class="hljs-selector-pseudo">:lang(fr)</span> &gt; <span class="hljs-selector-tag">q</span> &#123; <span class="hljs-attribute">quotes</span>: <span class="hljs-string">&#x27;« &#x27;</span> <span class="hljs-string">&#x27; »&#x27;</span>; &#125;<br><span class="hljs-selector-pseudo">:lang(de)</span> &gt; <span class="hljs-selector-tag">q</span> &#123; <span class="hljs-attribute">quotes</span>: <span class="hljs-string">&#x27;»&#x27;</span> <span class="hljs-string">&#x27;«&#x27;</span> <span class="hljs-string">&#x27;\2039&#x27;</span> <span class="hljs-string">&#x27;\203A&#x27;</span>; &#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_15-48-57.png" srcset="/img/loading.gif"></p>
+<h2 id="link"><a href="#link" class="headerlink" title="link"></a>link</h2><blockquote>
+<p><code>:link</code>伪类选择器是用来选中元素当中的链接。它将会选中所有尚未访问的链接，包括那些已经给定了其他伪类选择器的链接（例如<code>:hover</code>选择器，<code>:active</code>选择器，<code>:visited</code>选择器）。</p>
+</blockquote>
+<h2 id="visited"><a href="#visited" class="headerlink" title="visited"></a>visited</h2><blockquote>
+<p>表示用户已访问过的链接。出于隐私原因，可以使用此选择器修改的样式非常有限。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 所有被访问过的 &lt;a&gt; 变绿 */</span><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:visited</span> &#123;<br>  <span class="hljs-attribute">color</span>: green;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="is"><a href="#is" class="headerlink" title="is"></a>is</h2><blockquote>
+<p> CSS 伪类 函数将选择器列表作为参数，并选择该列表中任意一个选择器可以选择的元素。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 选择header, main, footer里的任意一个悬浮状态的段落(p标签) */</span><br><span class="hljs-selector-pseudo">:is(header</span>, <span class="hljs-selector-tag">main</span>, <span class="hljs-selector-tag">footer</span>) <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>&#125;<br><br><span class="hljs-comment">/* 以上内容相当于以下内容 */</span><br><span class="hljs-selector-tag">header</span> <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:hover</span>,<br><span class="hljs-selector-tag">main</span> <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:hover</span>,<br><span class="hljs-selector-tag">footer</span> <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><code>:is()</code> 伪类可以大大简化CSS选择器。例如，下面的CSS:</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 3-deep (or more) unordered lists use a square */</span><br><span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ul</span>,     <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ul</span>,     <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ul</span>,     <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ul</span>,<br><span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">menu</span>,   <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">menu</span>,   <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">menu</span>,   <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">menu</span>,<br><span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">dir</span>,    <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">dir</span>,    <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">dir</span>,    <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">dir</span>,<br><span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ul</span>,     <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ul</span>,     <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ul</span>,     <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ul</span>,<br><span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">menu</span>,   <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">menu</span>,   <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">menu</span>,   <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">menu</span>,<br><span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">dir</span>,    <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">dir</span>,    <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">dir</span>,    <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">dir</span>,<br><span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ul</span>,   <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ul</span>,   <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ul</span>,   <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ul</span>,<br><span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">menu</span>,<br><span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">dir</span>,  <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">dir</span>,  <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">dir</span>,  <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">dir</span>,<br><span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">ul</span>,    <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">ul</span>,    <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">ul</span>,    <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ul</span>,<br><span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">menu</span>,  <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">menu</span>,  <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">menu</span>,  <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">menu</span>,<br><span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ol</span> <span class="hljs-selector-tag">dir</span>,   <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">dir</span>,   <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">menu</span> <span class="hljs-selector-tag">dir</span>,   <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">dir</span> <span class="hljs-selector-tag">dir</span> &#123;<br>  <span class="hljs-attribute">list-style-type</span>: square;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>可以被替换为:</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 3-deep (or more) unordered lists use a square */</span><br><span class="hljs-selector-pseudo">:is(ol</span>, <span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) <span class="hljs-selector-pseudo">:is(ol</span>, <span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) <span class="hljs-selector-tag">ul</span>,<br><span class="hljs-selector-pseudo">:is(ol</span>, <span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) <span class="hljs-selector-pseudo">:is(ol</span>, <span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) <span class="hljs-selector-tag">menu</span>,<br><span class="hljs-selector-pseudo">:is(ol</span>, <span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) <span class="hljs-selector-pseudo">:is(ol</span>, <span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) <span class="hljs-selector-tag">dir</span> &#123;<br>  <span class="hljs-attribute">list-style-type</span>: square;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>但是，不要像下面那么做</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:is(ol</span>, <span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) <span class="hljs-selector-pseudo">:is(ol</span>, <span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) <span class="hljs-selector-pseudo">:is(ul</span>, <span class="hljs-selector-tag">menu</span>, <span class="hljs-selector-tag">dir</span>) &#123;<br>  <span class="hljs-attribute">list-style-type</span>: square;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="not"><a href="#not" class="headerlink" title="not"></a>not</h2><blockquote>
+<p><code>:not()</code> 用来匹配不符合一组选择器的元素。由于它的作用是防止特定的元素被选中，它也被称为反选伪类（negation pseudo-class）。</p>
+</blockquote>
+<p>注意：</p>
+<ul>
+<li><code>:not()</code> 伪类不能被嵌套，这意味着 <code>:not(:not(...))</code> 是无效的。</li>
+<li>由于伪元素不是简单的选择器，他们不能被当作 <code>:not()</code> 中的参数，形如 <code>:not(p::before)</code> 这样的选择器将不会工作。</li>
+<li>可以利用这个伪类写一个完全没有用处的选择器。例如， <code>:not(*)</code> 匹配任何非元素的元素，因此，这个规则将永远不会被应用。</li>
+<li>可以利用这个伪类提高规则的优先级。例如， <code>#foo:not(#bar)</code> 和 <code>#foo</code> 会匹配相同的元素，但是前者的优先级更高。</li>
+<li><code>:not(.foo)</code> 将匹配任何非 <code>.foo</code> 的元素，包括 <code>&lt;html&gt;</code> 和 <code>&lt;body&gt;</code>。</li>
+<li>这个选择器只会应用在一个元素上，无法用它来排除所有父元素。比如， <code>body :not(table) a</code> 依旧会应用到表格元素 <code>&lt;table&gt;</code> 内部的 <code>&lt;a&gt;</code> 上, 因为 <code>&lt;tr&gt;</code> 将会被 <code>:not(table)</code> 这部分选择器匹配。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 选择所有不是段落（p）的元素 */</span><br><span class="hljs-selector-pseudo">:not(p)</span> &#123;<br>  <span class="hljs-attribute">color</span>: blue;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><code>:not()</code> 伪类可以将一个或多个以逗号分隔的选择器列表作为其参数。选择器中不得包含另一个否定选择符或 伪元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-class">.fancy</span> &#123;<br>  <span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">3px</span> gold;<br>&#125;<br><br><span class="hljs-comment">/* 类名不是 `.fancy` 的 &lt;p&gt; 元素 */</span><br><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:not(.fancy)</span> &#123;<br>  <span class="hljs-attribute">color</span>: green;<br>&#125;<br><br><span class="hljs-comment">/* 非 &lt;p&gt; 元素 */</span><br><span class="hljs-selector-tag">body</span> <span class="hljs-selector-pseudo">:not(p)</span> &#123;<br>  <span class="hljs-attribute">text-decoration</span>: underline;<br>&#125;<br><br><span class="hljs-comment">/* 既不是 &lt;div&gt; 也不是 &lt;span&gt; 的元素 */</span><br><span class="hljs-selector-tag">body</span> <span class="hljs-selector-pseudo">:not(div)</span><span class="hljs-selector-pseudo">:not(span)</span> &#123;<br>  <span class="hljs-attribute">font-weight</span>: bold;<br>&#125;<br><br><span class="hljs-comment">/* 类名不是 `.crazy` 或 `.fancy` 的元素 */</span><br><span class="hljs-comment">/* 注意，此语法尚未获广泛支持。 */</span><br><span class="hljs-selector-tag">body</span> <span class="hljs-selector-pseudo">:not(.crazy</span>, <span class="hljs-selector-class">.fancy</span>) &#123;<br>  <span class="hljs-attribute">font-family</span>: sans-serif;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="optional"><a href="#optional" class="headerlink" title="optional"></a>optional</h2><blockquote>
+<p><code>:optional</code>伪类选择表单中非必填的输入字段。换句话说，只要输入字段中没有<code>required</code>属性，就会被<code>:optional</code>伪类选中。</p>
+</blockquote>
+<p>在下面的例子中，这个数值字段是可以选填的，因此其中的文本将为灰色。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:optional</span> &#123;<br>    <span class="hljs-attribute">color</span>: gray;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="playing"><a href="#playing" class="headerlink" title="playing"></a>playing</h2><blockquote>
+<p>匹配代表音频、视频或者相似的能“播放”或者“暂停”的资源的，且正在“播放”的元素。</p>
+</blockquote>
+<h2 id="paused"><a href="#paused" class="headerlink" title="paused"></a>paused</h2><blockquote>
+<p>匹配代表音频、视频或者相似的能“播放”或者“暂停”的资源的，且正在“暂停”的元素。</p>
+</blockquote>
+<h2 id="read-only"><a href="#read-only" class="headerlink" title="read-only"></a>read-only</h2><blockquote>
+<p>匹配用户不可更改的元素。</p>
+</blockquote>
+<h2 id="read-write"><a href="#read-write" class="headerlink" title="read-write"></a>read-write</h2><blockquote>
+<p>匹配用户可更改的元素。</p>
+</blockquote>
+<h2 id="required"><a href="#required" class="headerlink" title="required"></a>required</h2><blockquote>
+<p>匹配必填的form元素。</p>
+</blockquote>
+<p>注意：<code>:optional</code>伪类选中’可选的’表单字段。</p>
+<h2 id="root"><a href="#root" class="headerlink" title="root"></a>root</h2><blockquote>
+<p>这个 CSS 伪类匹配文档树的根元素。对于 <code>HTML</code> 来说，<code>:root</code> 表示 <code>&lt;html&gt;</code> 元素，除了优先级更高之外，与 <code>html</code> 选择器相同。</p>
+</blockquote>
+<p>在声明全局 CSS 变量时 <code>:root</code> 会很有用：</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:root</span> &#123;<br>  <span class="hljs-attribute">--main-color</span>: hotpink;<br>  <span class="hljs-attribute">--pane-padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">42px</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><p>伪元素开头为双冒号::</p>
+<blockquote>
+<p>::pseudo-element-name</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">article</span> <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">::first-line</span> &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">120%</span>;<br>    <span class="hljs-attribute">font-weight</span>: bold;<br>&#125;  <br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><a href="#after">::after</a></li>
+<li><a href="#before">::before</a></li>
+<li><a href="#first-letter">::first-letter</a></li>
+<li><a href="#first-line">::first-line</a></li>
+<li><a href="#selection">::selection</a></li>
+</ul>
+<h2 id="after"><a href="#after" class="headerlink" title="after"></a>after</h2><blockquote>
+<p><code>::after</code>用来创建一个伪元素，作为已选中元素的最后一个子元素。通常会配合<code>content</code>属性来为该元素添加装饰内容。这个虚拟元素默认是行内元素。</p>
+</blockquote>
+<p>当然，通过这个伪元素添加的任何内容都无法通过其他选择符选中。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Ricardo<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">h1</span><span class="hljs-selector-pseudo">:after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;, Web Designer!&quot;</span>;<br>    <span class="hljs-attribute">color</span>: green;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html">Ricardo, Web Designer!<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>提示用法</li>
+</ul>
+<p>接下来的示例展示了用<code>::after</code>伪元素，<code>attr()</code>CSS表达式和一个自定义数据属性 <code>data-descr</code> 创建一个纯CSS, 词汇表提示工具。在<a target="_blank" rel="noopener" href="https://media.prod.mdn.mozit.cloud/attachments/2013/01/20/4591/c9173e2c17cea118775c05f12eef4c1f/css-only_tooltips.html">单独页面</a>看这个例子。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这是上面代码的实现<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><br>  我们有一些 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">data-descr</span>=<span class="hljs-string">&quot;collection of words and punctuation&quot;</span>&gt;</span>文字<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> 有一些<br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">data-descr</span>=<span class="hljs-string">&quot;small popups which also hide again&quot;</span>&gt;</span>提示<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>。<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><br>  把鼠标放上去<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">data-descr</span>=<span class="hljs-string">&quot;not to be taken literally&quot;</span>&gt;</span>看看<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>.<br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">span</span><span class="hljs-selector-attr">[data-descr]</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">text-decoration</span>: underline;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#00F</span>;<br>  <span class="hljs-attribute">cursor</span>: help;<br>&#125;<br><br><span class="hljs-selector-tag">span</span><span class="hljs-selector-attr">[data-descr]</span><span class="hljs-selector-pseudo">:hover</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-built_in">attr</span>(data-descr);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">24px</span>;<br>  <span class="hljs-attribute">min-width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> <span class="hljs-number">#aaaaaa</span> solid;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ffffcc</span>;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#000000</span>;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_16-40-49.png" srcset="/img/loading.gif"></p>
+<h2 id="before"><a href="#before" class="headerlink" title="before"></a>before</h2><blockquote>
+<p><code>::before</code> 创建一个伪元素，其将成为匹配选中的元素的第一个子元素。常通过 <code>content</code> 属性来为一个元素添加修饰性的内容。此元素默认为行内元素。</p>
+</blockquote>
+<p>我们可以用几乎任何方法定义 <code>content</code> 中的文字和图片样式。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ribbon&quot;</span>&gt;</span>Notice where the orange box is.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-class">.ribbon</span> &#123;<br>   <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#5BC8F7</span>;<br>&#125;<br><br><span class="hljs-selector-class">.ribbon</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>   <span class="hljs-attribute">content</span>:          <span class="hljs-string">&quot;Look at this orange box.&quot;</span>;<br>   <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#FFBA10</span>;<br>   <span class="hljs-attribute">border-color</span>:     black;<br>   <span class="hljs-attribute">border-style</span>:     dotted;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_16-44-33.png" srcset="/img/loading.gif"></p>
+<h2 id="first-letter"><a href="#first-letter" class="headerlink" title="first-letter"></a>first-letter</h2><blockquote>
+<p><code>:first-letter</code>伪元素选择一行文本第一个字符。</p>
+</blockquote>
+<p>如果相应行前面包含图片、视频或表格元素，那么不会影响选择第一个字符。</p>
+<p>这个伪元素非常适合对段落进行排版，有了它就不必用图片或其他技巧了。</p>
+<p>提示： 这个伪元素也可以选中<code>:before</code>伪元素生成的第一个字符。</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">h1</span><span class="hljs-selector-pseudo">:first-letter</span>  &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">5em</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="first-line"><a href="#first-line" class="headerlink" title="first-line"></a>first-line</h2><blockquote>
+<p><code>:first-line</code>选择元素的第一行，只适用于块级元素，行内元素不适用。</p>
+</blockquote>
+<p>即使一段文本有多行，也会选中第一行。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit,<br>sed do eiusmod tempor incididunt ut labore.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">::first-line</span> &#123; <span class="hljs-attribute">text-transform</span>: uppercase &#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-29_16-49-19.png" srcset="/img/loading.gif"></p>
+<h2 id="selection"><a href="#selection" class="headerlink" title="selection"></a>selection</h2><blockquote>
+<p>CSS伪元素应用于文档中被用户高亮的部分（比如使用鼠标或其他选择设备选中的部分）。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-pseudo">::selection</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: cyan;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>只有一小部分CSS属性可以用于<code>::selection</code> 选择器：</p>
+<ul>
+<li><code>color</code></li>
+<li><code>background-color</code></li>
+<li><code>cursor</code></li>
+<li><code>caret-color</code></li>
+<li><code>outline and its longhands</code></li>
+<li><code>text-decoration and its associated properties</code></li>
+<li><code>text-emphasis-color</code></li>
+<li><code>text-shadow</code></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/css/">css</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/29/Mac-OSX%E5%AE%89%E8%A3%85MongoDB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mac OSX安装MongoDB</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/28/10%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                        <span class="hidden-mobile">10分钟搞定正则表达式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz",
+          app_key: "GghUuBNsfm9f6gjneTVolb3s",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://leancloud.iplus-studio.top",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备18085104号
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18085104"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon"/>
+            
+            <span>粤ICP备18085104号-1</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

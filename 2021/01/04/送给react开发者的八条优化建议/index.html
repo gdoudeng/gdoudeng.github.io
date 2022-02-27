@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="WELCOME">
+  <meta name="author" content="邓伟彬">
+  <meta name="keywords" content="">
+  <title>送给react开发者的八条优化建议 - dwb</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz","app_key":"GghUuBNsfm9f6gjneTVolb3s","server_url":"https://leancloud.iplus-studio.top"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>dwb</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="送给react开发者的八条优化建议">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-04 10:15" pubdate>
+        2021年1月4日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      109
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">送给react开发者的八条优化建议</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>作者： 👽<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/uTpXoooZL8gF2trX_Yj1Iw">https://mp.weixin.qq.com/s/uTpXoooZL8gF2trX_Yj1Iw</a></p>
+</blockquote>
+<h1 id="一-不能输在起跑线上，优化babel配置-webpack配置为项"><a href="#一-不能输在起跑线上，优化babel配置-webpack配置为项" class="headerlink" title="一 不能输在起跑线上，优化babel配置,webpack配置为项"></a>一 不能输在起跑线上，优化babel配置,webpack配置为项</h1><p>略</p>
+<h1 id="二-路由懒加载，路由监听器"><a href="#二-路由懒加载，路由监听器" class="headerlink" title="二 路由懒加载，路由监听器"></a>二 路由懒加载，路由监听器</h1><p>略</p>
+<h1 id="三-受控性组件颗粒化-，独立请求服务渲染单元"><a href="#三-受控性组件颗粒化-，独立请求服务渲染单元" class="headerlink" title="三 受控性组件颗粒化 ，独立请求服务渲染单元"></a>三 受控性组件颗粒化 ，独立请求服务渲染单元</h1><blockquote>
+<p>这点非常重要，现在反省过来，我自己都还有很多地方可以优化。</p>
+</blockquote>
+<p>可控性组件颗粒化，独立请求服务渲染单元是笔者在实际工作总结出来的经验。目的就是避免因自身的渲染更新或是副作用带来的全局重新渲染。</p>
+<h2 id="1-颗粒化控制可控性组件"><a href="#1-颗粒化控制可控性组件" class="headerlink" title="1 颗粒化控制可控性组件"></a>1 颗粒化控制可控性组件</h2><p>可控性组件和非可控性的区别就是<code>dom</code>元素值是否与受到<code>react</code>数据状态<code>state</code>控制。一旦由<code>react</code>的<code>state</code>控制数据状态，比如<code>input</code>输入框的值，就会造成这样一个场景，为了使<code>input</code>值实时变化，会不断<code>setState</code>，就会不断触发<code>render</code>函数，如果父组件内容简单还好，如果父组件比较复杂，会造成牵一发动全身，如果其他的子组件中<code>componentWillReceiveProps</code>这种带有副作用的钩子，那么引发的蝴蝶效应不敢想象。比如如下<code>demo</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>&lt;<span class="hljs-title">any</span>,<span class="hljs-title">any</span>&gt;</span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">props</span>)</span>&#123;<br>        <span class="hljs-built_in">super</span>(props)<br>        <span class="hljs-built_in">this</span>.state=&#123;<br>            inputValue:<span class="hljs-string">&#x27;&#x27;</span><br>        &#125;<br>    &#125;<br>    handerChange=<span class="hljs-function">(<span class="hljs-params">e</span>)=&gt;</span> <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">inputValue</span>:e.target.value  &#125;)<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; inputValue &#125; = <span class="hljs-built_in">this</span>.state<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            &#123; <span class="hljs-comment">/*  我们增加三个子组件 */</span> &#125;<br>            &lt;ComA /&gt;<br>            &lt;ComB /&gt;<br>            &lt;ComC /&gt;<br>            &lt;div className=<span class="hljs-string">&quot;box&quot;</span> &gt;<br>                &lt;Input  value=&#123;inputValue&#125;  onChange=&#123; <span class="hljs-function">(<span class="hljs-params">e</span>)=&gt;</span> <span class="hljs-built_in">this</span>.handerChange(e) &#125; /&gt;<br>            &lt;/div&gt;<br>            &#123;<span class="hljs-comment">/* 我们首先来一个列表循环 */</span>&#125;<br>            &#123;<br>                <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">10</span>).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">(<span class="hljs-params">item,index</span>)=&gt;</span>&#123;<br>                    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;列表循环了&#x27;</span> )<br>                    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index&#125;</span> &gt;</span>&#123;item&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>                &#125;)<br>            &#125;<br>            &#123;<br>              <span class="hljs-comment">/* 这里可能是更复杂的结构 */</span><br>              <span class="hljs-comment">/* ------------------ */</span><br>            &#125;<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>组件A</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;组件A渲染&#x27;</span>)<br>   <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是组件A<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>组件B，有一个componentWillReceiveProps钩子</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">props</span>)</span>&#123;<br>        <span class="hljs-built_in">super</span>(props)<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">componentWillReceiveProps</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentWillReceiveProps执行&#x27;</span>)<br>        <span class="hljs-comment">/* 可能做一些骚操作 wu lian */</span><br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;组件B渲染&#x27;</span>)<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            我是组件B<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>组件C有一个列表循环</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">props</span>)</span>&#123;<br>        <span class="hljs-built_in">super</span>(props)<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;组件c渲染&#x27;</span>)<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>              我是组件c<br>             &#123;<br>                <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">10</span>).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">(<span class="hljs-params">item,index</span>)=&gt;</span>&#123;<br>                    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;组件C列表循环了&#x27;</span> )<br>                    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index&#125;</span> &gt;</span>&#123;item&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>                &#125;)<br>            &#125;<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<p>效果</p>
+<p><img src="https://picture-transmission.iplus-studio.top/640.gif" srcset="/img/loading.gif"></p>
+<p>当我们在<code>input</code>输入内容的时候。就会造成如上的现象，所有的不该重新更新的地方，全部重新执行了一遍，这无疑是巨大的性能损耗。这个一个<code>setState</code>触发带来的一股巨大的由此组件到子组件可能更深的更新流，带来的副作用是不可估量的。所以我们可以思考一下，是否将这种受控性组件颗粒化，让自己更新 -&gt; 渲染过程由自身调度。</p>
+<p>说干就干，我们对上面的<code>input</code>表单单独<strong>颗粒化</strong>处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span> ComponentInput = memo(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">&#123; notifyFatherChange &#125;:any</span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ inputValue , setInputValue ] = useState(<span class="hljs-string">&#x27;&#x27;</span>)<br>    <span class="hljs-keyword">const</span> handerChange = useMemo(<span class="hljs-function">() =&gt;</span> <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>        setInputValue(e.target.value)<br>        notifyFatherChange &amp;&amp; notifyFatherChange(e.target.value)<br>    &#125;,[])<br>    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Input</span>   <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;inputValue&#125;</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;</span> <span class="hljs-attr">handerChange</span>  &#125;  /&gt;</span></span><br>&#125;)<br></code></pre></div></td></tr></table></figure>
+
+<p>此时的组件更新由组件单元自行控制，不需要父组件的更新，所以不需要父组件设置独立<code>state</code>保留状态。只需要绑定到<code>this</code>上即可。不是所有状态都应该放在组件的 <code>state</code> 中. 例如缓存数据。如果需要组件响应它的变动, 或者需要渲染到视图中的数据才应该放到 <code>state</code> 中。这样可以避免不必要的数据变动导致组件重新渲染.</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>&lt;<span class="hljs-title">any</span>,<span class="hljs-title">any</span>&gt;</span>&#123;   <br>    formData :any = &#123;&#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            &#123; <span class="hljs-comment">/*  我们增加三个子组件 */</span> &#125;<br>            &lt;ComA /&gt;<br>            &lt;ComB /&gt;<br>            &lt;ComC /&gt;<br>            &lt;div className=<span class="hljs-string">&quot;box&quot;</span> &gt;<br>               &lt;ComponentInput notifyFatherChange=&#123; <span class="hljs-function">(<span class="hljs-params">value</span>)=&gt;</span>&#123; <span class="hljs-built_in">this</span>.formData.inputValue = value &#125; &#125;  /&gt;<br>               &lt;Button onClick=&#123;<span class="hljs-function">()=&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.formData)&#125; &gt;打印数据&lt;/Button&gt;<br>            &lt;/div&gt;<br>            &#123;<span class="hljs-comment">/* 我们首先来一个列表循环 */</span>&#125;<br>            &#123;<br>                <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">10</span>).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">(<span class="hljs-params">item,index</span>)=&gt;</span>&#123;<br>                    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;列表循环了&#x27;</span> )<br>                    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index&#125;</span> &gt;</span>&#123;item&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>                &#125;)<br>            &#125;<br>            &#123;<br>              <span class="hljs-comment">/* 这里可能是更复杂的结构 */</span><br>              <span class="hljs-comment">/* ------------------ */</span><br>            &#125;<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="https://picture-transmission.iplus-studio.top/640%20%281%29.gif" srcset="/img/loading.gif"></p>
+<p>这样除了当前组件外，其他地方没有收到任何渲染波动，达到了我们想要的目的。</p>
+<h2 id="2-建立独立的请求渲染单元"><a href="#2-建立独立的请求渲染单元" class="headerlink" title="2 建立独立的请求渲染单元"></a>2 建立独立的请求渲染单元</h2><p>建立独立的请求渲染单元，直接理解就是，如果我们把页面，分为请求数据展示部分(通过调用后端接口，获取数据)，和基础部分(不需要请求数据，已经直接写好的)，对于一些逻辑交互不是很复杂的数据展示部分，我推荐用一种独立组件，独立请求数据，独立控制渲染的模式。至于为什么我们可以慢慢分析。</p>
+<p>首先我们看一下传统的页面模式。</p>
+<p><img src="https://picture-transmission.iplus-studio.top/640.webp" srcset="/img/loading.gif"></p>
+<p>页面有三个展示区域分别，做了三次请求，触发了三次<code>setState</code>,渲染三次页面，即使用<code>Promise.all</code>等方法，但是也不保证接下来交互中，会有部分展示区重新拉取数据的可能。一旦有一个区域重新拉取数据，另外两个区域也会说、受到牵连，这种效应是不可避免的，即便<code>react</code>有很好的<code>diff</code>算法去调协相同的节点，但是比如长列表等情况，循环在所难免。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    state :any=&#123;<br>        dataA:<span class="hljs-literal">null</span>,<br>        dataB:<span class="hljs-literal">null</span>,<br>        dataC:<span class="hljs-literal">null</span><br>    &#125;<br>    <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-title">componentDidMount</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-comment">/* 获取A区域数据 */</span><br>        <span class="hljs-keyword">const</span> dataA = <span class="hljs-keyword">await</span> getDataA()<br>        <span class="hljs-built_in">this</span>.setState(&#123; dataA &#125;)<br>        <span class="hljs-comment">/* 获取B区域数据 */</span><br>        <span class="hljs-keyword">const</span> dataB = <span class="hljs-keyword">await</span> getDataB()<br>        <span class="hljs-built_in">this</span>.setState(&#123; dataB &#125;)<br>        <span class="hljs-comment">/* 获取C区域数据 */</span><br>        <span class="hljs-keyword">const</span> dataC = <span class="hljs-keyword">await</span> getDataC()<br>        <span class="hljs-built_in">this</span>.setState(&#123; dataC &#125;)<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; dataA , dataB , dataC &#125; = <span class="hljs-built_in">this</span>.state<br>        <span class="hljs-built_in">console</span>.log(dataA,dataB,dataC)<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            &lt;div&gt; &#123; <span class="hljs-comment">/* 用 dataA 数据做展示渲染 */</span> &#125; &lt;/div&gt;<br>            &lt;div&gt; &#123; <span class="hljs-comment">/* 用 dataB 数据做展示渲染 */</span> &#125; &lt;/div&gt;<br>            &lt;div&gt; &#123; <span class="hljs-comment">/* 用 dataC 数据做展示渲染 */</span> &#125; &lt;/div&gt;<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>接下来我们，把每一部分抽取出来，形成独立的渲染单元，每个组件都独立数据请求到独立渲染。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ComponentA</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ dataA, setDataA ] = useState(<span class="hljs-literal">null</span>)<br>    useEffect(<span class="hljs-function">()=&gt;</span>&#123;<br>       getDataA().then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span> setDataA(res.data)  )<br>    &#125;,[])<br>    <span class="hljs-keyword">return</span>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> &#123; /* 用 dataA 数据做展示渲染 */ &#125; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&#125; <br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ComponentB</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ dataB, setDataB ] = useState(<span class="hljs-literal">null</span>)<br>    useEffect(<span class="hljs-function">()=&gt;</span>&#123;<br>       getDataB().then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span> setDataB(res.data)  )<br>    &#125;,[])<br>    <span class="hljs-keyword">return</span>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> &#123; /* 用 dataB 数据做展示渲染 */ &#125; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&#125; <br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ComponentC</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ dataC, setDataC ] = useState(<span class="hljs-literal">null</span>)<br>    useEffect(<span class="hljs-function">()=&gt;</span>&#123;<br>       getDataC().then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span> setDataC(res.data)  )<br>    &#125;,[])<br>    <span class="hljs-keyword">return</span>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> &#123; /* 用 dataC 数据做展示渲染 */ &#125; <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&#125;  <br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Index</span> (<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>        &lt;ComponentA /&gt;<br>        &lt;ComponentB /&gt;<br>        &lt;ComponentC /&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>这样一来，彼此的数据更新都不会相互影响。</p>
+<p><img src="https://picture-transmission.iplus-studio.top/640%20%281%29.webp" srcset="/img/loading.gif"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>拆分需要单独调用后端接口的细小组件，建立独立的数据请求和渲染，这种依赖数据更新 -&gt; 视图渲染的组件，能从整个体系中抽离出来 ，好处我总结有以下几个方面。</p>
+<ol>
+<li><p>可以避免父组件的冗余渲染 ，<code>react</code>的数据驱动，依赖于 <code>state</code> 和 <code>props</code> 的改变，改变 <code>state</code> 必然会对组件 <code>render</code> 函数调用，如果父组件中的子组件过于复杂，一个自组件的 <code>state</code> 改变，就会牵一发动全身，必然影响性能，所以如果把很多依赖请求的组件抽离出来，可以直接减少渲染次数。</p>
+</li>
+<li><p>可以优化组件自身性能，无论从<code>class</code>声明的有状态组件还是<code>fun</code>声明的无状态，都有一套自身优化机制，无论是用 <code>shouldupdate</code> 还是用 <code>hooks</code> 中 <code>useMemo</code> <code>useCallback</code> ，都可以根据自身情况，定制符合场景的渲条件，使得依赖数据请求组件形成自己一个小的，适合自身的渲染环境。</p>
+</li>
+<li><p>能够和 <code>redux</code> ,以及<code>redux</code>衍生出来 <code>redux-action</code> , <code>dva</code>,更加契合的工作，用 <code>connect</code> 包裹的组件，就能通过制定好的契约，根据所需求的数据更新，而更新自身，而把这种模式用在这种小的，需要数据驱动的组件上，就会起到物尽其用的效果。</p>
+</li>
+</ol>
+<h1 id="四-shouldComponentUpdate-PureComponent-和-React-memo-immetable-js-助力性能调优"><a href="#四-shouldComponentUpdate-PureComponent-和-React-memo-immetable-js-助力性能调优" class="headerlink" title="四 shouldComponentUpdate ,PureComponent 和 React.memo , immetable.js 助力性能调优"></a>四 <code>shouldComponentUpdate</code> ,<code>PureComponent</code> 和 <code>React.memo</code> , <code>immetable.js</code> 助力性能调优</h1><p>在这里我们拿<code>immetable.js</code>为例，讲最传统的限制更新方法，第六部分将要将一些避免重新渲染的细节。</p>
+<h2 id="PureComponent-和-React-memo"><a href="#PureComponent-和-React-memo" class="headerlink" title="PureComponent 和 React.memo"></a><code>PureComponent</code> 和 <code>React.memo</code></h2><p><code>React.PureComponent</code> 与 <code>React.Component</code> 用法差不多 ,但 <code>React.PureComponent</code> 通过<code>props</code>和<code>state</code>的浅对比来实现 <code>shouldComponentUpdate()</code>。如果对象包含复杂的数据结构(比如对象和数组)，他会浅比较，如果深层次的改变，是无法作出判断的，<code>React.PureComponent</code> 认为没有变化，而没有渲染试图。</p>
+<p>如这个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Text</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">PureComponent</span>&lt;<span class="hljs-title">any</span>,<span class="hljs-title">any</span>&gt;</span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.props)<br>        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>hello,wrold<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>    &#125;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>&lt;<span class="hljs-title">any</span>,<span class="hljs-title">any</span>&gt;</span>&#123;<br>    state=&#123;<br>        data:&#123; <span class="hljs-attr">a</span> : <span class="hljs-number">1</span> , <span class="hljs-attr">b</span> : <span class="hljs-number">2</span> &#125;<br>    &#125;<br>    handerClick=<span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; data &#125; = <span class="hljs-built_in">this</span>.state<br>        data.a++<br>        <span class="hljs-built_in">this</span>.setState(&#123; data &#125;)<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; data &#125; = <span class="hljs-built_in">this</span>.state<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            &lt;button onClick=&#123; <span class="hljs-built_in">this</span>.handerClick &#125; &gt;点击&lt;/button&gt;<br>            &lt;Text data=&#123;data&#125; /&gt;<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="https://picture-transmission.iplus-studio.top/640%20%282%29.gif" srcset="/img/loading.gif"></p>
+<p>我们点击按钮，发现 <code>&lt;Text /&gt;</code> 根本没有重新更新。这里虽然改了<code>data</code>但是只是改变了<code>data</code>下的属性，所以 <code>PureComponent</code> 进行浅比较不会<code>update</code>。</p>
+<p>想要解决这个问题实际也很容易。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;Text data=&#123;&#123; ...data &#125;&#125; /&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p>无论组件是否是 <code>PureComponent</code>，如果定义了 <code>shouldComponentUpdate()</code>，那么会调用它并以它的执行结果来判断是否 <code>update</code>。在组件未定义 <code>shouldComponentUpdate()</code> 的情况下，会判断该组件是否是 <code>PureComponent</code>，如果是的话，会对新旧 <code>props</code>、<code>state</code> 进行 <code>shallowEqual</code> 比较，一旦新旧不一致，会触发渲染更新。</p>
+<p><code>react.memo</code> 和 <code>PureComponent</code> 功能类似 ，<code>react.memo</code> 作为第一个高阶组件，第二个参数 可以对 <code>props</code> 进行比较 ，和<code>shouldComponentUpdate</code>不同的, 当第二个参数返回 <code>true</code> 的时候，证明<code>props</code>没有改变，不渲染组件，反之渲染组件。</p>
+<h2 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h2><p>使用 <code>shouldComponentUpdate()</code> 以让<code>React</code>知道当<code>state</code>或<code>props</code>的改变是否影响组件的重新<code>render</code>，默认返回<code>ture</code>，返回<code>false</code>时不会重新渲染更新，而且该方法并不会在初始化渲染或当使用 <code>forceUpdate()</code> 时被调用，通常一个<code>shouldComponentUpdate</code> 应用是这么写的。</p>
+<p><strong>控制状态</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">shouldComponentUpdate</span>(<span class="hljs-params">nextProps, nextState</span>)</span> &#123;<br>  <span class="hljs-comment">/* 当 state 中 data1 发生改变的时候，重新更新组件 */</span>  <br>  <span class="hljs-keyword">return</span> nextState.data1 !== <span class="hljs-built_in">this</span>.state.data1<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>这个的意思就是 仅当<code>state</code> 中 <code>data1</code> 发生改变的时候，重新更新组件。</p>
+<p><strong>控制prop属性</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">shouldComponentUpdate</span>(<span class="hljs-params">nextProps, nextState</span>)</span> &#123;<br>  <span class="hljs-comment">/* 当 props 中 data2发生改变的时候，重新更新组件 */</span>  <br>  <span class="hljs-keyword">return</span> nextProps.data2 !== <span class="hljs-built_in">this</span>.props.data2<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>这个的意思就是 仅当<code>props</code> 中 <code>data2</code> 发生改变的时候，重新更新组件。</p>
+<h2 id="immetable-js"><a href="#immetable-js" class="headerlink" title="immetable.js"></a>immetable.js</h2><p><code>immetable.js</code> 是<code>Facebook</code> 开发的一个js库，可以提高对象的比较性能，像之前所说的<code>pureComponent</code> 只能对对象进行浅比较，,对于对象的数据类型,却束手无策,所以我们可以用 <code>immetable.js</code> 配合 <code>shouldComponentUpdate</code> 或者 <code>react.memo</code>来使用。<code>immutable</code> 中</p>
+<p>我们用<code>react-redux</code>来简单举一个例子，如下所示 数据都已经被 <code>immetable.js</code>处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; is  &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;immutable&#x27;</span><br><span class="hljs-keyword">const</span> GoodItems = connect(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span><br>    (&#123; <span class="hljs-attr">GoodItems</span>: filter(state.getIn([<span class="hljs-string">&#x27;Items&#x27;</span>, <span class="hljs-string">&#x27;payload&#x27;</span>, <span class="hljs-string">&#x27;list&#x27;</span>]), state.getIn([<span class="hljs-string">&#x27;customItems&#x27;</span>, <span class="hljs-string">&#x27;payload&#x27;</span>, <span class="hljs-string">&#x27;list&#x27;</span>])) || Immutable.List(), &#125;)<br>    <span class="hljs-comment">/* 此处省略很多代码～～～～～～ */</span><br>)(memo(<span class="hljs-function">(<span class="hljs-params">&#123; Items, dispatch, setSeivceId &#125;</span>) =&gt;</span> &#123;<br>   <span class="hljs-comment">/*  */</span><br>&#125;, <span class="hljs-function">(<span class="hljs-params">pre, next</span>) =&gt;</span> is(pre.Items, next.Items)))<br></code></pre></div></td></tr></table></figure>
+
+<p>通过 <code>is</code> 方法来判断，前后<code>Items</code>(对象数据类型)是否发生变化。</p>
+<h1 id="五-规范写法，合理处理细节问题"><a href="#五-规范写法，合理处理细节问题" class="headerlink" title="五 规范写法，合理处理细节问题"></a>五 规范写法，合理处理细节问题</h1><p>有的时候，我们在敲代码的时候，稍微注意一下，就能避免性能的开销。也许只是稍加改动，就能其他优化性能的效果。</p>
+<h2 id="①绑定事件尽量不要使用箭头函数"><a href="#①绑定事件尽量不要使用箭头函数" class="headerlink" title="①绑定事件尽量不要使用箭头函数"></a>①绑定事件尽量不要使用箭头函数</h2><p>面临问题</p>
+<p>众所周知，<code>react</code>更新来大部分情况来自于<code>props</code>的改变(被动渲染)，和<code>state</code>改变(主动渲染)。当我们给未加任何更新限定条件子组件绑定事件的时候，或者是<code>PureComponent</code> 纯组件， 如果我们箭头函数使用的话。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;ChildComponent handerClick=&#123;<span class="hljs-function">()=&gt;</span>&#123; <span class="hljs-built_in">console</span>.log(<span class="hljs-number">666</span>) &#125;&#125;  /&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p>每次渲染时都会创建一个新的事件处理器，这会导致 <code>ChildComponent</code> 每次都会被渲染。</p>
+<p>即便我们用箭头函数绑定给<code>dom</code>元素。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;div onClick=&#123; <span class="hljs-function">()=&gt;</span>&#123; <span class="hljs-built_in">console</span>.log(<span class="hljs-number">777</span>) &#125; &#125; &gt;hello,world&lt;/div&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p>每次<code>react</code>合成事件事件的时候，也都会重新声明一个新事件。</p>
+<p><strong>解决问题</strong></p>
+<p>解决这个问题事件很简单，分为无状态组件和有状态组件。</p>
+<p><strong>有状态组件</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    handerClick=<span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">666</span>)<br>    &#125;<br>    <span class="hljs-comment">// 这里照样可以传参数</span><br>    handerClick1=<span class="hljs-function">(<span class="hljs-params">event</span>)=&gt;</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">777</span>, event)<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            &lt;ChildComponent handerClick=&#123; <span class="hljs-built_in">this</span>.handerClick &#125;  /&gt;<br>            &lt;div onClick=&#123; <span class="hljs-built_in">this</span>.handerClick1 &#125;  &gt;hello,world&lt;/div&gt;<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>无状态组件</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)</span>&#123;<br>   <br>    <span class="hljs-keyword">const</span> handerClick1 = useMemo(<span class="hljs-function">()=&gt;</span><span class="hljs-function">()=&gt;</span>&#123;<br>       <span class="hljs-built_in">console</span>.log(<span class="hljs-number">777</span>)<br>    &#125;,[])  <span class="hljs-comment">/* [] 存在当前 handerClick1 的依赖项*/</span><br>    <span class="hljs-keyword">const</span> handerClick = useCallback(<span class="hljs-function">()=&gt;</span>&#123; <span class="hljs-built_in">console</span>.log(<span class="hljs-number">666</span>) &#125;,[])  <span class="hljs-comment">/* [] 存在当前 handerClick 的依赖项*/</span><br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>        &lt;ChildComponent handerClick=&#123; handerClick &#125;  /&gt;<br>        &lt;div onClick=&#123; handerClick1 &#125;  &gt;hello,world&lt;/div&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>对于<code>dom</code>，如果我们需要传递参数。我们可以这么写。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> handerClick1 = useMemo(<span class="hljs-function">()=&gt;</span><span class="hljs-function">(<span class="hljs-params">event</span>)=&gt;</span>&#123;<br>        <span class="hljs-keyword">const</span> mes = event.currentTarget.dataset.mes<br>        <span class="hljs-built_in">console</span>.log(mes) <span class="hljs-comment">/* hello,world */</span><br>    &#125;,[])<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>        &lt;div  data-mes=&#123; <span class="hljs-string">&#x27;hello,world&#x27;</span> &#125; onClick=&#123; handerClick1 &#125;  &gt;hello,world&lt;/div&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="②循环正确使用key"><a href="#②循环正确使用key" class="headerlink" title="②循环正确使用key"></a>②循环正确使用key</h2><p>无论是<code>react</code> 和 <code>vue</code>,正确使用<code>key</code>,目的就是在一次循环中，找到与新节点对应的老节点，复用节点，节省开销。想深入理解的同学可以看一下笔者的另外一篇文章 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/8Hxl7DQjqRZ7TGlQheGG5Q">全面解析vue3.0 diff算法</a> 里面有对<code>key</code>详细说明。我们今天来看以下<code>key</code>正确用法,和错误用法。</p>
+<ol>
+<li>错误用法</li>
+</ol>
+<p><strong>错误用法一：用index做key</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> list = [ &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">1</span> , <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;哈哈&#x27;</span> &#125; , &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;嘿嘿&#x27;</span> &#125; ,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">3</span> , <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;嘻嘻&#x27;</span> &#125; ]<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>       &lt;ul&gt;<br>         &#123;  list.map(<span class="hljs-function">(<span class="hljs-params">item,index</span>)=&gt;</span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index&#125;</span> &gt;</span>&#123; item.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>)  &#125;<br>       &lt;/ul&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>这种加<code>key</code>的性能,实际和不加<code>key</code>效果差不多，每次还是从头到尾<code>diff</code>。</p>
+<p><strong>错误用法二:用index拼接其他的字段</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> list = [ &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">1</span> , <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;哈哈&#x27;</span> &#125; , &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;嘿嘿&#x27;</span> &#125; ,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">3</span> , <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;嘻嘻&#x27;</span> &#125; ]<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>       &lt;ul&gt;<br>         &#123;  list.map(<span class="hljs-function">(<span class="hljs-params">item,index</span>)=&gt;</span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index</span> + <span class="hljs-attr">item.name</span> &#125; &gt;</span>&#123; item.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>)  &#125;<br>       &lt;/ul&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>如果有元素移动或者删除，那么就失去了一一对应关系，剩下的节点都不能有效复用。</p>
+<ol start="2">
+<li>正确用法</li>
+</ol>
+<p><strong>正确用法：用唯一id作为key</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> list = [ &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">1</span> , <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;哈哈&#x27;</span> &#125; , &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;嘿嘿&#x27;</span> &#125; ,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">3</span> , <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;嘻嘻&#x27;</span> &#125; ]<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>       &lt;ul&gt;<br>         &#123;  list.map(<span class="hljs-function">(<span class="hljs-params">item,index</span>)=&gt;</span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;</span> <span class="hljs-attr">item.id</span> &#125; &gt;</span>&#123; item.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>)  &#125;<br>       &lt;/ul&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>用唯一的健<code>id</code>作为<code>key</code>,能够做到有效复用元素节点。</p>
+<h2 id="③无状态组件hooks-useMemo-避免重复声明。"><a href="#③无状态组件hooks-useMemo-避免重复声明。" class="headerlink" title="③无状态组件hooks-useMemo 避免重复声明。"></a>③无状态组件<code>hooks-useMemo</code> 避免重复声明。</h2><p>对于无状态组件，数据更新就等于函数上下文的重复执行。那么函数里面的变量，方法就会重新声明。比如如下情况。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Index</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ number , setNumber  ] = useState(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">const</span> handerClick1 = <span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-comment">/* 一些操作 */</span><br>    &#125;<br>    <span class="hljs-keyword">const</span> handerClick2 = <span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-comment">/* 一些操作 */</span><br>    &#125;<br>    <span class="hljs-keyword">const</span> handerClick3 = <span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-comment">/* 一些操作 */</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>        &lt;a onClick=&#123; handerClick1 &#125; &gt;点我有惊喜<span class="hljs-number">1</span>&lt;/a&gt;<br>        &lt;a onClick=&#123; handerClick2 &#125; &gt;点我有惊喜<span class="hljs-number">2</span>&lt;/a&gt;<br>        &lt;a onClick=&#123; handerClick3 &#125; &gt;点我有惊喜<span class="hljs-number">3</span>&lt;/a&gt;<br>        &lt;button onClick=&#123; <span class="hljs-function">()=&gt;</span> setNumber(number+<span class="hljs-number">1</span>) &#125; &gt; 点击 &#123; number &#125; &lt;/button&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>每次点击<code>button</code>的时候,都会执行<code>Index</code>函数。<code>handerClick1</code> , <code>handerClick2</code>, <code>handerClick3</code>都会重新声明。为了避免这个情况的发生，我们可以用 <code>useMemo</code> 做缓存，我们可以改成如下。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Index</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ number , setNumber  ] = useState(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">const</span> [ handerClick1 , handerClick2  ,handerClick3] = useMemo(<span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-keyword">const</span> fn1 = <span class="hljs-function">()=&gt;</span>&#123;<br>            <span class="hljs-comment">/* 一些操作 */</span><br>        &#125;<br>        <span class="hljs-keyword">const</span> fn2 = <span class="hljs-function">()=&gt;</span>&#123;<br>            <span class="hljs-comment">/* 一些操作 */</span><br>        &#125;<br>        <span class="hljs-keyword">const</span>  fn3= <span class="hljs-function">()=&gt;</span>&#123;<br>            <span class="hljs-comment">/* 一些操作 */</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> [fn1 , fn2 ,fn3]<br>    &#125;,[]) <span class="hljs-comment">/* 只有当数据里面的依赖项，发生改变的时候，才会重新声明函数。*/</span><br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>        &lt;a onClick=&#123; handerClick1 &#125; &gt;点我有惊喜<span class="hljs-number">1</span>&lt;/a&gt;<br>        &lt;a onClick=&#123; handerClick2 &#125; &gt;点我有惊喜<span class="hljs-number">2</span>&lt;/a&gt;<br>        &lt;a onClick=&#123; handerClick3 &#125; &gt;点我有惊喜<span class="hljs-number">3</span>&lt;/a&gt;<br>        &lt;button onClick=&#123; <span class="hljs-function">()=&gt;</span> setNumber(number+<span class="hljs-number">1</span>) &#125; &gt; 点击 &#123; number &#125; &lt;/button&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>如下改变之后，<code>handerClick1</code> , <code>handerClick2</code>, <code>handerClick3</code> 会被缓存下来。</p>
+<h2 id="④懒加载-Suspense-和-lazy"><a href="#④懒加载-Suspense-和-lazy" class="headerlink" title="④懒加载 Suspense 和 lazy"></a>④懒加载 Suspense 和 lazy</h2><p><code>Suspense</code> 和 <code>lazy</code> 可以实现 <code>dynamic import</code> 懒加载效果，原理和上述的路由懒加载差不多。在 <code>React</code> 中的使用方法是在 <code>Suspense</code> 组件中使用 <code>&lt;LazyComponent&gt;</code> 组件。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span> LazyComponent = React.lazy(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./LazyComponent&#x27;</span>));<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> (<br>    &lt;div&gt;<br>      &lt;Suspense fallback=&#123;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>&#125;&gt;<br>        &lt;LazyComponent /&gt;<br>      &lt;/Suspense&gt;<br>    &lt;/div&gt;<br>  )<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><code>LazyComponent</code> 是通过懒加载加载进来的，所以渲染页面的时候可能会有延迟，但使用了 <code>Suspense</code> 之后，在加载状态下，可以用<code>&lt;div&gt;Loading...&lt;/div&gt;</code>作为<code>loading</code>效果。</p>
+<p><code>Suspense</code> 可以包裹多个懒加载组件。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;Suspense fallback=&#123;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>&#125;&gt;<br>    &lt;LazyComponent /&gt;<br>    &lt;LazyComponent1 /&gt;<br>&lt;/Suspense&gt;<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="六-多种方式避免重复渲染"><a href="#六-多种方式避免重复渲染" class="headerlink" title="六 多种方式避免重复渲染"></a>六 多种方式避免重复渲染</h1><p>避免重复渲染,是<code>react</code>性能优化的重要方向。如果想尽心尽力处理好<code>react</code>项目每一个细节，那么就要从每一行代码开始，从每一组件开始。正所谓不积硅步无以至千里。</p>
+<h2 id="①-学会使用的批量更新"><a href="#①-学会使用的批量更新" class="headerlink" title="① 学会使用的批量更新"></a>① 学会使用的批量更新</h2><p><strong>批量更新</strong></p>
+<p>这次讲的批量更新的概念，实际主要是针对无状态组件和<code>hooks</code>中<code>useState</code>,和 <code>class</code>有状态组件中的<code>this.setState</code>，两种方法已经做了批量更新的处理。比如如下例子</p>
+<p><strong>一次更新中</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">prop</span>)</span>&#123;<br>        <span class="hljs-built_in">super</span>(prop)<br>        <span class="hljs-built_in">this</span>.state = &#123;<br>            a:<span class="hljs-number">1</span>,<br>            b:<span class="hljs-number">2</span>,<br>            c:<span class="hljs-number">3</span>,<br>        &#125;<br>    &#125;<br>    handerClick=<span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; a,b,c &#125; :any = <span class="hljs-built_in">this</span>.state<br>        <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">a</span>:a+<span class="hljs-number">1</span> &#125;)<br>        <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">b</span>:b+<span class="hljs-number">1</span> &#125;)<br>        <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">c</span>:c+<span class="hljs-number">1</span> &#125;)<br>    &#125;<br>    render= <span class="hljs-function">() =&gt;</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.handerClick&#125;</span> /&gt;</span></span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>点击事件发生之后，会触发三次 <code>setState</code>,但是不会渲染三次，因为有一个批量更新<code>batchUpdate</code>批量更新的概念。三次<code>setState</code>最后被合成类似如下样子</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-built_in">this</span>.setState(&#123;<br>    a:a+<span class="hljs-number">1</span> ,<br>    b:b+<span class="hljs-number">1</span> ,<br>    c:c+<span class="hljs-number">1</span> <br>&#125;)<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>无状态组件中</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span>  [ a , setA ] = useState(<span class="hljs-number">1</span>)<br><span class="hljs-keyword">const</span>  [ b , setB ] = useState(&#123;&#125;)<br><span class="hljs-keyword">const</span>  [ c , setC ] = useState(<span class="hljs-number">1</span>)<br><span class="hljs-keyword">const</span> handerClick = <span class="hljs-function">() =&gt;</span> &#123;<br>       setB( &#123; ...b &#125; ) <br>       setC( c+<span class="hljs-number">1</span> ) <br>       setA( a+<span class="hljs-number">1</span> )<br>   &#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>批量更新失效</strong></p>
+<p>当我们针对上述两种情况加以如下处理之后。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">handerClick=<span class="hljs-function">()=&gt;</span>&#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">a</span>:a+<span class="hljs-number">1</span> &#125;)<br>        <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">b</span>:b+<span class="hljs-number">1</span> &#125;)<br>        <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">c</span>:c+<span class="hljs-number">1</span> &#125;)<br>    &#125;, <span class="hljs-number">0</span>)<br>&#125;<br> <span class="hljs-keyword">const</span> handerClick = <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-built_in">Promise</span>.resolve().then(<span class="hljs-function">()=&gt;</span>&#123;<br>    setB( &#123; ...b &#125; ) <br>    setC( c+<span class="hljs-number">1</span> ) <br>    setA( a+<span class="hljs-number">1</span> )<br>    &#125;)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>我们会发现，上述两种情况 ，组件都更新渲染了三次 ，此时的批量更新失效了。这种情况在<code>react-hooks</code>中也普遍存在，这种情况甚至在<code>hooks</code>中更加明显，因为我们都知道<code>hooks</code>中每个<code>useState</code>保存了一个状态，并不是让<code>class</code>声明组件中，可以通过<code>this.state</code>统一协调状态，再一次异步函数中，比如说一次<code>ajax</code>请求后，想通过多个<code>useState</code>改变状态，会造成多次渲染页面，为了解决这个问题，我们可以手动批量更新。</p>
+<p><strong>手动批量更新</strong></p>
+<p><code>react-dom</code> 中提供了<code>unstable_batchedUpdates</code>方法进行手动批量更新。这个<code>api</code>更契合<code>react-hooks</code>，我们可以这样做。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"> <span class="hljs-keyword">const</span> handerClick = <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-built_in">Promise</span>.resolve().then(<span class="hljs-function">()=&gt;</span>&#123;<br>        unstable_batchedUpdates(<span class="hljs-function">()=&gt;</span>&#123;<br>            setB( &#123; ...b &#125; ) <br>            setC( c+<span class="hljs-number">1</span> ) <br>            setA( a+<span class="hljs-number">1</span> )<br>        &#125;)<br>    &#125;)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>这样三次更新，就会合并成一次。同样达到了批量更新的效果。</p>
+<h2 id="②-合并state"><a href="#②-合并state" class="headerlink" title="② 合并state"></a>② 合并state</h2><p>class类组件(有状态组件)</p>
+<p>合并<code>state</code>这种，是一种我们在<code>react</code>项目开发中要养成的习惯。我看过有些同学的代码中可能会这么写(如下<code>demo</code>是模拟的情况，实际要比这复杂的多)。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>&lt;<span class="hljs-title">any</span> , <span class="hljs-title">any</span>&gt;</span>&#123;<br>    state = &#123;<br>          loading:<span class="hljs-literal">false</span> <span class="hljs-comment">/* 用来模拟loading效果 */</span>,<br>          list:[],<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">componentDidMount</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-comment">/* 模拟一个异步请求数据场景 */</span><br>        <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">loading</span> : <span class="hljs-literal">true</span> &#125;) <span class="hljs-comment">/* 开启loading效果 */</span><br>        <span class="hljs-built_in">Promise</span>.resolve().then(<span class="hljs-function">()=&gt;</span>&#123;<br>            <span class="hljs-keyword">const</span> list = [ &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">1</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xixi&#x27;</span> &#125; ,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">2</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;haha&#x27;</span> &#125;,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">3</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;heihei&#x27;</span> &#125; ]<br>            <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">loading</span> : <span class="hljs-literal">false</span> &#125;,<span class="hljs-function">()=&gt;</span>&#123;<br>                <span class="hljs-built_in">this</span>.setState(&#123;<br>                    list:list.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>(&#123;<br>                        ...item,<br>                        name:item.name.toLocaleUpperCase()<br>                    &#125;))<br>                &#125;)<br>            &#125;)<br>        &#125;)<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> &#123; list &#125; = <span class="hljs-built_in">this</span>.state<br>    <span class="hljs-keyword">return</span> &lt;div&gt;&#123;<br>            list.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;item.id&#125;</span>  &gt;</span>&#123; item.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>)<br>        &#125;&lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>分别用两次<code>this.state</code>第一次解除<code>loading</code>状态，第二次格式化数据列表。这另两次更新完全没有必要，可以用一次<code>setState</code>更新完美解决。不这样做的原因是，对于像<code>demo</code>这样的简单结构还好，对于复杂的结构，一次更新可能都是宝贵的，所以我们应该学会去合并<code>state</code>。将上述<code>demo</code>这样修改。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-built_in">this</span>.setState(&#123;<br>    loading : <span class="hljs-literal">false</span>,<br>    list:list.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>(&#123;<br>        ...item,<br>        name:item.name.toLocaleUpperCase()<br>    &#125;))<br>&#125;)<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>函数组件(无状态组件)</strong></p>
+<p>对于无状态组件，我们可以通过一个<code>useState</code>保存多个状态，没有必要每一个状态都用一个<code>useState</code>。</p>
+<p>对于这样的情况。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [ a ,setA ] = useState(<span class="hljs-number">1</span>)<br><span class="hljs-keyword">const</span> [ b ,setB ] = useState(<span class="hljs-number">2</span>)<br></code></pre></div></td></tr></table></figure>
+
+<p>我们完全可以一个<code>state</code>搞定。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [ numberState , setNumberState ] = useState(&#123; <span class="hljs-attr">a</span>:<span class="hljs-number">1</span> , <span class="hljs-attr">b</span> :<span class="hljs-number">2</span>&#125;)<br></code></pre></div></td></tr></table></figure>
+
+<p>但是要注意，如果我们的<code>state</code>已经成为 <code>useEffect</code> , <code>useCallback</code> , <code>useMemo</code>依赖项，请慎用如上方法。</p>
+<h2 id="③-useMemo-React-memo隔离单元"><a href="#③-useMemo-React-memo隔离单元" class="headerlink" title="③ useMemo React.memo隔离单元"></a>③ useMemo React.memo隔离单元</h2><p><code>react</code>正常的更新流，就像利剑一下，从父组件项子组件穿透，为了避免这些重复的更新渲染，<code>shouldComponentUpdate</code> , <code>React.memo</code>等api也应运而生。但是有的情况下，多余的更新在所难免，比如如下这种情况。这种更新会由父组件 -&gt; 子组件 传递下去。</p>
+<p><img src="https://picture-transmission.iplus-studio.top/640%20%282%29.webp" srcset="/img/loading.gif"></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ChildrenComponent</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2222</span>)<br>    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>hello,world<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Index</span> (<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ list  ] = useState([ &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">1</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xixi&#x27;</span> &#125; ,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">2</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;haha&#x27;</span> &#125;,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">3</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;heihei&#x27;</span> &#125; ])<br>    <span class="hljs-keyword">const</span> [ number , setNumber ] = useState(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>       &lt;span&gt;&#123; number &#125;&lt;/span&gt;<br>       &lt;button onClick=&#123; <span class="hljs-function">()=&gt;</span> setNumber(number + <span class="hljs-number">1</span>) &#125; &gt;点击&lt;/button&gt;<br>           &lt;ul&gt;<br>               &#123;<br>                list.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>&#123;<br>                    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1111</span>)<br>                    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;</span> <span class="hljs-attr">item.id</span> &#125;  &gt;</span>&#123; item.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br>                &#125;)<br>               &#125;<br>           &lt;/ul&gt;<br>           &lt;ChildrenComponent /&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="https://picture-transmission.iplus-studio.top/640%20%283%29.gif" srcset="/img/loading.gif"></p>
+<p>针对这一现象，我们可以通过使用<code>useMemo</code>进行隔离，形成独立的渲染单元，每次更新上一个状态会被缓存，循环不会再执行，子组件也不会再次被渲染,我们可以这么做。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Index</span> (<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ list  ] = useState([ &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">1</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xixi&#x27;</span> &#125; ,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">2</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;haha&#x27;</span> &#125;,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">3</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;heihei&#x27;</span> &#125; ])<br>    <span class="hljs-keyword">const</span> [ number , setNumber ] = useState(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>       &lt;span&gt;&#123; number &#125;&lt;/span&gt;<br>       &lt;button onClick=&#123; <span class="hljs-function">()=&gt;</span> setNumber(number + <span class="hljs-number">1</span>) &#125; &gt;点击&lt;/button&gt;<br>           &lt;ul&gt;<br>               &#123;<br>                useMemo(<span class="hljs-function">()=&gt;</span>(list.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>&#123;<br>                    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1111</span>)<br>                    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;</span> <span class="hljs-attr">item.id</span> &#125;  &gt;</span>&#123; item.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br>                &#125;)),[ list ])<br>               &#125;<br>           &lt;/ul&gt;<br>        &#123; useMemo(<span class="hljs-function">()=&gt;</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ChildrenComponent</span> /&gt;</span></span>,[]) &#125;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>有状态组件</strong></p>
+<p>在<code>class</code>声明的组件中，没有像 <code>useMemo</code> 的API ，但是也并不等于束手无策，我们可以通过 <code>react.memo</code> 来阻拦来自组件本身的更新。我们可以写一个组件，来控制<code>react</code> 组件更新的方向。我们通过一个 <code>&lt;NotUpdate&gt;</code> 组件来阻断更新流。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Index</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>&lt;<span class="hljs-title">any</span>,<span class="hljs-title">any</span>&gt;</span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">prop</span>)</span>&#123;<br>        <span class="hljs-built_in">super</span>(prop)<br>        <span class="hljs-built_in">this</span>.state = &#123; <br>            list: [ &#123; <span class="hljs-attr">id</span>:<span class="hljs-number">1</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xixi&#x27;</span> &#125; ,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">2</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;haha&#x27;</span> &#125;,&#123; <span class="hljs-attr">id</span>:<span class="hljs-number">3</span> , <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;heihei&#x27;</span> &#125; ],<br>            number:<span class="hljs-number">0</span>,<br>         &#125;<br>    &#125;<br>    handerClick = <span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-built_in">this</span>.setState(&#123; <span class="hljs-attr">number</span>:<span class="hljs-built_in">this</span>.state.number + <span class="hljs-number">1</span> &#125;)<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>       <span class="hljs-keyword">const</span> &#123; list &#125;:any = <span class="hljs-built_in">this</span>.state<br>       <span class="hljs-keyword">return</span> &lt;div&gt;<br>           &lt;button onClick=&#123; <span class="hljs-built_in">this</span>.handerClick &#125; &gt;点击&lt;/button&gt;<br>           &lt;NotUpdate&gt;<br>              &#123;<span class="hljs-function">()=&gt;</span>(&lt;ul&gt;<br>                    &#123;<br>                    list.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>&#123;<br>                        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1111</span>)<br>                        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;</span> <span class="hljs-attr">item.id</span> &#125;  &gt;</span>&#123; item.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br>                    &#125;)<br>                    &#125;<br>                &lt;/ul&gt;)&#125;<br>           &lt;/NotUpdate&gt;<br>           &lt;NotUpdate&gt;<br>                &lt;ChildrenComponent /&gt;<br>           &lt;/NotUpdate&gt;<br>          <br>       &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* 控制更新 ,第二个参数可以作为组件更新的依赖 ， 这里设置为 ()=&gt; true 只渲染一次 */</span><br><span class="hljs-keyword">const</span> NotUpdate = React.memo(<span class="hljs-function">(<span class="hljs-params">&#123; children &#125;:any</span>)=&gt;</span> <span class="hljs-keyword">typeof</span> children === <span class="hljs-string">&#x27;function&#x27;</span> ? children() : children ,<span class="hljs-function">()=&gt;</span><span class="hljs-literal">true</span>)<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>memo 函数定义</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">memo</span>&lt;<span class="hljs-title">Props</span>&gt;(<span class="hljs-params"></span></span><br><span class="hljs-function"><span class="hljs-params">  <span class="hljs-keyword">type</span>: React$ElementType,</span></span><br><span class="hljs-function"><span class="hljs-params">  compare?: (oldProps: Props, newProps: Props) =&gt; <span class="hljs-built_in">boolean</span>,</span></span><br><span class="hljs-function"><span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    $$typeof: REACT_MEMO_TYPE,<br>    <span class="hljs-keyword">type</span>,<br>    compare: compare === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : compare,<br>  &#125;;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>type</code>：表示自定义的 React 组件；</li>
+<li><code>compare</code>：表示自定义的性能优化函数，类似<code>shouldcomponentupdate</code>生命周期函数；</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyComponent</span>(<span class="hljs-params">props</span>) </span>&#123;<br>  <span class="hljs-comment">/* 使用 props 渲染 */</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">areEqual</span>(<span class="hljs-params">prevProps, nextProps</span>) </span>&#123;<br>  <span class="hljs-comment">/*</span><br><span class="hljs-comment">  如果把 nextProps 传入 render 方法的返回结果与</span><br><span class="hljs-comment">  将 prevProps 传入 render 方法的返回结果一致则返回 true，</span><br><span class="hljs-comment">  否则返回 false</span><br><span class="hljs-comment">  */</span><br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> React.memo(MyComponent, areEqual);<br></code></pre></div></td></tr></table></figure>
+
+<p>此方法仅作为性能优化的方式而存在。但请不要依赖它来“阻止”渲染，因为这会产生 bug。</p>
+<blockquote>
+<p>注意 与 <code>class</code> 组件中 <code>shouldComponentUpdate()</code> 方法不同的是，如果 <code>props</code> 相等，<code>areEqual</code> 会返回 <code>true</code>；如果 <code>props</code> 不相等，则返回 <code>false</code>。这与 <code>shouldComponentUpdate</code> 方法的返回值相反。</p>
+</blockquote>
+<p><img src="https://picture-transmission.iplus-studio.top/6401.webp" srcset="/img/loading.gif"> </p>
+<p>没错，用的就是 <code>React.memo</code>，生成了阻断更新的隔离单元，如果我们想要控制更新，可以对 <code>React.memo</code> 第二个参数入手， <code>demo</code>项目中完全阻断的更新。</p>
+<h2 id="④-‘取缔’state，学会使用缓存。"><a href="#④-‘取缔’state，学会使用缓存。" class="headerlink" title="④ ‘取缔’state，学会使用缓存。"></a>④ ‘取缔’state，学会使用缓存。</h2><p>这里的取缔<code>state</code>，并完全不使用<code>state</code>来管理数据，而是善于使用<code>state</code>,知道什么时候使用,怎么使用。<code>react</code> 并不像 <code>vue</code> 那样响应式数据流。在 <code>vue</code> 中有专门的<code>dep</code>做依赖收集，可以自动收集字符串模版的依赖项，只要没有引用的<code>data</code>数据， 通过 <code>this.aaa = bbb</code> ,在<code>vue</code>中是不会更新渲染的。因为 <code>aaa</code> 的<code>dep</code>没有收集渲染<code>watcher</code>依赖项。在<code>react</code>中，我们触发<code>this.setState</code> 或者 <code>useState</code>，只会关心两次<code>state</code>值是否相同，来触发渲染，根本不会在乎<code>jsx</code>语法中是否真正的引入了正确的值。</p>
+<p>没有更新作用的state</p>
+<p><strong>有状态组件中</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    state=&#123; <span class="hljs-attr">text</span>:<span class="hljs-number">111</span> &#125;<br>    <span class="hljs-function"><span class="hljs-title">componentDidMount</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; a &#125; = <span class="hljs-built_in">this</span>.props<br>         <span class="hljs-comment">/* 我们只是希望在初始化,用text记录 props中 a 的值 */</span><br>        <span class="hljs-built_in">this</span>.setState(&#123;<br>            text:a<br>        &#125;)    <br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-comment">/* 没有引入text */</span><br>       <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;&#x27;hello,world&#x27;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>如上例子中,<code>render</code>函数中并没有引入<code>text</code> ,我们只是希望在初始化的时候，用 <code>text</code> 记录 <code>props</code> 中 <code>a</code> 的值。我们却用 <code>setState</code> 触发了一次无用的更新。无状态组件中情况也一样存在，具体如下。</p>
+<p><strong>无状态组件中</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Demo</span> (<span class="hljs-params">&#123; a &#125;</span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [text , setText] = useState(<span class="hljs-number">111</span>)<br>    useEffect(<span class="hljs-function">()=&gt;</span>&#123;<br>        setText(a)<br>    &#125;,[])<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>         &#123;<span class="hljs-string">&#x27;hello,world&#x27;</span>&#125;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>改为缓存</p>
+<p><strong>有状态组件中</strong></p>
+<p>在<code>class</code>声明组件中，我们可以直接把数据绑定给<code>this</code>上，来作为数据缓存。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    text = <span class="hljs-number">111</span><br>    <span class="hljs-function"><span class="hljs-title">componentDidMount</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; a &#125; = <span class="hljs-built_in">this</span>.props<br>        <span class="hljs-comment">/* 数据直接保存在text上 */</span><br>        <span class="hljs-built_in">this</span>.text = a<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-comment">/* 没有引入text */</span><br>       <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;&#x27;hello,world&#x27;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>无状态组件中</strong></p>
+<p>在无状态组件中, 我们不能往问<code>this</code>,但是我们可以用<code>useRef</code>来解决问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Demo</span> (<span class="hljs-params">&#123; a &#125;</span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> text = useRef(<span class="hljs-number">111</span>)<br>    useEffect(<span class="hljs-function">()=&gt;</span>&#123;<br>        text.current = a<br>    &#125;,[])<br>    <span class="hljs-keyword">return</span> &lt;div&gt;<br>        &#123;<span class="hljs-string">&#x27;hello,world&#x27;</span>&#125;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="⑤-useCallback回调"><a href="#⑤-useCallback回调" class="headerlink" title="⑤ useCallback回调"></a>⑤ useCallback回调</h2><p><code>useCallback</code> 的真正目的还是在于缓存了每次渲染时 <code>inline callback</code> 的实例，这样方便配合上子组件的 <code>shouldComponentUpdate</code> 或者 <code>React.memo</code> 起到减少不必要的渲染的作用。对子组件的渲染限定来源与，对子组件<code>props</code>比较，但是如果对父组件的<code>callback</code>做比较，无状态组件每次渲染执行，都会形成新的<code>callback</code>, 是无法比较，所以需要对<code>callback</code>做一个 <code>memoize</code> 记忆功能，我们可以理解为<code>useCallback</code>就是 <code>callback</code>加了一个<code>memoize</code>。我们接着往下看👇👇👇。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo</span> (<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ number , setNumber ] = useState(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> &lt;div&gt;  <br>        &lt;DemoComponent  handerChange=&#123; <span class="hljs-function">()=&gt;</span>&#123; setNumber(number+<span class="hljs-number">1</span>)  &#125; &#125; /&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>或着</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo</span> (<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ number , setNumber ] = useState(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">const</span> handerChange = <span class="hljs-function">()=&gt;</span>&#123;<br>        setNumber(number+<span class="hljs-number">1</span>) <br>    &#125;<br>    <span class="hljs-keyword">return</span> &lt;div&gt;  <br>        &lt;DemoComponent  handerChange=&#123; handerChange &#125; /&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>无论是上述那种方式，<code>pureComponent</code> 和 <code>react.memo</code> 通过浅比较方式，只能判断每次更新都是新的<code>callback</code>，然后触发渲染更新。<code>useCallback</code>给加了一个记忆功能，告诉我们子组件，两次是相同的 <code>callback</code>无需重新更新页面。至于什么时候<code>callback</code>更改，就要取决于 <code>useCallback</code> 第二个参数。好的，将上述<code>demo</code>我们用 <code>useCallback</code> 重写。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo</span> (<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> [ number , setNumber ] = useState(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">const</span> handerChange = useCallback( <span class="hljs-function">()=&gt;</span>&#123;<br>        setNumber(number+<span class="hljs-number">1</span>) <br>    &#125;,[])<br>    <span class="hljs-keyword">return</span> &lt;div&gt;  <br>        &lt;DemoComponent  handerChange=&#123; handerChange &#125; /&gt;<br>    &lt;/div&gt;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>这样 <code>pureComponent</code> 和 <code>react.memo</code> 可以直接判断是<code>callback</code>没有改变，防止了不必要渲染。</p>
+<h1 id="七-中规中矩的使用状态管理"><a href="#七-中规中矩的使用状态管理" class="headerlink" title="七 中规中矩的使用状态管理"></a>七 中规中矩的使用状态管理</h1><p>无论我们使用的是<code>redux</code>还是说 <code>redux</code> 衍生出来的 <code>dva</code> ,<code>redux-saga</code>等,或者是<code>mobx</code>，都要遵循一定’使用规则’，首先让我想到的是，什么时候用状态管理，怎么合理的应用状态管理，接下来我们来分析一下。</p>
+<h2 id="什么时候使用状态管理"><a href="#什么时候使用状态管理" class="headerlink" title="什么时候使用状态管理"></a>什么时候使用状态管理</h2><p>要问我什么时候适合使用状态状态管理。我一定会这么分析，首先状态管理是为了解决什么问题，状态管理能够解决的问题主要分为两个方面，一 就是解决跨层级组件通信问题 。二 就是对一些全局公共状态的缓存。</p>
+<p>我们那redux系列的状态管理为例子。</p>
+<p>我见过又同学这么写的</p>
+<p>滥用状态管理</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* 和 store下面text模块的list列表，建立起依赖关系，list更新，组件重新渲染 */</span><br>@connect(<span class="hljs-function">(<span class="hljs-params">store</span>)=&gt;</span>(&#123; <span class="hljs-attr">list</span>:store.text.list &#125;))<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Text</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">prop</span>)</span>&#123;<br>        <span class="hljs-built_in">super</span>(prop)<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">componentDidMount</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-comment">/* 初始化请求数据 */</span><br>        <span class="hljs-built_in">this</span>.getList()<br>    &#125;<br>    getList=<span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; dispatch &#125; = <span class="hljs-built_in">this</span>.props<br>        <span class="hljs-comment">/* 获取数据 */</span><br>        dispatch(&#123; <span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;text/getDataList&#x27;</span> &#125;)<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; list &#125; = <span class="hljs-built_in">this</span>.props<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            &#123;<br>                list.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;</span> <span class="hljs-attr">item.id</span> &#125; &gt;</span></span><br><span class="xml">                    &#123; /*  做一些渲染页面的操作....  */ &#125;</span><br><span class="xml">                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>)<br>            &#125;<br>            &lt;button onClick=&#123; <span class="hljs-function">()=&gt;</span><span class="hljs-built_in">this</span>.getList() &#125; &gt;重新获取列表&lt;/button&gt;<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>这样页面请求数据，到数据更新，全部在当前组件发生，这个写法我不推荐，此时的数据走了一遍状态管理,最终还是回到了组件本身，显得很鸡肋，并没有发挥什么作用。在性能优化上到不如直接在组件内部请求数据。</p>
+<h2 id="不会合理使用状态管理"><a href="#不会合理使用状态管理" class="headerlink" title="不会合理使用状态管理"></a>不会合理使用状态管理</h2><p>还有的同学可能这么写。</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Text</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">prop</span>)</span>&#123;<br>        <span class="hljs-built_in">super</span>(prop)<br>        <span class="hljs-built_in">this</span>.state=&#123;<br>            list:[],<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-title">componentDidMount</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; data , code &#125; = <span class="hljs-keyword">await</span> getList()<br>        <span class="hljs-keyword">if</span>(code === <span class="hljs-number">200</span>)&#123;<br>            <span class="hljs-comment">/*  获取的数据有可能是不常变的，多个页面需要的数据  */</span><br>            <span class="hljs-built_in">this</span>.setState(&#123;<br>                list:data<br>            &#125;)<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">const</span> &#123; list &#125; = <span class="hljs-built_in">this</span>.state<br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            &#123; <span class="hljs-comment">/*  下拉框 */</span> &#125;<br>            &lt;select&gt;<br>               &#123;<br>                  list.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;</span> <span class="hljs-attr">item.id</span> &#125; &gt;</span>&#123; item.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span>) <br>               &#125;<br>            &lt;/select&gt;<br>        &lt;/div&gt;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>对于不变的数据，多个页面或组件需要的数据，为了避免重复请求,我们可以将数据放在状态管理里面。</p>
+<p><strong>不变的数据，多个页面可能需要的数据，放在状态管理中，对于时常变化的数据，我们可以直接请求接口</strong></p>
+<h1 id="八-海量数据优化-时间分片，虚拟列表"><a href="#八-海量数据优化-时间分片，虚拟列表" class="headerlink" title="八 海量数据优化-时间分片，虚拟列表"></a>八 海量数据优化-时间分片，虚拟列表</h1><p>略</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/10/iOS%E4%BC%81%E4%B8%9A%E7%AD%BE%E5%90%8D%E6%97%A0%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8XCode%E6%89%93%E5%8C%85ipa/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">iOS企业签名无开发者账号使用XCode打包ipa</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/29/Mac-OSX%E5%AE%89%E8%A3%85MongoDB/">
+                        <span class="hidden-mobile">Mac OSX安装MongoDB</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz",
+          app_key: "GghUuBNsfm9f6gjneTVolb3s",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://leancloud.iplus-studio.top",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备18085104号
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18085104"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon"/>
+            
+            <span>粤ICP备18085104号-1</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="WELCOME">
+  <meta name="author" content="邓伟彬">
+  <meta name="keywords" content="">
+  <title>css3动画 - dwb</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz","app_key":"GghUuBNsfm9f6gjneTVolb3s","server_url":"https://leancloud.iplus-studio.top"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>dwb</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="css3动画">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-25 16:24" pubdate>
+        2020年12月25日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">css3动画</h1>
+            
+            <div class="markdown-body">
+              <h1 id="20210108更新"><a href="#20210108更新" class="headerlink" title="20210108更新"></a>20210108更新</h1><h2 id="怎么监听css3动画结束后的事件"><a href="#怎么监听css3动画结束后的事件" class="headerlink" title="怎么监听css3动画结束后的事件"></a>怎么监听css3动画结束后的事件</h2><p>在执行完一段css3动画后需要进行一些业务操作或者页面操作等等，咋搞呢？</p>
+<p>我们可以使用js来监听两个事件</p>
+<ul>
+<li>动画播放过程会触发两类事件：</li>
+</ul>
+<ol>
+<li><code>AnimationEvent</code></li>
+<li><code>TransitionEvent</code></li>
+</ol>
+<ul>
+<li>动画结束的事件的两个实现分别是：</li>
+</ul>
+<ol>
+<li><code>animationend</code></li>
+<li><code>transitionend</code></li>
+</ol>
+<p>Demo页面在这里，只测试过Chrome</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/longtian/pen/jEyrzN">https://codepen.io/longtian/pen/jEyrzN</a></p>
+<p>兼容性大坑可以看AngularUI的这部分源码</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/angular-ui/bootstrap/blob/7512b93fecb6f27df4f5aeba4c756c0c36aebbf2/src/transition/transition.js#L59">https://github.com/angular-ui/bootstrap/blob/7512b93fecb6f27df4f5aeba4c756c0c36aebbf2/src/transition/transition.js#L59</a></p>
+<p>比如监听一个动画结束</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;div id=<span class="hljs-string">&quot;animend&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;floating&quot;</span>&gt;animationend&lt;/div&gt;<br><br><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;animend&quot;</span>).addEventListener(<span class="hljs-string">&quot;webkitAnimationEnd&quot;</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> &#123;<br>  <span class="hljs-comment">// todo ...</span><br>  <br>    &#125;, <span class="hljs-literal">false</span>);<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="3个重要属性"><a href="#3个重要属性" class="headerlink" title="3个重要属性"></a>3个重要属性</h1><h2 id="transform-变形"><a href="#transform-变形" class="headerlink" title="transform 变形"></a>transform 变形</h2><blockquote>
+<p>transform（变形）允许你旋转，缩放，倾斜或平移给定元素</p>
+</blockquote>
+<p>拥有 <code>rotate</code> 旋转 <code>skew</code> 扭曲 <code>scale</code> 缩放 <code>translate</code> 移动 <code>matrix</code> 矩阵变形五大特效</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">border</span>: solid red;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">30px</span>, <span class="hljs-number">20px</span>) <span class="hljs-built_in">rotate</span>(<span class="hljs-number">20deg</span>);<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">140px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">60px</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>设置变换中心</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">transform-origin</span>: center bottom;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>可选值有<code>left top center  right  bottom</code></p>
+<p>还可以直接写位置<code>50px 50px</code></p>
+<h3 id="scale-缩放"><a href="#scale-缩放" class="headerlink" title="scale 缩放"></a>scale 缩放</h3><figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"> <span class="hljs-comment">/*</span><br><span class="hljs-comment">  scale: 缩放</span><br><span class="hljs-comment">  scale(水平放缩比例，垂直放缩比例)；</span><br><span class="hljs-comment">  大于1：放大</span><br><span class="hljs-comment">  小于1：缩小</span><br><span class="hljs-comment">  如果只写一个值等比例缩放</span><br><span class="hljs-comment"> */</span><br><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">1</span>);<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">0.5</span>);<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1.5</span>);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="translate-平移"><a href="#translate-平移" class="headerlink" title="translate 平移"></a>translate 平移</h3><figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-comment">/* translate:(水平位移，垂直位移)；</span><br><span class="hljs-comment">       正值：向右向下</span><br><span class="hljs-comment">       负值：向左向上</span><br><span class="hljs-comment">       如果只写一个值 水平移动</span><br><span class="hljs-comment">       百分比 ：相对于自身移动</span><br><span class="hljs-comment">    */</span><br><br>    <span class="hljs-comment">/* Single values */</span><br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100px</span>);<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">50%</span>);<br><br>    <span class="hljs-comment">/* Two values */</span><br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100px</span> <span class="hljs-number">200px</span>);<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">50%</span> <span class="hljs-number">105px</span>);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="skew-倾斜"><a href="#skew-倾斜" class="headerlink" title="skew 倾斜"></a>skew 倾斜</h3><blockquote>
+<p>这个CSS属性定义了在2D平面上一个对象的歪斜变换</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-comment">/* skew(ax, ay) */</span><br>    <span class="hljs-comment">/* ax 用于沿横坐标扭曲元素的角度 */</span><br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">skew</span>(<span class="hljs-number">10deg</span>);<br>    <span class="hljs-comment">/* ay 用于沿纵坐标扭曲元素的角度。如果未定义，则其默认值为0，导致纯水平倾斜 */</span><br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">skew</span>(<span class="hljs-number">10deg</span>, <span class="hljs-number">20deg</span>);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="rotate-X，Y-Z-旋转"><a href="#rotate-X，Y-Z-旋转" class="headerlink" title="rotate X，Y,Z 旋转"></a>rotate X，Y,Z 旋转</h3><blockquote>
+<p>图不就不贴了 随便在一个网址上F12改元素的样式就可以看出来效果</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-comment">/*   </span><br><span class="hljs-comment">    rotate</span><br><span class="hljs-comment">    直接旋转</span><br><span class="hljs-comment">     </span><br><span class="hljs-comment">    rotateX</span><br><span class="hljs-comment">    上下旋转</span><br><span class="hljs-comment">    </span><br><span class="hljs-comment">    rotateY</span><br><span class="hljs-comment">    左右旋转</span><br><span class="hljs-comment">    </span><br><span class="hljs-comment">    rotateZ</span><br><span class="hljs-comment">    旋转的</span><br><span class="hljs-comment">    */</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>rotateZ和rotate看起来效果一样</p>
+<h3 id="translate-X-Y-Z-平移"><a href="#translate-X-Y-Z-平移" class="headerlink" title="translate X,Y,Z 平移"></a>translate X,Y,Z 平移</h3><figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>    <span class="hljs-comment">/* 透视*/</span><br>    <span class="hljs-attribute">perspective</span>: <span class="hljs-number">600px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>    <span class="hljs-comment">/* translateZ必须配合透视来使用*/</span><br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">400px</span>);<br>&#125; <br></code></pre></div></td></tr></table></figure>
+
+<p>translate和translateX看起来效果一样</p>
+<h2 id="transition-过渡"><a href="#transition-过渡" class="headerlink" title="transition 过渡"></a>transition 过渡</h2><blockquote>
+<p>拥有修改执行变换的属性，时长，速率和延迟时间的能力</p>
+</blockquote>
+<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-25_17-20-10.png" srcset="/img/loading.gif"></p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-comment">/* Apply to 1 property */</span><br>    <span class="hljs-comment">/* property name | duration */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span>;<br><br>    <span class="hljs-comment">/* property name | duration | delay */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span> <span class="hljs-number">1s</span>;<br><br>    <span class="hljs-comment">/* property name | duration | timing function */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span> ease-in-out;<br><br>    <span class="hljs-comment">/* property name | duration | timing function | delay */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span> ease-in-out <span class="hljs-number">1s</span>;<br><br>    <span class="hljs-comment">/* Apply to 2 properties */</span><br>    <span class="hljs-attribute">transition</span>: margin-right <span class="hljs-number">4s</span>, color <span class="hljs-number">1s</span>;<br><br>    <span class="hljs-comment">/* Apply to all changed properties */</span><br>    <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.5s</span> ease-out;<br><br>    <span class="hljs-comment">/* Global values */</span><br>    <span class="hljs-attribute">transition</span>: inherit;<br>    <span class="hljs-attribute">transition</span>: initial;<br>    <span class="hljs-attribute">transition</span>: unset;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>指定transition效果的转速曲线</li>
+</ul>
+<p>指定为一个或多个 CSS 属性的过渡效果，多个属性之间用逗号进行分隔。</p>
+<p><code>transition-timing-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n, n, n, n);</code></p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>linear</td>
+<td>规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）。</td>
+</tr>
+<tr>
+<td>ease</td>
+<td>规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）。</td>
+</tr>
+<tr>
+<td>ease-in</td>
+<td>规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）。</td>
+</tr>
+<tr>
+<td>ease-out</td>
+<td>规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）。</td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）。</td>
+</tr>
+<tr>
+<td>cubic-bezier(n,n,n,n)</td>
+<td>在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>指定动画延迟时间</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">transition-delay</span>: <span class="hljs-number">0.8s</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>指定CSS属性的name，transition效果</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">transition-property</span>: width;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>transition效果需要指定多少秒或毫秒才能完成</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">transition-duration</span>: <span class="hljs-number">1s</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="animation-重难点"><a href="#animation-重难点" class="headerlink" title="animation 重难点"></a>animation 重难点</h2><blockquote>
+<p>若将Transform解释为动作，Transition解释为过渡，那么Animation则是连续的几个动作，即动画。Animation可以我们设定keyframes的值，让元素在一段时间内完成多个动作。</p>
+</blockquote>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p><code>animation</code> :   name   duration timing-function delay iteration-count direction   fill-mode        play-state<br><code>animation</code> : 动画名称  持续时间        运动曲线    延迟执行    执行次数      方向    动画结束后元素应该在的位置    动画状态    </p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-comment">/* animation属性详解*/</span><br>    <span class="hljs-comment">/* 动画名称*/</span><br>    <span class="hljs-attribute">animation-name</span>: move;<br><br>    <span class="hljs-comment">/* 一次动画持续时间  前两属性是必须，且顺序固定*/</span><br>    <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">3s</span>;<br><br>    <span class="hljs-comment">/* 动画执行次数  无数次：infinite*/</span><br>    <span class="hljs-attribute">animation-iteration-count</span>: <span class="hljs-number">1</span>;<br><br>    <span class="hljs-comment">/* 动画的方向： normal 正常 ， alternate： 反向*/</span><br>    <span class="hljs-attribute">animation-direction</span>: alternate;<br><br>    <span class="hljs-comment">/* 动画延迟执行*/</span><br>    <span class="hljs-attribute">animation-delay</span>: <span class="hljs-number">1s</span>;<br><br>    <span class="hljs-comment">/* 设置动画结束盒子盒子的状态</span><br><span class="hljs-comment">           forwards：保持动画结束后的状态  backwards：保持动画开始前的状态*/</span><br>    <span class="hljs-attribute">animation-fill-mode</span>: forwards;<br><br>    <span class="hljs-comment">/* 运动曲线  linear   ease-in-out  steps()*/</span><br>    <span class="hljs-comment">/*animation-timing-function:ease-in;*/</span><br><br>    <span class="hljs-attribute">animation-timing-function</span>: <span class="hljs-built_in">steps</span>(<span class="hljs-number">8</span>);<br><br>    <span class="hljs-comment">/* 控制动画状态 paused 暂停  running　播放*/</span><br>    <span class="hljs-attribute">animation-play-state</span>: paused;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>animation-name</td>
+<td>指定 @keyframes 动画的名称。</td>
+</tr>
+<tr>
+<td>animation-duration</td>
+<td>指定动画完成一个周期所需要时间，单位秒（s）或毫秒（ms），默认是 0。</td>
+</tr>
+<tr>
+<td>animation-timing-function</td>
+<td>指定动画计时函数，即动画的速度曲线，默认是 “ease”。</td>
+</tr>
+<tr>
+<td>animation-delay</td>
+<td>指定动画延迟时间，即动画何时开始，默认是 0。</td>
+</tr>
+<tr>
+<td>animation-iteration-count</td>
+<td>指定动画播放的次数，默认是 1。</td>
+</tr>
+<tr>
+<td>animation-direction</td>
+<td>指定动画播放的方向。默认是 normal。</td>
+</tr>
+<tr>
+<td>animation-fill-mode</td>
+<td>指定动画填充模式。默认是 none。</td>
+</tr>
+<tr>
+<td>animation-play-state</td>
+<td>指定动画播放状态，正在运行或暂停。默认是 running</td>
+</tr>
+</tbody></table>
+<p>关于几个值，除了名字，动画时间，延时有严格顺序要求其它随意</p>
+<p>一个例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">background-color</span>: green;<br>    <span class="hljs-comment">/* 调用*/</span><br>    <span class="hljs-comment">/* infinite:无限次*/</span><br>    <span class="hljs-comment">/* animation: 动画名称 持续时间  执行次数  是否反向  运动曲线 延迟执行*/</span><br>    <span class="hljs-comment">/*animation: move 1s  alternate linear 3 ;*/</span><br>    <span class="hljs-attribute">animation</span>: gun <span class="hljs-number">4s</span>;<br>&#125;<br><br><span class="hljs-comment">/* 定义动画*/</span><br><span class="hljs-keyword">@keyframes</span> move &#123;<br>    <span class="hljs-selector-tag">from</span> &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0px</span>) <span class="hljs-built_in">rotate</span>(<span class="hljs-number">0deg</span>);<br>    &#125;<br>    <span class="hljs-selector-tag">to</span> &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">500px</span>) <span class="hljs-built_in">rotate</span>(<span class="hljs-number">555deg</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/* 定义多组动画*/</span><br><span class="hljs-keyword">@keyframes</span> gun &#123;<br>    0% &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0px</span>);<br>        <span class="hljs-attribute">background-color</span>: green;<br>        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span>;<br>    &#125;<br><br>    25% &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">500px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0px</span>);<br>    &#125;<br><br>    50% &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">500px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">300px</span>);<br>        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>    &#125;<br><br><br>    75% &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">300px</span>);<br>    &#125;<br><br>    100% &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0px</span>);<br>        <span class="hljs-attribute">background-color</span>: red;<br>        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="animation-timing-function"><a href="#animation-timing-function" class="headerlink" title="animation-timing-function"></a>animation-timing-function</h3><p>常见值有：<code>linear、ease、ease-in、ease-out、ease-in-out</code>。</p>
+<p>这些值其实都是 <code>cubic-bezier(n,n,n,n)</code> 的特例。它们被称为贝塞尔曲线。</p>
+<p>一个在线调试贝塞尔曲线的网站：<a target="_blank" rel="noopener" href="https://cubic-bezier.com/#.17,.67,.83,.67">cubic-bezier.com</a>。</p>
+<h3 id="animation-fill-mode-重点"><a href="#animation-fill-mode-重点" class="headerlink" title="animation-fill-mode (重点)"></a>animation-fill-mode (重点)</h3><p>除了默认值 <code>none</code> 外，还有另外 3 个值：</p>
+<ul>
+<li><code>forwards</code>，表示，动画完成后，元素状态保持为最后一帧的状态。</li>
+<li><code>backwards</code>，表示，有动画延迟时，动画开始前，元素状态保持为第一帧的状态。 </li>
+<li><code>both</code>，表示上述二者效果都有。</li>
+</ul>
+<p>这个贴个图理解一下</p>
+<p>举个例子，div 从 100px 处移动到 200px 处的关键帧定义为：</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> move&#123;<br>  0%&#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">100px</span>,<span class="hljs-number">0</span>);<br>  &#125;<br>  100%&#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">200px</span>,<span class="hljs-number">0</span>);<br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>设置填充模式为 <code>forwards</code> 时，动画最后停留在 200px 处：</p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac0310ff7ba99a.gif" srcset="/img/loading.gif"></p>
+<p>设置动画延迟 1s 后执行，且填充模式为 <code>backwards</code> 时，可以看到动画在开始前是处于 100px 处，动画结束后回到 0px 处：</p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac035a53f40b08.gif" srcset="/img/loading.gif"></p>
+<p>最后设置填充模式为 <code>both</code> 的情形：</p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac0380ae444be8.gif" srcset="/img/loading.gif"></p>
+<p>动画结束后，保持动画最后一帧的状态，这个太有用了.</p>
+<p>一个例子</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">10px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(#<span class="hljs-number">0</span>ff,#<span class="hljs-number">0</span>ff);<br>    <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>    <span class="hljs-attribute">background-size</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">animation</span>: move <span class="hljs-number">2s</span> linear forwards;<br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> move&#123;<br>    100%&#123;<br>        <span class="hljs-attribute">background-size</span>: <span class="hljs-number">100%</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://picture-transmission.iplus-studio.top/16ac0435e14da43a.gif" srcset="/img/loading.gif"></p>
+<h3 id="animation-delay"><a href="#animation-delay" class="headerlink" title="animation-delay"></a>animation-delay</h3><p>不为大家注意的是，延迟可以为负数。负延迟表示动画仿佛开始前就已经运行过了那么长时间。<br>拿上述进度条为例子，原动画用了 2s 是从 0% 加载到 100% 的。如果设置延迟为 -1s。这动画会从 50% 加载到 100%。仿佛已经运行了 1s 一样：</p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac04adc7f87ab6.gif" srcset="/img/loading.gif"></p>
+<h3 id="animation-play-state"><a href="#animation-play-state" class="headerlink" title="animation-play-state"></a>animation-play-state</h3><p>CSS 动画是可以暂停的。属性 animation-play-state 表示动画播放状态，默认值 <code>running</code> 表示播放， <code>paused</code> 表示暂停</p>
+<p><img src="https://picture-transmission.iplus-studio.top/16ac050679097040.gif" srcset="/img/loading.gif"></p>
+<h3 id="animation-iteration-count"><a href="#animation-iteration-count" class="headerlink" title="animation-iteration-count"></a>animation-iteration-count</h3><p>表示动画播放次数。它很好懂，只有一点要注意，无限播放时使用 infinite</p>
+<h3 id="animation-direction"><a href="#animation-direction" class="headerlink" title="animation-direction"></a>animation-direction</h3><p>它的意思说指定动画按照指定顺序来播放 @keyframes 定义的关键帧</p>
+<ul>
+<li><p><code>normal</code> 默认值。</p>
+</li>
+<li><p><code>reverse</code> 表示动画反向播放。</p>
+</li>
+<li><p><code>alternate</code> 表示正向和反向交叉进行。</p>
+</li>
+<li><p><code>alternate-reverse</code> 表示反向和正向交叉进行。</p>
+<p>这个自己动手在浏览器改下样式更容易理解</p>
+</li>
+</ul>
+<p>最后附带一个代码 <a target="_blank" rel="noopener" href="https://gitee.com/gdoudeng/css3-animation.git">css3动画</a></p>
+<p>还有几个参考动画<a target="_blank" rel="noopener" href="https://webdesign.tutsplus.com/zh-hans/articles/15-inspiring-examples-of-css-animation-on-codepen--cms-23937">15个CodePen上启发灵感的CSS动画案例</a></p>
+<p>一个动画库<a target="_blank" rel="noopener" href="https://animate.style/">AnimateCss</a></p>
+<p>一个动画可视化编辑工具网址<a target="_blank" rel="noopener" href="https://angrytools.com/css/animation/">AnimationKit</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/css3/">css3</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/26/Chrome-Performance%E5%88%86%E6%9E%90/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Chrome Performance分析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/15/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz",
+          app_key: "GghUuBNsfm9f6gjneTVolb3s",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://leancloud.iplus-studio.top",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备18085104号
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18085104"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon"/>
+            
+            <span>粤ICP备18085104号-1</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
