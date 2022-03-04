@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>git合并特定commits到另一个分支</title>
+    <link href="/2022/03/04/git%E5%90%88%E5%B9%B6%E7%89%B9%E5%AE%9Acommits%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%88%86%E6%94%AF/"/>
+    <url>/2022/03/04/git%E5%90%88%E5%B9%B6%E7%89%B9%E5%AE%9Acommits%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%88%86%E6%94%AF/</url>
+    
+    <content type="html"><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>正常开发流程都是在<code>master</code>分支上新建<code>dev</code>分支，然后在<code>dev</code>分支上添加功能，修复<code>bug</code>等操作，然后测试完毕没问题再合并到<code>master</code>分支的。</p><p>然后有一天你在<code>dev</code>分支上开发着的时候，产品说要急着增加某个功能，此时你dev分支上已经改了很多东西，你只需要<code>dev</code>分支上的某一个<code>commit</code>，你就需要<code>git cherry-pick</code>。</p><h2 id="正确姿势"><a href="#正确姿势" class="headerlink" title="正确姿势"></a>正确姿势</h2><ol><li>我们是把<code>dev</code>分支上的某一个<code>commit</code>合并到<code>master</code>分支上，所以我们要先切回到<code>master</code>分支上。</li></ol><p><img src="https://picture-transmission.iplus-studio.top/uPic/d1xAy8.png" alt="d1xAy8"></p><p>选中<code>master</code>分支，右键签出。</p><ol start="2"><li>直接把你要合并的commit选中，然后点击一下樱桃按钮，即可把这个commit合并到当前分支上。</li></ol><p><img src="https://picture-transmission.iplus-studio.top/uPic/z6OxV2.png" alt="z6OxV2"></p><p>同样如果有合并冲突，也可以解决冲突。</p><p><img src="https://picture-transmission.iplus-studio.top/uPic/gNMV4P.png" alt="gNMV4P"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个功能很简单，但很实用，也可以通过<code>git</code>命名来实现，只是笔者觉得<code>idea</code>的效率确实很高。<br><code>cherry-pick</code>适合部分提交在不同分支之间的<code>merge</code>，如果全量<code>merge</code>，直接分支<code>merge</code>即可。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>git-submodule使用指南</title>
     <link href="/2022/02/27/git-submodule%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
     <url>/2022/02/27/git-submodule%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
