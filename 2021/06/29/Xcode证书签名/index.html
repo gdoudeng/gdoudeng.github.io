@@ -1,42 +1,54 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
+<html lang="zh-CN" data-default-color-scheme=dark>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="WELCOME">
   <meta name="author" content="邓伟彬">
   <meta name="keywords" content="">
+  
+    <meta name="description" content="Xcode手动证书签名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xcode证书签名">
+<meta property="og:url" content="http://example.com/2021/06/29/Xcode%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D/index.html">
+<meta property="og:site_name" content="dwb">
+<meta property="og:description" content="Xcode手动证书签名">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-29T12:20:08.000Z">
+<meta property="article:modified_time" content="2022-02-27T03:32:02.435Z">
+<meta property="article:author" content="邓伟彬">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
   <title>Xcode证书签名 - dwb</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -45,7 +57,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -55,19 +67,20 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz","app_key":"GghUuBNsfm9f6gjneTVolb3s","server_url":"https://leancloud.iplus-studio.top"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"ca17515ca9f4d4c97b593b5753af777f","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gmTUOC5K8d9bnPNfJMK23STW-MdYXbMMI","app_key":"ckL6L4nkTmG4LEPPHjrjVUCE","server_url":null,"path":"window.location.pathname","ignore_local":"ture"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.4.1"></head>
 
 
 <body>
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>dwb</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>dwb</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -141,13 +154,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -181,21 +195,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      782 字
+      1.3k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
-       分钟
+      5 分钟
     </span>
   
 
@@ -236,60 +247,83 @@
             
             <div class="markdown-body">
               <p>一般来说Xcode自动签名已经足够了，当时由于以前的过失把一个已经申请好的证书私钥给搞没了，换到新电脑的时候由于没有私钥，原本的证书已经无法使用了，Xcode提示我<code>Revoke certificate</code>，但是你这么操作后原本安装了app的用户就没办法打开app了，这不等于自杀嘛，还好当时还有一次申请证书的权限（一共可以申请两次证书），证书与你电脑的私钥.p12是绑定的，所以没事不要重装系统，你要重装也要确保在另一台电脑已经配置好了，可以上传app到AppStore了。</p>
-<p>参考文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69162456">https://zhuanlan.zhihu.com/p/69162456</a></p>
+<p>参考文章：https://zhuanlan.zhihu.com/p/69162456</p>
 <ul>
 <li>0924更新</li>
 </ul>
-<p>我又发现了一篇很好的参考文章：<a target="_blank" rel="noopener" href="https://ask.dcloud.net.cn/article/152">https://ask.dcloud.net.cn/article/152</a></p>
-<h1 id="注册bundle-id"><a href="#注册bundle-id" class="headerlink" title="注册bundle id"></a>注册bundle id</h1><p>iOS的唯一标示，跟android的包名是一个意思。而且你用了以后别人是用不了的，别人也注册不了这个id，所以测试的时候最好是随便填一个无意义的bundle id。</p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-00-31.png" srcset="/img/loading.gif"></p>
+<p>我又发现了一篇很好的参考文章：https://ask.dcloud.net.cn/article/152</p>
+<h1 id="注册bundle-id">注册bundle id</h1>
+<p>iOS的唯一标示，跟android的包名是一个意思。而且你用了以后别人是用不了的，别人也注册不了这个id，所以测试的时候最好是随便填一个无意义的bundle
+id。</p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-00-31.png" srcset="/img/loading.gif" lazyload /></p>
 <p>这个没啥操作性，基本上一路<code>next</code>就行。</p>
-<h1 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h1><blockquote>
+<h1 id="申请证书">申请证书</h1>
+<blockquote>
 <p>慎重操作，申请一个证书就少一个，一共只能申请两个证书。</p>
 </blockquote>
-<h2 id="创建CSR文件（证书请求文件）"><a href="#创建CSR文件（证书请求文件）" class="headerlink" title="创建CSR文件（证书请求文件）"></a>创建CSR文件（证书请求文件）</h2><ol>
+<h2 id="创建csr文件证书请求文件">创建CSR文件（证书请求文件）</h2>
+<ol type="1">
 <li>打开电脑上的钥匙串访问，选中证书助理</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-41-49.png" srcset="/img/loading.gif"> </p>
-<ol start="2">
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-41-49.png" srcset="/img/loading.gif" lazyload /></p>
+<ol start="2" type="1">
 <li>用户电子邮件地址填开发者账号的邮箱，名称可以随意填，然后保存到磁盘上。</li>
-<li>Keychain将生成一个包含开发者身份信息的CSR（Certificate Signing Request）文件。同时，Keychain Access-&gt;Keys（密钥）中增加一对Public/Private Key Pair。</li>
+<li>Keychain将生成一个包含开发者身份信息的CSR（Certificate Signing
+Request）文件。同时，Keychain
+Access-&gt;Keys（密钥）中增加一对Public/Private Key Pair。</li>
 </ol>
 <p>搞完就得到这么一个文件<code>CertificateSigningRequest.certSigningRequest</code></p>
 <p>如果你电脑已经有这么一个文件了，就不用再去申请了。</p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-45-26.png" srcset="/img/loading.gif"></p>
-<h2 id="创建开发者证书-和-推送证书"><a href="#创建开发者证书-和-推送证书" class="headerlink" title="创建开发者证书 和 推送证书"></a>创建开发者证书 和 推送证书</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_17-46-34.png" srcset="/img/loading.gif"></p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-48-18.png" srcset="/img/loading.gif"></p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-48-51.png" srcset="/img/loading.gif"></p>
-<ol>
-<li><p>一路点击<code>Continue</code>, 到<code>Generate</code>后选择一开始生成的<code>CSR文件</code>上传，然后再继续点击<code>Continue</code>。</p>
-</li>
-<li><p>生成完开发调试、生成调试证书 和 开发环境推送证书、生成环境推送证书，可以在<code>Certificates-&gt;All</code>中查看该证书，并进行下载或删除。</p>
-</li>
-<li><p>下载到桌面上，然后双击添加到钥匙串中，可在<code>Keychain Access-&gt;证书</code>中查看。</p>
-</li>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-45-26.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="创建开发者证书-和-推送证书">创建开发者证书 和 推送证书</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_17-46-34.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-48-18.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-48-51.png" srcset="/img/loading.gif" lazyload /></p>
+<ol type="1">
+<li><p>一路点击<code>Continue</code>,
+到<code>Generate</code>后选择一开始生成的<code>CSR文件</code>上传，然后再继续点击<code>Continue</code>。</p></li>
+<li><p>生成完开发调试、生成调试证书 和
+开发环境推送证书、生成环境推送证书，可以在<code>Certificates-&gt;All</code>中查看该证书，并进行下载或删除。</p></li>
+<li><p>下载到桌面上，然后双击添加到钥匙串中，可在<code>Keychain Access-&gt;证书</code>中查看。</p></li>
 </ol>
 <p>由于我们使用友盟，生成的推送证书（开发环境和生产环境）需要从钥匙串访问中导出p12文件，添加到友盟后台。</p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-56-15.png" srcset="/img/loading.gif"></p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-57-12.png" srcset="/img/loading.gif"></p>
-<h2 id="创建配置文件（Provisioning-Profiles）-安装到真机使用，上传AppStore也要用"><a href="#创建配置文件（Provisioning-Profiles）-安装到真机使用，上传AppStore也要用" class="headerlink" title="创建配置文件（Provisioning Profiles）(安装到真机使用，上传AppStore也要用)"></a>创建配置文件（Provisioning Profiles）(安装到真机使用，上传AppStore也要用)</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_17-42-31.png" srcset="/img/loading.gif"></p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-59-29.png" srcset="/img/loading.gif"></p>
-<ol>
-<li>选择刚创建的App ID,选择相应证书、选择测试的设备，然后创建名称一直点击Continue即可，最后下载下来。</li>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-56-15.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-57-12.png" srcset="/img/loading.gif" lazyload /></p>
+<h2
+id="创建配置文件provisioning-profiles安装到真机使用上传appstore也要用">创建配置文件（Provisioning
+Profiles）(安装到真机使用，上传AppStore也要用)</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_17-42-31.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_18-59-29.png" srcset="/img/loading.gif" lazyload /></p>
+<ol type="1">
+<li>选择刚创建的App
+ID,选择相应证书、选择测试的设备，然后创建名称一直点击Continue即可，最后下载下来。</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_19-00-53.png" srcset="/img/loading.gif"> </p>
-<ol start="2">
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_19-00-53.png" srcset="/img/loading.gif" lazyload /></p>
+<ol start="2" type="1">
 <li>下载到本地。</li>
 </ol>
 <p><code>.mobileprovision</code>文件就是了。双击它安装。</p>
-<h3 id="自动设置"><a href="#自动设置" class="headerlink" title="自动设置"></a>自动设置</h3><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_19-29-46.png" srcset="/img/loading.gif"></p>
-<h3 id="手动设置"><a href="#手动设置" class="headerlink" title="手动设置"></a>手动设置</h3><ol>
-<li><p>下载到本地的<code>Provisioning Profile</code>，双击自动安装到<code>xcode</code>中，在<code>XcodeTarget-&gt;Build Settings-&gt;Code Signing-&gt;Provisioning Profile</code>中可看到此项。</p>
-</li>
-<li><p>如下图，选择此项配置文件，<code>Code Signing Identity</code>中会默认显示所关联的证书文件（即创建该配置文件时选择关联的证书，可有多个）。</p>
-</li>
+<h3 id="自动设置">自动设置</h3>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_19-29-46.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="手动设置">手动设置</h3>
+<ol type="1">
+<li><p>下载到本地的<code>Provisioning Profile</code>，双击自动安装到<code>xcode</code>中，在<code>XcodeTarget-&gt;Build Settings-&gt;Code Signing-&gt;Provisioning Profile</code>中可看到此项。</p></li>
+<li><p>如下图，选择此项配置文件，<code>Code Signing Identity</code>中会默认显示所关联的证书文件（即创建该配置文件时选择关联的证书，可有多个）。</p></li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_19-24-09.png" srcset="/img/loading.gif"></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-06-29_19-24-09.png" srcset="/img/loading.gif" lazyload /></p>
 
             </div>
             <hr>
@@ -313,7 +347,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -343,33 +381,30 @@
 
             
               <!-- Comments -->
-              <article class="comments" id="comments">
+              <article class="comments" id="comments" lazyload>
+                
+                  
                 
                 
-  <div id="vcomments"></div>
+  <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.waitElementVisible('vcomments', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz",
-          app_key: "GghUuBNsfm9f6gjneTVolb3s",
-          placeholder: "说点什么",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: false,
-          recordIP: false,
-          serverURLs: "https://leancloud.iplus-studio.top",
-        });
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/1.5.2/Waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-api-okfyab6i0-gdoudeng.vercel.app","path":"window.location.pathname","placeholder":"说点什么","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"requiredFields":[],"emojiCDN":"","emojiMaps":{}},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        new Waline(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          Fluid.plugins.initFancyBox('#waline .vcontent img:not(.vemoji)');
+        })
       });
     });
   </script>
-  <noscript>Please enable JavaScript to view the
-    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
-  </noscript>
+  <noscript>Please enable JavaScript to view the comments</noscript>
 
 
               </article>
@@ -396,7 +431,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -430,7 +465,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -478,7 +513,7 @@
           >
             
               <span style="visibility: hidden; width: 0">|</span>
-              <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon"/>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
             
             <span>粤ICP备18085104号-1</span>
           </a>
@@ -491,10 +526,11 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -505,38 +541,40 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  
-    <script  src="/js/lazyload.js" ></script>
-  
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
 
 
 
@@ -545,30 +583,19 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
       var title = document.getElementById('subtitle').title;
       
-      typing(title)
+        typing(title);
       
     })(window, document);
   </script>
 
 
 
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
-  </script>
 
 
 
@@ -578,9 +605,17 @@
 
 
 
-
-
-
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ca17515ca9f4d4c97b593b5753af777f";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
   
 
   
@@ -599,7 +634,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

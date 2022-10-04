@@ -1,42 +1,54 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
+<html lang="zh-CN" data-default-color-scheme=dark>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="WELCOME">
   <meta name="author" content="邓伟彬">
   <meta name="keywords" content="">
+  
+    <meta name="description" content="使用DevTools中的Performance来进行性能分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome Performance分析">
+<meta property="og:url" content="http://example.com/2020/12/26/Chrome-Performance%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="dwb">
+<meta property="og:description" content="使用DevTools中的Performance来进行性能分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-26T08:26:11.000Z">
+<meta property="article:modified_time" content="2022-02-27T03:32:02.434Z">
+<meta property="article:author" content="邓伟彬">
+<meta property="article:tag" content="性能优化">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
   <title>Chrome Performance分析 - dwb</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -45,7 +57,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -55,19 +67,20 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz","app_key":"GghUuBNsfm9f6gjneTVolb3s","server_url":"https://leancloud.iplus-studio.top"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"ca17515ca9f4d4c97b593b5753af777f","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gmTUOC5K8d9bnPNfJMK23STW-MdYXbMMI","app_key":"ckL6L4nkTmG4LEPPHjrjVUCE","server_url":null,"path":"window.location.pathname","ignore_local":"ture"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.4.1"></head>
 
 
 <body>
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>dwb</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>dwb</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -141,13 +154,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -181,21 +195,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      2.4k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16
-       分钟
+      8 分钟
     </span>
   
 
@@ -235,222 +246,280 @@
             <h1 style="display: none">Chrome Performance分析</h1>
             
             <div class="markdown-body">
-              <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>使用DevTools中的Performance来进行性能分析</p>
-<h1 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h1><p>首先在新的无痕窗口打开网页（这样是为了避免你装的插件导致的影响），打开Chrome DevTools 切换到 Performance 下可以看到以下画面</p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-33-33.png" srcset="/img/loading.gif"></p>
-<ol>
+              <h1 id="介绍">介绍</h1>
+<p>使用DevTools中的Performance来进行性能分析</p>
+<h1 id="performance">Performance</h1>
+<p>首先在新的无痕窗口打开网页（这样是为了避免你装的插件导致的影响），打开Chrome
+DevTools 切换到 Performance 下可以看到以下画面</p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-33-33.png" srcset="/img/loading.gif" lazyload /></p>
+<ol type="1">
 <li>左上角有个录制按钮，我们可以通过点击它来开始页面分析</li>
-<li>点击最右边的设置的小齿轮图标,如果是移动端项目,打开 CPU 节流开关,根据电脑性能选择相应的(用于模拟手机的性能)</li>
+<li>点击最右边的设置的小齿轮图标,如果是移动端项目,打开 CPU
+节流开关,根据电脑性能选择相应的(用于模拟手机的性能)</li>
 <li>打开截图 Screenshots 记录过程中每一帧的截图</li>
 </ol>
-<h1 id="记录性能"><a href="#记录性能" class="headerlink" title="记录性能"></a>记录性能</h1><ol>
+<h1 id="记录性能">记录性能</h1>
+<ol type="1">
 <li>点击Record。DevTools会在页面运行时抓取性能相关的各种参数</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-41-00.png" srcset="/img/loading.gif"></p>
-<ol start="2">
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-41-00.png" srcset="/img/loading.gif" lazyload /></p>
+<ol start="2" type="1">
 <li>点击Stop。DevTools停止记录，处理数据，展示结果。</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-43-01.png" srcset="/img/loading.gif"></p>
-<ol start="3">
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-43-01.png" srcset="/img/loading.gif" lazyload /></p>
+<ol start="3" type="1">
 <li>展现数据</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-44-28.png" srcset="/img/loading.gif"></p>
-<h1 id="分析（重点）"><a href="#分析（重点）" class="headerlink" title="分析（重点）"></a>分析（重点）</h1><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-51-24.png" srcset="/img/loading.gif"></p>
-<h2 id="桢率"><a href="#桢率" class="headerlink" title="桢率"></a>桢率</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-55-27.png" srcset="/img/loading.gif"></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-44-28.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="分析重点">分析（重点）</h1>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-51-24.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="桢率">桢率</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-55-27.png" srcset="/img/loading.gif" lazyload /></p>
 <p>注意看FPS表，如果你看到了一条红色的条条在FPS上方，这证明你的帧速率掉得太低了，已经影响到了用户体验了。总的来说，绿色的条条越高，你的帧速率就越高。</p>
-<h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-57-20.png" srcset="/img/loading.gif"></p>
+<h2 id="cpu">CPU</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_16-57-20.png" srcset="/img/loading.gif" lazyload /></p>
 <p>在CPU图表中的各种颜色与Summary面板里的颜色是相互对应的，Summary面板就在Performance面板的下方。CPU图表中的各种颜色代表着在这个时间段内，CPU在各种处理上所花费的时间。如果你看到了某个处理占用了大量的时间，那么这可能就是一个可以找到性能瓶颈的线索。</p>
-<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-00-18.png" srcset="/img/loading.gif"></p>
+<h2 id="截图">截图</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-00-18.png" srcset="/img/loading.gif" lazyload /></p>
 <p>在FPS，CPU，NET任意表上移动鼠标，你将看到那个事件点的页面快照，这叫scrubbing，可以用于手动计算动画的进展.</p>
-<h2 id="Frames"><a href="#Frames" class="headerlink" title="Frames"></a>Frames</h2><p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-03-15.png" srcset="/img/loading.gif"></p>
+<h2 id="frames">Frames</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-03-15.png" srcset="/img/loading.gif" lazyload /></p>
 <p>鼠标移上去可以读取到当时的帧率。</p>
-<h1 id="定位瓶颈"><a href="#定位瓶颈" class="headerlink" title="定位瓶颈"></a>定位瓶颈</h1><ol>
+<h1 id="定位瓶颈">定位瓶颈</h1>
+<ol type="1">
 <li>先看summary页。在没选中任何事件的时候，该页展示的是活动期间的饼图。当前页面耗时最多是Scripting。Performance是一门减少工作的艺术，所以你的目标就是减少Scripting工作。</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-08-41.png" srcset="/img/loading.gif"></p>
-<ol start="2">
-<li>展开Main图表，Devtools展示了主线程运行状况。X轴代表着时间。每个长条代表着一个event。长条越长就代表这个event花费的时间越长。Y轴代表了调用栈（call<br>stack）。在栈里，上面的event调用了下面的event。</li>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-08-41.png" srcset="/img/loading.gif" lazyload /></p>
+<ol start="2" type="1">
+<li>展开Main图表，Devtools展示了主线程运行状况。X轴代表着时间。每个长条代表着一个event。长条越长就代表这个event花费的时间越长。Y轴代表了调用栈（call
+stack）。在栈里，上面的event调用了下面的event。</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-12-28.png" srcset="/img/loading.gif"></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-12-28.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
-<li><p>在性能报告中，有很多的数据。可以通过双击，拖动等等动作来放大缩小报告范围，从各种时间段来观察分析报告。</p>
-</li>
-<li><p>在事件长条的右上角出，如果出现了红色小三角，说明这个事件是存在问题的，需要特别注意。</p>
-</li>
+<li><p>在性能报告中，有很多的数据。可以通过双击，拖动等等动作来放大缩小报告范围，从各种时间段来观察分析报告。</p></li>
+<li><p>在事件长条的右上角出，如果出现了红色小三角，说明这个事件是存在问题的，需要特别注意。</p></li>
 </ul>
-<ol start="3">
-<li>双击这个带有红色小三角的的事件。在Summary面板会看到详细信息。注意reveal这个链接，双击它会让高亮触发这个事件的event。如果点击了throttle.js?597f:83 这个链接，就会跳转到对应的代码处。</li>
+<ol start="3" type="1">
+<li>双击这个带有红色小三角的的事件。在Summary面板会看到详细信息。注意reveal这个链接，双击它会让高亮触发这个事件的event。如果点击了throttle.js?597f:83
+这个链接，就会跳转到对应的代码处。</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-16-05.png" srcset="/img/loading.gif"></p>
-<ol start="4">
-<li><p>在wrapper事件下，你会看到一串紫色的事件。如果他们都很宽，这表明好像每一个都应该有个红色三角形。点击随便一个紫色的事件。你将在Summary页下看到关于他的一系列信息。</p>
-</li>
-<li><p>在Summary Tab下，点击下的throttle.js?597f:83。你会看到是哪句代码导致警告。</p>
-</li>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-16-05.png" srcset="/img/loading.gif" lazyload /></p>
+<ol start="4" type="1">
+<li><p>在wrapper事件下，你会看到一串紫色的事件。如果他们都很宽，这表明好像每一个都应该有个红色三角形。点击随便一个紫色的事件。你将在Summary页下看到关于他的一系列信息。</p></li>
+<li><p>在Summary
+Tab下，点击下的throttle.js?597f:83。你会看到是哪句代码导致警告。</p></li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-17-47.png" srcset="/img/loading.gif"></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-17-47.png" srcset="/img/loading.gif" lazyload /></p>
 <p>好，哪行代码都看到了，你可以去优化了。</p>
-<h1 id="一些事件"><a href="#一些事件" class="headerlink" title="一些事件"></a>一些事件</h1><h2 id="Loading事件"><a href="#Loading事件" class="headerlink" title="Loading事件"></a>Loading事件</h2><table>
+<h1 id="一些事件">一些事件</h1>
+<h2 id="loading事件">Loading事件</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>事件</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>Parse HTML</td>
 <td>浏览器执行HTML解析</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Finish Loading</td>
 <td>网络请求完毕事件</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Receive Data</td>
 <td>请求的响应数据到达事件，如果响应数据很大（拆包），可能会多次触发该事件</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Receive Response</td>
 <td>响应头报文到达时触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Send Request</td>
 <td>发送网络请求时触发</td>
 </tr>
-</tbody></table>
-<h2 id="Scripting事件"><a href="#Scripting事件" class="headerlink" title="Scripting事件"></a>Scripting事件</h2><table>
+</tbody>
+</table>
+<h2 id="scripting事件">Scripting事件</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>事件</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>Animation Frame Fired</td>
 <td>一个定义好的动画帧发生并开始回调处理时触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Cancel Animation Frame</td>
 <td>取消一个动画帧时触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>GC Event</td>
 <td>垃圾回收时触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>DOMContentLoaded</td>
 <td>当页面中的DOM内容加载并解析完毕时触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Evaluate Script</td>
 <td>A script was evaluated.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Event</td>
 <td>js事件</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Function Call</td>
 <td>只有当浏览器进入到js引擎中时触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Install Timer</td>
 <td>创建计时器（调用setTimeout()和setInterval()）时触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Request Animation Frame</td>
 <td>A requestAnimationFrame() call scheduled a new frame</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Remove Timer</td>
 <td>当清除一个计时器时触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Time</td>
 <td>调用console.time()触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Time End</td>
 <td>调用console.timeEnd()触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Timer Fired</td>
 <td>定时器激活回调后触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>XHR Ready State Change</td>
 <td>当一个异步请求为就绪状态后触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>XHR Load</td>
 <td>当一个异步请求完成加载后触发</td>
 </tr>
-</tbody></table>
-<h2 id="Rendering事件"><a href="#Rendering事件" class="headerlink" title="Rendering事件"></a>Rendering事件</h2><table>
+</tbody>
+</table>
+<h2 id="rendering事件">Rendering事件</h2>
+<table>
 <thead>
-<tr>
+<tr class="header">
 <th>事件</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>Invalidate layout</td>
 <td>当DOM更改导致页面布局失效时触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Layout</td>
 <td>页面布局计算执行时触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Recalculate style</td>
 <td>Chrome重新计算元素样式时触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>DOMContentLoaded</td>
 <td>当页面中的DOM内容加载并解析完毕时触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Scroll</td>
 <td>内嵌的视窗滚动时触发</td>
 </tr>
-</tbody></table>
-<h2 id="Painting事件"><a href="#Painting事件" class="headerlink" title="Painting事件"></a>Painting事件</h2><table>
+</tbody>
+</table>
+<h2 id="painting事件">Painting事件</h2>
+<table>
 <thead>
-<tr>
+<tr class="header">
 <th>事件</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>Composite Layers</td>
 <td>Chrome的渲染引擎完成图片层合并时触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Image Decode</td>
 <td>一个图片资源完成解码后触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Image Resize</td>
 <td>一个图片被修改尺寸后触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Paint</td>
 <td>合并后的层被绘制到对应显示区域后触发</td>
 </tr>
-</tbody></table>
-<h1 id="跟Summary-Tab-同级的几个tab"><a href="#跟Summary-Tab-同级的几个tab" class="headerlink" title="跟Summary Tab 同级的几个tab"></a>跟Summary Tab 同级的几个tab</h1><h2 id="Bottom-Up-Tab"><a href="#Bottom-Up-Tab" class="headerlink" title="Bottom-Up Tab"></a>Bottom-Up Tab</h2><p><img src="https://picture-transmission.iplus-studio.top/16522d5a72ccd1e8.jpg" srcset="/img/loading.gif"></p>
-<p>在 Timeline 中选取一段时间,然后点击 Bottom-Up得到上图,图片中展示浏览器执行的各个操作说占用的时间</p>
-<h2 id="Call-tree-Tab"><a href="#Call-tree-Tab" class="headerlink" title="Call-tree Tab"></a>Call-tree Tab</h2><p><img src="https://picture-transmission.iplus-studio.top/16522d60f31f4962.jpg" srcset="/img/loading.gif"></p>
-<p>同理点击Call Tree 得到上图: 表示浏览器的基本操作(事件执行,绘制…)所占用的时间</p>
-<h2 id="Event-log-Tab"><a href="#Event-log-Tab" class="headerlink" title="Event log Tab"></a>Event log Tab</h2><p><img src="https://picture-transmission.iplus-studio.top/16522d5b3b6a26fb.jpg" srcset="/img/loading.gif"></p>
-<p>同理点击 Event Log得到上图: 可以按照选中时间内事件发生的顺序来查看事件执行所占用的时间.</p>
-<h1 id="开启FPS-meter"><a href="#开启FPS-meter" class="headerlink" title="开启FPS meter"></a>开启FPS meter</h1><p>还有一个利器，就是FPS meter了，它提供了一种实时的FPS评估。</p>
-<ol>
-<li>Command+Shift+p（Mac）， Control+Shift+p（windows） 开启命令菜单</li>
+</tbody>
+</table>
+<h1 id="跟summary-tab-同级的几个tab">跟Summary Tab 同级的几个tab</h1>
+<h2 id="bottom-up-tab">Bottom-Up Tab</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/16522d5a72ccd1e8.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>在 Timeline 中选取一段时间,然后点击
+Bottom-Up得到上图,图片中展示浏览器执行的各个操作说占用的时间</p>
+<h2 id="call-tree-tab">Call-tree Tab</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/16522d60f31f4962.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>同理点击Call Tree 得到上图:
+表示浏览器的基本操作(事件执行,绘制...)所占用的时间</p>
+<h2 id="event-log-tab">Event log Tab</h2>
+<p><img
+src="https://picture-transmission.iplus-studio.top/16522d5b3b6a26fb.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>同理点击 Event Log得到上图:
+可以按照选中时间内事件发生的顺序来查看事件执行所占用的时间.</p>
+<h1 id="开启fps-meter">开启FPS meter</h1>
+<p>还有一个利器，就是FPS meter了，它提供了一种实时的FPS评估。</p>
+<ol type="1">
+<li>Command+Shift+p（Mac）， Control+Shift+p（windows）
+开启命令菜单</li>
 <li>输入Rendering，选择Show Rendering</li>
-<li>在Rendering页，开启FPS Meter。一个新的覆盖窗口将会在你视口的右上角出现。</li>
+<li>在Rendering页，开启FPS
+Meter。一个新的覆盖窗口将会在你视口的右上角出现。</li>
 </ol>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-06-48.png" srcset="/img/loading.gif"></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2020-12-26_17-06-48.png" srcset="/img/loading.gif" lazyload /></p>
 
             </div>
             <hr>
@@ -474,7 +543,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -504,33 +577,30 @@
 
             
               <!-- Comments -->
-              <article class="comments" id="comments">
+              <article class="comments" id="comments" lazyload>
+                
+                  
                 
                 
-  <div id="vcomments"></div>
+  <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.waitElementVisible('vcomments', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz",
-          app_key: "GghUuBNsfm9f6gjneTVolb3s",
-          placeholder: "说点什么",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: false,
-          recordIP: false,
-          serverURLs: "https://leancloud.iplus-studio.top",
-        });
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/1.5.2/Waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-api-okfyab6i0-gdoudeng.vercel.app","path":"window.location.pathname","placeholder":"说点什么","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"requiredFields":[],"emojiCDN":"","emojiMaps":{}},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        new Waline(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          Fluid.plugins.initFancyBox('#waline .vcontent img:not(.vemoji)');
+        })
       });
     });
   </script>
-  <noscript>Please enable JavaScript to view the
-    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
-  </noscript>
+  <noscript>Please enable JavaScript to view the comments</noscript>
 
 
               </article>
@@ -557,7 +627,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -591,7 +661,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -639,7 +709,7 @@
           >
             
               <span style="visibility: hidden; width: 0">|</span>
-              <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon"/>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
             
             <span>粤ICP备18085104号-1</span>
           </a>
@@ -652,10 +722,11 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -666,38 +737,40 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  
-    <script  src="/js/lazyload.js" ></script>
-  
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
 
 
 
@@ -706,30 +779,19 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
       var title = document.getElementById('subtitle').title;
       
-      typing(title)
+        typing(title);
       
     })(window, document);
   </script>
 
 
 
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
-  </script>
 
 
 
@@ -739,9 +801,17 @@
 
 
 
-
-
-
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ca17515ca9f4d4c97b593b5753af777f";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
   
 
   
@@ -760,7 +830,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

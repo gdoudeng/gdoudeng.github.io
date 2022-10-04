@@ -1,42 +1,54 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
+<html lang="zh-CN" data-default-color-scheme=dark>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="WELCOME">
   <meta name="author" content="邓伟彬">
   <meta name="keywords" content="">
+  
+    <meta name="description" content="RN版百度语音识别与一个UI组件 Dialog 和 Toast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RN版百度语音识别与一个UI组件">
+<meta property="og:url" content="http://example.com/2021/03/06/RN%E7%89%88%E7%99%BE%E5%BA%A6%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E4%B8%8E%E4%B8%80%E4%B8%AAUI%E7%BB%84%E4%BB%B6-Dialog%E5%92%8CToast/index.html">
+<meta property="og:site_name" content="dwb">
+<meta property="og:description" content="RN版百度语音识别与一个UI组件 Dialog 和 Toast">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-06T10:03:49.000Z">
+<meta property="article:modified_time" content="2022-02-27T03:32:02.435Z">
+<meta property="article:author" content="邓伟彬">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
   <title>RN版百度语音识别与一个UI组件 - dwb</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -45,7 +57,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -55,19 +67,20 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz","app_key":"GghUuBNsfm9f6gjneTVolb3s","server_url":"https://leancloud.iplus-studio.top"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"ca17515ca9f4d4c97b593b5753af777f","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gmTUOC5K8d9bnPNfJMK23STW-MdYXbMMI","app_key":"ckL6L4nkTmG4LEPPHjrjVUCE","server_url":null,"path":"window.location.pathname","ignore_local":"ture"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.4.1"></head>
 
 
 <body>
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>dwb</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>dwb</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -141,13 +154,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -181,21 +195,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      375 字
+      1k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
-       分钟
+      4 分钟
     </span>
   
 
@@ -235,33 +246,41 @@
             <h1 style="display: none">RN版百度语音识别与一个UI组件</h1>
             
             <div class="markdown-body">
-              <h1 id="预告"><a href="#预告" class="headerlink" title="预告"></a>预告</h1><p>好久没跟新过，因为根本没时间了，目前在赶一个项目</p>
+              <h1 id="预告">预告</h1>
+<p>好久没跟新过，因为根本没时间了，目前在赶一个项目</p>
 <p>本次项目完成后将开源两个组件库，一个是<code>RN</code>版百度语音识别，另一个是<code>UI</code>组件，</p>
 <p><code>Dialog</code>和<code>Toast</code>，Toast其实就是基于<code>react-native-root-toast</code>的，看到这个库使用api的形式展现toast，非常好用，</p>
 <p>然后搞了一个对话框也是基于api形式进行展现。</p>
-<h1 id="Dialog"><a href="#Dialog" class="headerlink" title="Dialog"></a>Dialog</h1><ul>
+<h1 id="dialog">Dialog</h1>
+<ul>
 <li>基于api形式进行展现。</li>
 </ul>
 <p>预告图</p>
-<p><img src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-06_18-19-04.png" srcset="/img/loading.gif"></p>
+<p><img
+src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-06_18-19-04.png" srcset="/img/loading.gif" lazyload /></p>
 <figure class="highlight typescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> DialogOptions &#123;<br>  title?: <span class="hljs-built_in">string</span>,<br>  description?: <span class="hljs-built_in">string</span>,<br>  okText?: <span class="hljs-built_in">string</span>,<br>  cancelText?: <span class="hljs-built_in">string</span>,<br>  onOKPress?: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>;<br>  onCancelPress?: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>;<br>  onDismiss?: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>;<br>  destroyDialog?: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>;<br>  contentView?: React.ElementType;<br>  okTextColor?: <span class="hljs-built_in">string</span>;<br>  cancelTextColor?: <span class="hljs-built_in">string</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs typescript">Tips.showDialog(TipsType.confirm, &#123;<br>      onCancelPress: <span class="hljs-built_in">this</span>.handleCancelSavePress,<br>      onOKPress: <span class="hljs-built_in">this</span>.handleSavePress,<br>      description: <span class="hljs-string">&quot;是否修改保存？&quot;</span>,<br>      okText: <span class="hljs-string">&quot;保存&quot;</span>,<br>      cancelText: <span class="hljs-string">&quot;不保存&quot;</span><br>    &#125;);<br></code></pre></div></td></tr></table></figure>
-
+<p>使用： <figure class="highlight typescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs typescript">Tips.showDialog(TipsType.confirm, &#123;<br>      onCancelPress: <span class="hljs-built_in">this</span>.handleCancelSavePress,<br>      onOKPress: <span class="hljs-built_in">this</span>.handleSavePress,<br>      description: <span class="hljs-string">&quot;是否修改保存？&quot;</span>,<br>      okText: <span class="hljs-string">&quot;保存&quot;</span>,<br>      cancelText: <span class="hljs-string">&quot;不保存&quot;</span><br>    &#125;);<br></code></pre></div></td></tr></table></figure></p>
 <p>基本上自定义啥<code>props</code>都行，后面可以改。</p>
 <p>其实也是基于其他开源进行改造的，我发现我改完后会与<code>react-native-root-toast</code>冲突，所以干脆合在一起了。</p>
-<h1 id="RN版百度语音识别"><a href="#RN版百度语音识别" class="headerlink" title="RN版百度语音识别"></a>RN版百度语音识别</h1><p>目前看到这两个库</p>
+<h1 id="rn版百度语音识别">RN版百度语音识别</h1>
+<p>目前看到这两个库</p>
 <ul>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/sinooceanland/react-native-speech-iflytek-sino">react-native-speech-iflytek-sino</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/zphhhhh/react-native-speech-iflytek">react-native-speech-iflytek</a></p>
-</li>
+<li><p><a
+target="_blank" rel="noopener" href="https://github.com/sinooceanland/react-native-speech-iflytek-sino">react-native-speech-iflytek-sino</a></p></li>
+<li><p><a
+target="_blank" rel="noopener" href="https://github.com/zphhhhh/react-native-speech-iflytek">react-native-speech-iflytek</a></p></li>
 </ul>
-<p>现在看到这两个库，把这两个库有的功能利用<a target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/SPEECH/Ek39uxgre">百度语音识别</a>实现。</p>
-<h1 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h1><p>项目结束后会开源这两个库，可以关注我 <a target="_blank" rel="noopener" href="https://github.com/gdoudeng">github</a> 和 <a target="_blank" rel="noopener" href="https://gitee.com/gdoudeng">gitee</a> ，我也会在这里说。</p>
+<p>现在看到这两个库，把这两个库有的功能利用<a
+target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/SPEECH/Ek39uxgre">百度语音识别</a>实现。</p>
+<h1 id="开源">开源</h1>
+<p>项目结束后会开源这两个库，可以关注我 <a
+target="_blank" rel="noopener" href="https://github.com/gdoudeng">github</a> 和 <a
+target="_blank" rel="noopener" href="https://gitee.com/gdoudeng">gitee</a> ，我也会在这里说。</p>
 <p>百度语音已经开源了，另外一个UI库看时间安排上。</p>
-<h1 id="react-native-baidu-asr"><a href="#react-native-baidu-asr" class="headerlink" title="react-native-baidu-asr"></a><code>react-native-baidu-asr</code></h1><p><a target="_blank" rel="noopener" href="https://github.com/gdoudeng/react-native-baidu-asr">react-native-baidu-asr</a> 是一个 React Native 下的百度语音库，可以进行语音识别以及语音唤醒。</p>
+<h1 id="react-native-baidu-asr"><code>react-native-baidu-asr</code></h1>
+<p><a
+target="_blank" rel="noopener" href="https://github.com/gdoudeng/react-native-baidu-asr">react-native-baidu-asr</a>
+是一个 React Native 下的百度语音库，可以进行语音识别以及语音唤醒。</p>
 
             </div>
             <hr>
@@ -278,7 +297,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -308,33 +331,30 @@
 
             
               <!-- Comments -->
-              <article class="comments" id="comments">
+              <article class="comments" id="comments" lazyload>
+                
+                  
                 
                 
-  <div id="vcomments"></div>
+  <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.waitElementVisible('vcomments', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "qaMD5g0AViuiimc7NCoUBOQ0-gzGzoHsz",
-          app_key: "GghUuBNsfm9f6gjneTVolb3s",
-          placeholder: "说点什么",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: false,
-          recordIP: false,
-          serverURLs: "https://leancloud.iplus-studio.top",
-        });
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/1.5.2/Waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-api-okfyab6i0-gdoudeng.vercel.app","path":"window.location.pathname","placeholder":"说点什么","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"requiredFields":[],"emojiCDN":"","emojiMaps":{}},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        new Waline(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          Fluid.plugins.initFancyBox('#waline .vcontent img:not(.vemoji)');
+        })
       });
     });
   </script>
-  <noscript>Please enable JavaScript to view the
-    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
-  </noscript>
+  <noscript>Please enable JavaScript to view the comments</noscript>
 
 
               </article>
@@ -361,7 +381,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -395,7 +415,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -443,7 +463,7 @@
           >
             
               <span style="visibility: hidden; width: 0">|</span>
-              <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon"/>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
             
             <span>粤ICP备18085104号-1</span>
           </a>
@@ -456,10 +476,11 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -470,38 +491,40 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  
-    <script  src="/js/lazyload.js" ></script>
-  
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
 
 
 
@@ -510,30 +533,19 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
       var title = document.getElementById('subtitle').title;
       
-      typing(title)
+        typing(title);
       
     })(window, document);
   </script>
 
 
 
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
-  </script>
 
 
 
@@ -543,9 +555,17 @@
 
 
 
-
-
-
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ca17515ca9f4d4c97b593b5753af777f";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
   
 
   
@@ -564,7 +584,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>
