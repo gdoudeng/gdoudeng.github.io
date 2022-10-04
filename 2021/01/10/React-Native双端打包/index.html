@@ -19,7 +19,7 @@
     <meta name="description" content="RN打包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React Native双端打包">
-<meta property="og:url" content="http://example.com/2021/01/10/React-Native%E5%8F%8C%E7%AB%AF%E6%89%93%E5%8C%85/index.html">
+<meta property="og:url" content="https://iplus-studio.top/2021/01/10/React-Native%E5%8F%8C%E7%AB%AF%E6%89%93%E5%8C%85/index.html">
 <meta property="og:site_name" content="dwb">
 <meta property="og:description" content="RN打包">
 <meta property="og:locale" content="zh_CN">
@@ -30,30 +30,25 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+  
   <title>React Native双端打包 - dwb</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -62,21 +57,72 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"ca17515ca9f4d4c97b593b5753af777f","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gmTUOC5K8d9bnPNfJMK23STW-MdYXbMMI","app_key":"ckL6L4nkTmG4LEPPHjrjVUCE","server_url":null,"path":"window.location.pathname","ignore_local":"ture"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"iplus-studio.top","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"ca17515ca9f4d4c97b593b5753af777f","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gmTUOC5K8d9bnPNfJMK23STW-MdYXbMMI","app_key":"ckL6L4nkTmG4LEPPHjrjVUCE","server_url":null,"path":"window.location.pathname","ignore_local":"ture"}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ca17515ca9f4d4c97b593b5753af777f";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
 <meta name="generator" content="Hexo 5.4.1"></head>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>dwb</strong>
@@ -158,6 +204,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -170,65 +217,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="React Native双端打包">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-01-10 19:26" pubdate>
-        2021年1月10日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      5.7k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      18 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="React Native双端打包"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-10 19:26" pubdate>
+          2021年1月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -237,16 +298,22 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">React Native双端打包</h1>
             
-            <div class="markdown-body">
-              <h1 id="android">Android</h1>
+            
+              <div class="markdown-body">
+                
+                <h1 id="android">Android</h1>
 <p>首先，我觉得官网就说的很详细很好，我贴一下网址，</p>
 <p><a
 target="_blank" rel="noopener" href="https://reactnative.cn/docs/signed-apk-android">中文的</a></p>
@@ -256,13 +323,13 @@ target="_blank" rel="noopener" href="https://reactnative.dev/docs/signed-apk-and
 <ul>
 <li>生成app密钥</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">keytool -genkeypair -v -keystore my-upload-key.keystore -<span class="hljs-built_in">alias</span> my-key-alias -keyalg RSA -keysize 2048 -validity 10000<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">keytool -genkeypair -v -keystore my-upload-key.keystore -<span class="hljs-built_in">alias</span> my-key-alias -keyalg RSA -keysize 2048 -validity 10000<br></code></pre></td></tr></table></figure>
 <p>生产的 <code>key</code> 放到 <code>app</code> 目录下</p>
 <h2 id="生成发行-apk-包">生成发行 APK 包</h2>
 <p>只需在终端中运行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> android<br>$ ./gradlew assembleRelease<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> android<br>$ ./gradlew assembleRelease<br></code></pre></td></tr></table></figure>
 <p>或者</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> android<br>$ ./gradlew bundleRelease<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> android<br>$ ./gradlew bundleRelease<br></code></pre></td></tr></table></figure>
 <p>在0.60之前的版本都是用第一种命令的，到0.60之后就有了第二种打包命令，但是我发现继续用第一种也没啥问题。</p>
 <h1 id="ios">iOS</h1>
 <p>这个官网也有提及，但是我觉得作用不大</p>
@@ -277,9 +344,9 @@ target="_blank" rel="noopener" href="https://reactnative.cn/docs/publishing-to-a
 <ul>
 <li>导出<code>js bundle</code>的命令</li>
 </ul>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">react-native bundle <span class="hljs-params">--platform</span> ios <span class="hljs-params">--entry-file</span> index.js <span class="hljs-params">--bundle-output</span> <span class="hljs-string">./bundles/main.jsbundle</span> <span class="hljs-params">--assets-dest</span>  <span class="hljs-string">./bundles</span> <span class="hljs-params">--dev</span> <span class="hljs-literal">false</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">react-native bundle <span class="hljs-params">--platform</span> ios <span class="hljs-params">--entry-file</span> index.js <span class="hljs-params">--bundle-output</span> <span class="hljs-string">./bundles/main.jsbundle</span> <span class="hljs-params">--assets-dest</span>  <span class="hljs-string">./bundles</span> <span class="hljs-params">--dev</span> <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
 <p>一般来说，不会每次都运行这么长都命令，所以我们都是将其添加到package.json文件中，</p>
-<figure class="highlight json"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;android&quot;</span>: <span class="hljs-string">&quot;react-native run-android&quot;</span>,<br>    <span class="hljs-attr">&quot;ios&quot;</span>: <span class="hljs-string">&quot;react-native run-ios&quot;</span>,<br>    <span class="hljs-attr">&quot;start&quot;</span>: <span class="hljs-string">&quot;react-native start&quot;</span>,<br>    <span class="hljs-attr">&quot;test&quot;</span>: <span class="hljs-string">&quot;jest&quot;</span>,<br>    <span class="hljs-attr">&quot;bundle-ios&quot;</span>: <span class="hljs-string">&quot;react-native bundle --platform ios --entry-file index.js --bundle-output ./bundles/main.jsbundle --assets-dest  ./bundles --dev false&quot;</span>,<br>    <span class="hljs-attr">&quot;lint&quot;</span>: <span class="hljs-string">&quot;eslint .&quot;</span><br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;android&quot;</span>: <span class="hljs-string">&quot;react-native run-android&quot;</span>,<br>    <span class="hljs-attr">&quot;ios&quot;</span>: <span class="hljs-string">&quot;react-native run-ios&quot;</span>,<br>    <span class="hljs-attr">&quot;start&quot;</span>: <span class="hljs-string">&quot;react-native start&quot;</span>,<br>    <span class="hljs-attr">&quot;test&quot;</span>: <span class="hljs-string">&quot;jest&quot;</span>,<br>    <span class="hljs-attr">&quot;bundle-ios&quot;</span>: <span class="hljs-string">&quot;react-native bundle --platform ios --entry-file index.js --bundle-output ./bundles/main.jsbundle --assets-dest  ./bundles --dev false&quot;</span>,<br>    <span class="hljs-attr">&quot;lint&quot;</span>: <span class="hljs-string">&quot;eslint .&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>运行命令之前先要在项目根目录建一个文件夹 <code>bundles</code></p>
 <p>然后就可以在项目根目录下运行 <code>yarn bundle-ios</code></p>
 <h2 id="将-js-bundle-包和图片资源导入到ios项目中">2. 将
@@ -297,7 +364,7 @@ src="https://picture-transmission.iplus-studio.top/imag52e.png" srcset="/img/loa
 <h2 id="修改appdelegate.m文件">3.
 修改<code>AppDelegate.m</code>文件</h2>
 <p>修改<code>AppDelegate.m</code>文件，添加如下代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c">- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge<br>&#123;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> DEBUG  </span><br>   <span class="hljs-keyword">return</span> [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@<span class="hljs-string">&quot;index&quot;</span> fallbackResource:nil];<br><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span>   </span><br>   <span class="hljs-comment">// 没有使用CodePush热更新的情况</span><br>   <span class="hljs-keyword">return</span> [[NSBundle mainBundle] URLForResource:@<span class="hljs-string">&quot;main&quot;</span> withExtension:@<span class="hljs-string">&quot;jsbundle&quot;</span>];<br>   <span class="hljs-comment">// 如果在项目中使用了CodePush热更新，那么我们需要就可以直接通过CodePush来读取本地的jsbundle，方法如下： For React Native &gt;=0.59,https://github.com/microsoft/react-native-code-push/blob/master/docs/setup-ios.md</span><br>   <span class="hljs-comment">// return [CodePush bundleURL];</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> </span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge<br>&#123;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> DEBUG  </span><br>   <span class="hljs-keyword">return</span> [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@<span class="hljs-string">&quot;index&quot;</span> fallbackResource:nil];<br><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span>   </span><br>   <span class="hljs-comment">// 没有使用CodePush热更新的情况</span><br>   <span class="hljs-keyword">return</span> [[NSBundle mainBundle] URLForResource:@<span class="hljs-string">&quot;main&quot;</span> withExtension:@<span class="hljs-string">&quot;jsbundle&quot;</span>];<br>   <span class="hljs-comment">// 如果在项目中使用了CodePush热更新，那么我们需要就可以直接通过CodePush来读取本地的jsbundle，方法如下： For React Native &gt;=0.59,https://github.com/microsoft/react-native-code-push/blob/master/docs/setup-ios.md</span><br>   <span class="hljs-comment">// return [CodePush bundleURL];</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> </span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>上述代码的作用是让<code>React Native</code>去使用我们刚才导入的<code>jsbundle</code>，这样以来我们就摆脱了对本地<code>nodejs</code>服务器的依赖。</p>
 <p>到目前为止呢，我们已经将<code>js bundle</code>包和图片资源导入到<code>iOS</code>项目中，接下来我们就可以发布我们的<code>iOS</code>应用了。</p>
 <p><code>RN</code>
@@ -313,17 +380,17 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-01-10_19-50-48.
 <p>要多渠道打包主要是修改几个文件</p>
 <h2
 id="androidappbuild.gradle"><code>android/app/build.gradle</code></h2>
-<figure class="highlight gradle"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs gradle">android &#123;<br>    defaultConfig &#123;<br>        ...<br>        +++<br>        manifestPlaceholders=[UMENG_CHANNEL_VALUE: <span class="hljs-string">&quot;Umeng&quot;</span>]<br>        flavorDimensions <span class="hljs-string">&quot;versionCode&quot;</span><br>    &#125;<br>    ...<br>    <span class="hljs-comment">// 配置多渠道包支持</span><br>    productFlavors&#123;<br>      Tencent &#123;<span class="hljs-comment">//投放应用宝市场</span><br>              &#125;<br>      Baidu &#123;<span class="hljs-comment">//投放百度市场</span><br>      &#125;<br>      Wandoujia &#123;<span class="hljs-comment">//投放豌豆荚市场</span><br>      &#125;<br>      Vivo &#123;<span class="hljs-comment">//投放vivo市场</span><br>      &#125;<br>      Oppo &#123;<span class="hljs-comment">//投放oppo市场</span><br>      &#125;<br>      Xiaomi &#123;<span class="hljs-comment">//投放小米市场</span><br>      &#125;<br>      Meizu &#123;<span class="hljs-comment">//投放魅族市场</span><br>      &#125;<br>      Huawei &#123;<span class="hljs-comment">//投放华为应用市场</span><br>      &#125;<br>      Lenovo &#123;<span class="hljs-comment">//投放联想市场</span><br>      &#125;<br>      Letv &#123;<span class="hljs-comment">//投放乐视市场</span><br>      &#125;<br>      Gionee &#123;<span class="hljs-comment">//投放金立市场</span><br>      &#125;<br>      HiMarket &#123;<span class="hljs-comment">//投放安卓市场</span><br>      &#125;<br>    &#125;<br>    productFlavors.all &#123; flavor -&gt;<br>        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]<br>    &#125;<br> <br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs gradle">android &#123;<br>    defaultConfig &#123;<br>        ...<br>        +++<br>        manifestPlaceholders=[UMENG_CHANNEL_VALUE: <span class="hljs-string">&quot;Umeng&quot;</span>]<br>        flavorDimensions <span class="hljs-string">&quot;versionCode&quot;</span><br>    &#125;<br>    ...<br>    <span class="hljs-comment">// 配置多渠道包支持</span><br>    productFlavors&#123;<br>      Tencent &#123;<span class="hljs-comment">//投放应用宝市场</span><br>              &#125;<br>      Baidu &#123;<span class="hljs-comment">//投放百度市场</span><br>      &#125;<br>      Wandoujia &#123;<span class="hljs-comment">//投放豌豆荚市场</span><br>      &#125;<br>      Vivo &#123;<span class="hljs-comment">//投放vivo市场</span><br>      &#125;<br>      Oppo &#123;<span class="hljs-comment">//投放oppo市场</span><br>      &#125;<br>      Xiaomi &#123;<span class="hljs-comment">//投放小米市场</span><br>      &#125;<br>      Meizu &#123;<span class="hljs-comment">//投放魅族市场</span><br>      &#125;<br>      Huawei &#123;<span class="hljs-comment">//投放华为应用市场</span><br>      &#125;<br>      Lenovo &#123;<span class="hljs-comment">//投放联想市场</span><br>      &#125;<br>      Letv &#123;<span class="hljs-comment">//投放乐视市场</span><br>      &#125;<br>      Gionee &#123;<span class="hljs-comment">//投放金立市场</span><br>      &#125;<br>      HiMarket &#123;<span class="hljs-comment">//投放安卓市场</span><br>      &#125;<br>    &#125;<br>    productFlavors.all &#123; flavor -&gt;<br>        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]<br>    &#125;<br> <br>&#125;<br><br></code></pre></td></tr></table></figure>
 <h2
 id="androidappsrcmainandroidmanifest.xml"><code>android/app/src/main/AndroidManifest.xml</code></h2>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><br><span class="hljs-tag">&lt;<span class="hljs-name">application</span>&gt;</span><br>    ...<br>    +++<br>    <span class="hljs-comment">&lt;!--友盟--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span> <span class="hljs-attr">android:value</span>=<span class="hljs-string">&quot;友盟的appkey&quot;</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;UMENG_APPKEY&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;UMENG_CHANNEL&quot;</span> <span class="hljs-attr">android:value</span>=<span class="hljs-string">&quot;$&#123;UMENG_CHANNEL_VALUE&#125;&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><br><span class="hljs-tag">&lt;<span class="hljs-name">application</span>&gt;</span><br>    ...<br>    +++<br>    <span class="hljs-comment">&lt;!--友盟--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span> <span class="hljs-attr">android:value</span>=<span class="hljs-string">&quot;友盟的appkey&quot;</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;UMENG_APPKEY&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;UMENG_CHANNEL&quot;</span> <span class="hljs-attr">android:value</span>=<span class="hljs-string">&quot;$&#123;UMENG_CHANNEL_VALUE&#125;&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>其他地方我就当你已经自己完美集成了友盟，因为其他地方跟普通集成友盟没有任何不同，不同的只有上面的地方。</p>
 <h2
 id="添加友盟多渠道后使用react-native-run-android-报错">添加友盟多渠道后使用<code>react-native run-android</code>
 报错</h2>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">react-native run-android --variant channelNameDebug<br><br>//channelName是渠道的名字，例如Oppo的是<br>react-native run-android --variant OppoDebug <br><br>//百度的是<br>react-native run-android --variant BaiduDebug <br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">react-native run-android --variant channelNameDebug<br><br>//channelName是渠道的名字，例如Oppo的是<br>react-native run-android --variant OppoDebug <br><br>//百度的是<br>react-native run-android --variant BaiduDebug <br></code></pre></td></tr></table></figure>
 <p>我一般直接写在 <code>package.json</code> 文件</p>
-<figure class="highlight json"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;android&quot;</span>: <span class="hljs-string">&quot;react-native run-android --variant OppoDebug&quot;</span>,<br>    <span class="hljs-attr">&quot;ios&quot;</span>: <span class="hljs-string">&quot;react-native run-ios&quot;</span>,<br>    <span class="hljs-attr">&quot;start&quot;</span>: <span class="hljs-string">&quot;react-native start&quot;</span>,<br>    <span class="hljs-attr">&quot;test&quot;</span>: <span class="hljs-string">&quot;jest&quot;</span>,<br>    <span class="hljs-attr">&quot;lint&quot;</span>: <span class="hljs-string">&quot;eslint . --ext .js,.jsx,.ts,.tsx&quot;</span>,<br>    <span class="hljs-attr">&quot;bundle-ios&quot;</span>: <span class="hljs-string">&quot;react-native bundle --platform ios --entry-file index.js --bundle-output ./bundles/main.jsbundle --assets-dest  ./bundles --dev false&quot;</span><br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;android&quot;</span>: <span class="hljs-string">&quot;react-native run-android --variant OppoDebug&quot;</span>,<br>    <span class="hljs-attr">&quot;ios&quot;</span>: <span class="hljs-string">&quot;react-native run-ios&quot;</span>,<br>    <span class="hljs-attr">&quot;start&quot;</span>: <span class="hljs-string">&quot;react-native start&quot;</span>,<br>    <span class="hljs-attr">&quot;test&quot;</span>: <span class="hljs-string">&quot;jest&quot;</span>,<br>    <span class="hljs-attr">&quot;lint&quot;</span>: <span class="hljs-string">&quot;eslint . --ext .js,.jsx,.ts,.tsx&quot;</span>,<br>    <span class="hljs-attr">&quot;bundle-ios&quot;</span>: <span class="hljs-string">&quot;react-native bundle --platform ios --entry-file index.js --bundle-output ./bundles/main.jsbundle --assets-dest  ./bundles --dev false&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>然后跟以前一样<code>yarn android</code></p>
 <p>现在正常运行安卓打包命令，已经可以进行多渠道打包了</p>
 <p><img
@@ -354,7 +421,7 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_17-53-37.
 <h2 id="他做了啥">他做了啥</h2>
 <p>首先我们清楚看到有个<code>UMENG_CHANNEL</code>
 在，这个明显就是友盟统计啊大哥，360加固会自动在<code>AndroidManifest.xml</code>上加上这么一段代码</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><br>&lt;meta-data<br>        android:name=&quot;UMENG_CHANNEL&quot;<br>        android:value=&quot;qihu360&quot;/&gt;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><br>&lt;meta-data<br>        android:name=&quot;UMENG_CHANNEL&quot;<br>        android:value=&quot;qihu360&quot;/&gt;<br></code></pre></td></tr></table></figure>
 <p>很熟悉，这就是友盟统计的渠道。</p>
 <p>此处注意，360是会在最后加上这么一段代码，不会覆盖的，所以之前有自己写<code>UMENG_CHANNEL</code>的，记得去掉。</p>
 <p>我们用as打开一个apk看下究竟是不是这样。</p>
@@ -366,9 +433,9 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_18-01-20.
 src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_18-32-02.png" srcset="/img/loading.gif" lazyload /></p>
 <p>装一个应用宝的看下。</p>
 <p>我等了一个小时没看到统计结果，需要改一下。</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取渠道名</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ctx 此处习惯性的设置为activity，实际上context就可以</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 如果没有获取成功，那么返回值为空</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getUMChannelName</span><span class="hljs-params">(Context ctx)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (ctx == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>        String channelName = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            PackageManager packageManager = ctx.getPackageManager();<br>            <span class="hljs-keyword">if</span> (packageManager != <span class="hljs-keyword">null</span>) &#123;<br>                <span class="hljs-comment">//注意此处为ApplicationInfo 而不是 ActivityInfo,因为友盟设置的meta-data是在application标签中，而不是某activity标签中，所以用ApplicationInfo</span><br>                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);<br>                <span class="hljs-keyword">if</span> (applicationInfo != <span class="hljs-keyword">null</span>) &#123;<br>                    <span class="hljs-keyword">if</span> (applicationInfo.metaData != <span class="hljs-keyword">null</span>) &#123;<br>                        channelName = applicationInfo.metaData.getString(<span class="hljs-string">&quot;UMENG_CHANNEL&quot;</span>);<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (PackageManager.NameNotFoundException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-keyword">return</span> channelName;<br>    &#125;<br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取渠道名</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ctx 此处习惯性的设置为activity，实际上context就可以</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 如果没有获取成功，那么返回值为空</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getUMChannelName</span><span class="hljs-params">(Context ctx)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (ctx == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>        String channelName = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            PackageManager packageManager = ctx.getPackageManager();<br>            <span class="hljs-keyword">if</span> (packageManager != <span class="hljs-keyword">null</span>) &#123;<br>                <span class="hljs-comment">//注意此处为ApplicationInfo 而不是 ActivityInfo,因为友盟设置的meta-data是在application标签中，而不是某activity标签中，所以用ApplicationInfo</span><br>                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);<br>                <span class="hljs-keyword">if</span> (applicationInfo != <span class="hljs-keyword">null</span>) &#123;<br>                    <span class="hljs-keyword">if</span> (applicationInfo.metaData != <span class="hljs-keyword">null</span>) &#123;<br>                        channelName = applicationInfo.metaData.getString(<span class="hljs-string">&quot;UMENG_CHANNEL&quot;</span>);<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (PackageManager.NameNotFoundException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-keyword">return</span> channelName;<br>    &#125;<br><br></code></pre></td></tr></table></figure>
 <p>然后初始化的时候也要改。</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">RNUMConfigure.init(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;这是填你自己的app key&quot;</span>, AppUtils.getUMChannelName(<span class="hljs-keyword">this</span>), UMConfigure.DEVICE_TYPE_PHONE, <span class="hljs-keyword">null</span>);<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">RNUMConfigure.init(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;这是填你自己的app key&quot;</span>, AppUtils.getUMChannelName(<span class="hljs-keyword">this</span>), UMConfigure.DEVICE_TYPE_PHONE, <span class="hljs-keyword">null</span>);<br></code></pre></td></tr></table></figure>
 <p>然后再来一波。</p>
 <p>还是没看到，我直接写死也没看到有数据。gg</p>
 <p>经过一番谷歌，我发现是他只会统计一台设备第一次安装时候的渠道，所以后面无论我怎么装都是没用的，</p>
@@ -376,40 +443,96 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_18-32-02.
 <p><img
 src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_22-00-23.png" srcset="/img/loading.gif" lazyload /></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/React-Native/">React Native</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" class="category-chain-item">移动端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/React-Native/">#React Native</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>React Native双端打包</div>
+      <div>https://iplus-studio.top/2021/01/10/React-Native双端打包/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>邓伟彬</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年1月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/01/19/2021%E5%B9%B4%E6%9C%80%E6%96%B0%E6%B3%A8%E5%86%8C%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7/">
+                      <a href="/2021/01/19/2021%E5%B9%B4%E6%9C%80%E6%96%B0%E6%B3%A8%E5%86%8C%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7/" title="2021年最新注册苹果开发者账号">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">2021年最新注册苹果开发者账号</span>
                         <span class="visible-mobile">上一篇</span>
@@ -419,7 +542,7 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_22-00-23.
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/01/10/iOS%E4%BC%81%E4%B8%9A%E7%AD%BE%E5%90%8D%E6%97%A0%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8XCode%E6%89%93%E5%8C%85ipa/">
+                      <a href="/2021/01/10/iOS%E4%BC%81%E4%B8%9A%E7%AD%BE%E5%90%8D%E6%97%A0%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8XCode%E6%89%93%E5%8C%85ipa/" title="iOS企业签名无开发者账号使用XCode打包ipa">
                         <span class="hidden-mobile">iOS企业签名无开发者账号使用XCode打包ipa</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -431,26 +554,25 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_22-00-23.
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="waline"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/waline/1.5.2/Waline.min.js', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/1.5.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/1.5.2/waline.min.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://blog-api-okfyab6i0-gdoudeng.vercel.app","path":"window.location.pathname","placeholder":"说点什么","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"requiredFields":[],"emojiCDN":"","emojiMaps":{}},
+          {"serverURL":"https://blog-api-okfyab6i0-gdoudeng.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"说点什么","avatar":"retro","highlight":true,"avatarForce":false,"requiredFields":[],"emojiCDN":"","emojiMaps":{}},
           {
             el: '#waline',
             path: window.location.pathname
           }
         )
-        new Waline(options);
+        Waline.init(options);
         Fluid.utils.waitElementVisible('#waline .vcontent', () => {
-          Fluid.plugins.initFancyBox('#waline .vcontent img:not(.vemoji)');
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -458,25 +580,57 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_22-00-23.
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
 
 
     
@@ -501,84 +655,87 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_22-00-23.
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- LeanCloud 统计PV -->
-        <span id="leancloud-site-pv-container" style="display: none">
-            总访问量 
-            <span id="leancloud-site-pv"></span>
-             次
-          </span>
-      
-      
-        <!-- LeanCloud 统计UV -->
-        <span id="leancloud-site-uv-container" style="display: none">
-            总访客数 
-            <span id="leancloud-site-uv"></span>
-             人
-          </span>
-      
-
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备18085104号
-      </a>
-    </span>
     
-      
-        <span>
-          <a
-            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18085104"
-            rel="nofollow noopener"
-            class="beian-police"
-            target="_blank"
-          >
-            
-              <span style="visibility: hidden; width: 0">|</span>
-              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
-            
-            <span>粤ICP备18085104号-1</span>
-          </a>
-        </span>
-      
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
     
-  </div>
-
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
 
   
-</footer>
+</div>
 
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备18085104号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18085104"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>粤ICP备18085104号-1</span>
+        </a>
+      </span>
+    
+  
+</div>
 
-  <!-- SCRIPTS -->
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
@@ -597,10 +754,22 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_22-00-23.
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -610,82 +779,117 @@ src="https://picture-transmission.iplus-studio.top/Snipaste_2021-03-18_22-00-23.
 
 
 
-  
-
-
 
   
-    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
 
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script defer src="/js/leancloud.js" ></script>
 
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
-
-
-
-  
-    <!-- Baidu Analytics -->
-    <script defer>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?ca17515ca9f4d4c97b593b5753af777f";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
