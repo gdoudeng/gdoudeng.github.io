@@ -327,7 +327,7 @@
 <code>git submodule add &lt;submodule_url&gt; &lt;project_name&gt;</code>
 命令可以在项目中创建一个子模块</p>
 <p>在<code>notebook</code>的根目录下执行如下命令</p>
-<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">git submodule add https:<span class="hljs-regexp">//gi</span>tee.com<span class="hljs-regexp">/xxx/</span>loho-docs loho-docs<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">git submodule add https:<span class="hljs-regexp">//gi</span>tee.com<span class="hljs-regexp">/xxx/</span>loho-docs loho-docs<br></code></pre></td></tr></table></figure>
 <p>这时候，项目仓库中就会多出两个文件：<code>.gitmodules</code> 和
 <code>loho-docs</code></p>
 <figure>
@@ -336,9 +336,9 @@ alt="L7ojjt" />
 <figcaption aria-hidden="true">L7ojjt</figcaption>
 </figure>
 <p><code>.gitmodules</code>的信息</p>
-<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">[submodule <span class="hljs-string">&quot;loho-docs&quot;</span>]<br>	path = loho-docs<br>	url = https:<span class="hljs-regexp">//gi</span>tee.com<span class="hljs-regexp">/xxx/</span>loho-docs<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">[submodule <span class="hljs-string">&quot;loho-docs&quot;</span>]<br>	path = loho-docs<br>	url = https:<span class="hljs-regexp">//gi</span>tee.com<span class="hljs-regexp">/xxx/</span>loho-docs<br></code></pre></td></tr></table></figure>
 <p>然后提交一下<code>commit</code>，提交到远程看一下效果。</p>
-<figure class="highlight maxima"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs maxima">git commit -am <span class="hljs-string">&quot;增加文档子模块&quot;</span> <br>git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> master<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs maxima">git commit -am <span class="hljs-string">&quot;增加文档子模块&quot;</span> <br>git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> master<br></code></pre></td></tr></table></figure>
 <p>此时再看<code>git</code>库，这里的<code>loho-docs</code>文件夹，点击会跳到<code>loho-docs</code>的git库，至此<code>submodule</code>添加成功。</p>
 <figure>
 <img src="https://picture-transmission.iplus-studio.top/uPic/TZL33p.png" srcset="/img/loading.gif" lazyload
@@ -347,7 +347,7 @@ alt="TZL33p" />
 </figure>
 <p>注意此时用<code>git clone</code> 拉取 <code>notebook</code>项目是不带
 <code>submodule</code> 代码的。需要再执行</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mipsasm">git <span class="hljs-keyword">submodule </span>init<br>git <span class="hljs-keyword">submodule </span>update<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">git <span class="hljs-keyword">submodule </span>init<br>git <span class="hljs-keyword">submodule </span>update<br></code></pre></td></tr></table></figure>
 <p>则会根据主项目的配置信息(<code>.gitmodules</code>)，拉取更新子模块中的代码。</p>
 <h2 id="更新submodule">更新<code>submodule</code></h2>
 <p>如果我们在主项目和子项目做了修改的话，他其实是分开commit的，可以分开提交。</p>
@@ -357,7 +357,7 @@ alt="RSEXPO" />
 <figcaption aria-hidden="true">RSEXPO</figcaption>
 </figure>
 <h2 id="删除submodule">删除<code>submodule</code></h2>
-<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>  修改 .git/config ，删除 loho-docs 文件下所有的代码<br>git submodule deinit loho-docs<br><br><span class="hljs-regexp">//</span>  .gitmodule 文件内容清空，删除 Water 文件夹<br>git rm Water<br><span class="hljs-regexp">//</span>  提交代码<br>git commit -m <span class="hljs-string">&quot;rm Water&quot;</span><br><span class="hljs-regexp">//</span>  推到远程<br>git push origin master<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>  修改 .git/config ，删除 loho-docs 文件下所有的代码<br>git submodule deinit loho-docs<br><br><span class="hljs-regexp">//</span>  .gitmodule 文件内容清空，删除 Water 文件夹<br>git rm Water<br><span class="hljs-regexp">//</span>  提交代码<br>git commit -m <span class="hljs-string">&quot;rm Water&quot;</span><br><span class="hljs-regexp">//</span>  推到远程<br>git push origin master<br></code></pre></td></tr></table></figure>
 <p>此时子模块就会被删除。</p>
 
                 

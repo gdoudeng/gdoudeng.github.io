@@ -313,27 +313,32 @@
             
               <div class="markdown-body">
                 
-                <h1 id="成员变量与属性"><a href="#成员变量与属性" class="headerlink" title="成员变量与属性"></a>成员变量与属性</h1><p>在oc中这两个是有点区别的。</p>
+                <h1 id="成员变量与属性">成员变量与属性</h1>
+<p>在oc中这两个是有点区别的。</p>
 <ul>
 <li>成员变量就是我们在开发中，类似下面这样定义的变量，例如：</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Person</span> : <span class="hljs-title">NSObject</span></span><br>&#123;<br>    <span class="hljs-keyword">@public</span><br>    <span class="hljs-built_in">NSString</span> *_name;<br>    <span class="hljs-built_in">CGFloat</span> _age;<br>&#125;<br><span class="hljs-keyword">@end</span><br></code></pre></td></tr></table></figure>
-
 <p><code>_name</code>, <code>_age</code> 便是成员变量。</p>
 <ul>
-<li>属性就是在开发中，我们用 @property 关键字声明的变量，如：</li>
+<li>属性就是在开发中，我们用 <span class="citation"
+data-cites="property">@property</span> 关键字声明的变量，如：</li>
 </ul>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@interface</span> <span class="hljs-attribute">PlayerView </span>: UIView<br><br><span class="hljs-variable">@property</span> (nonatomic, strong) AVPlayer *player;<br><span class="hljs-variable">@property</span> (nonatomic, strong, readonly) AVPlayerLayer *playerLayer;<br><br><span class="hljs-variable">@end</span><br></code></pre></td></tr></table></figure>
-
-<p> 该方法会自动生成 <code>_player</code> 和 <code>_playerLayer</code> 成员变量，<code>player</code>，<code>playerLayer</code> 便是我们声明的属性。</p>
-<p> 现在开发中，我看老手基本上都是使用 <code>property</code> 声明属性的了。</p>
-<h1 id="h文件与-m文件中的-interface声明成员变量的区别？"><a href="#h文件与-m文件中的-interface声明成员变量的区别？" class="headerlink" title=".h文件与.m文件中的@interface声明成员变量的区别？"></a>.h文件与.m文件中的<code>@interface</code>声明成员变量的区别？</h1><p>在.m中的 <code>@interface</code> 部分为 类扩展（class extention）。</p>
+<p>该方法会自动生成 <code>_player</code> 和 <code>_playerLayer</code>
+成员变量，<code>player</code>，<code>playerLayer</code>
+便是我们声明的属性。</p>
+<p>现在开发中，我看老手基本上都是使用 <code>property</code>
+声明属性的了。</p>
+<h1
+id="h文件与.m文件中的interface声明成员变量的区别">.h文件与.m文件中的<code>@interface</code>声明成员变量的区别？</h1>
+<p>在.m中的 <code>@interface</code> 部分为 类扩展（class
+extention）。</p>
 <p>其被设计出来就是为了解决两个问题的.</p>
-<ol>
-<li><p>定义类私有变量，方法的地方。（主要也是这个作用，定义私有变量。）</p>
-</li>
-<li><p>实现 <code>public readonly, private readwrite</code> 的 <code>property</code>（意思是在h头文件中定义一个属性对外是<code>readonly</code>的，但在类的内部希望是可读写的，所以可以在m源文件中的<code>@interface</code>部分重新定义此属性为<code>readwrite</code>，此时此属性对外是只读的，对内是读写的）。</p>
-</li>
+<ol type="1">
+<li><p>定义类私有变量，方法的地方。（主要也是这个作用，定义私有变量。）</p></li>
+<li><p>实现 <code>public readonly, private readwrite</code> 的
+<code>property</code>（意思是在h头文件中定义一个属性对外是<code>readonly</code>的，但在类的内部希望是可读写的，所以可以在m源文件中的<code>@interface</code>部分重新定义此属性为<code>readwrite</code>，此时此属性对外是只读的，对内是读写的）。</p></li>
 </ol>
 <p>最后，若在此部分申明变量和属性，但申明的变量，属性和方法均为私有的，只能够被当前类访问，相当于private。</p>
 
