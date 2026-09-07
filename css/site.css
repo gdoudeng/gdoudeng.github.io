@@ -1,0 +1,753 @@
+/* 浅色模式纸感取暖：所有者反馈文章页背景刺眼，原因有二——正文对比度
+   15.15 远超 WCAG AAA 的 7（--ink 降到 --paper 上仍有 11.23，比 AAA 门槛
+   宽裕）；且原纸色 #EDF1F5 色相 210°偏冷蓝，同亮度下比 Safari 阅读器
+   #F5F1E8 / Instapaper #F6F3EC 这类专业阅读工具的暖米色（色相都在 42°
+   附近）更晃眼。故 --paper 改为同一暖色区（H42° L88.1%，与 Safari 阅读器
+   同档）；--surface 取同色系但更亮的暖白（H42° L93.1%，仅比新纸亮
+   1.05:1，避免纯白压在暖纸上显刺白）；--hair 分割线同步转暖（H37.5°），
+   与旧冷灰 #CFD7E0 对旧纸的可见度（1.28:1）基本持平，不会变得看不清。
+   --amber-ink / --teal-ink / --ink-soft 三色对新纸新面的对比度已实测
+   仍 ≥4.5:1，未改动，见下方 site.css 顶部之外的验收记录。
+   暗色模式（[data-theme="dark"] 里的 --paper/--surface/--hair）保持不变
+   ——纸感是浅色隐喻，暗色本身冷调不刺眼，见该处说明。
+
+   二轮追加（浅色方案 B）：所有者用配色对比页两次反馈 L88.1% 的纸色
+   「还是刺眼」，选定再压暗一档的方案 B——--paper 从 H42° L88.1% 降到
+   L82%（#EDE7DA），--surface 同步降到 L88%（#F5F1E7）。纸变暗后
+   --ink/--ink-soft/--amber-ink/--teal-ink 四色对比度会跟着降，逐一
+   实测：正文 10.11、次级 5.20、琥珀 5.87、青 5.31，全部仍 ≥4.5，
+   --ink 从 #243447 微调到 #2A3542、--ink-soft 从 #4B5C75 微调到
+   #54606F 是为了在新纸更暗的情况下把富余的对比度让渡一点给饱和度
+   /可读性观感，而非补对比度缺口（原色本就够用）。--hair 同步压到
+   #D5C9B4，行内代码底色 #ECE5D3 → #E4DAC4，逻辑同上：保持与新纸
+   基本一致的相对可见度，不是新增达标项。 */
+:root {
+  --ink: #2A3542;
+  --ink-soft: #54606F;
+  --paper: #EDE7DA;
+  --surface: #F5F1E7;
+  --amber: #D99A2B;
+  --amber-ink: #755000;
+  --teal: #2F8E80;
+  --teal-ink: #22685E;
+  --hair: #D5C9B4;
+  /* 档案头 / 文章顶条的背景固定为深色中性灰，两种主题下都不变——
+     与下面 [data-theme="dark"] 里会变化的 --ink 脱钩，见该处说明。
+     **浅色模式下保持深靛蓝 #0E1C31** —— 它是「档案」方向的记忆点，
+     所有者选定的浅色 B 方案里档案头就是这个深靛蓝，未做改动。
+     仅在下方 [data-theme="dark"] 分支中改为中性 #131316，以满足
+     暗色 C「整站不见蓝」的要求。两种模式取值不同，故深色区内各元素
+     的对比度需分别核算，见下方说明。 */
+  --head-bg: #0E1C31;
+  /* 代码块的行号与分隔竖线。
+     行号是可读文本，按 AA 取 ≥4.5:1（实测 4.54，对照代码正文 13.35——
+     明显更弱但仍清晰，正合辅助信息的定位）。
+     竖线按 WCAG 1.4.11 属「纯装饰」：它不传达信息，去掉后行号与代码
+     依然区分得开（靠间距），故不适用 3:1 要求，取一个刚好可见、
+     不与行号抢注意力的淡值。 */
+  --code-lineno: #766F60;
+  --code-rule: #D8D0BE;
+  --cn: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --sans: "Instrument Sans", var(--cn);
+  --serif: "Fraunces", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* 暗色模式：手动开关驱动（见 base.njk 内联脚本），非跟随系统。
+   --ink 原本身兼两职——正文文字色，又是档案头/顶条的背景色——浅色模式下
+   两者恰好同值所以没暴露问题；暗色模式下正文文字要变亮、档案头背景却要
+   保持深色，两者必须分开，因此背景改用上面 :root 里的 --head-bg，--ink
+   才能安全地在这里重新赋值为亮色文字。
+
+   二轮改为暗色方案 C：所有者反馈原方案「一大片蓝」（档案头 #0E1C31 +
+   列表区 #182644 都是靛蓝），选中的方案 C 要求「整站不见蓝」，改用全
+   中性灰黑——:root 里的 --head-bg 也从深靛蓝改成了中性 #131316（见
+   该处注释），本处 --paper/--surface/--ink/--ink-soft/--hair 一并
+   换成中性色阶，--amber-ink / --teal-ink 略微提亮以补偿新背景更暗。
+   四组文字对比度（对 --paper / --surface 取更低者，均 ≥4.5:1，WCAG AA）：
+     --ink      E6E4E1 对 1C1C1F = 13.40:1
+     --ink-soft A8A5A0 对 252528 = 6.23:1
+     --amber-ink E0A94A 对 252528 = 7.24:1
+     --teal-ink  5CBBAC 对 252528 = 6.67:1
+   --amber / --teal 两个"原色"字面量未改（仍是 #D99A2B / #2F8E80），
+   因为它们只用在恒定深色的 --head-bg 区域（.tick、.hero-sub、nav
+   hover 等），--head-bg 换成 #131316 后重新实测 D99A2B 对 131316 仍
+   有 7.60:1，无需跟着调。
+
+   --head-bg 从深靛蓝改中性后，档案头 / 文章顶条内所有基于
+   rgba(255,255,255,.NN) 的元素都要对新背景 #131316 重新核算——这些
+   元素与主题无关（--head-bg 两种主题下同值），核算结果见下方
+   .axis-base / .axis-year::before / .axis-gap / .theme-toggle 等
+   规则处的注释。 */
+[data-theme="dark"] {
+  --ink: #E6E4E1;
+  --ink-soft: #A8A5A0;
+  --paper: #1C1C1F;
+  --surface: #252528;
+  --amber-ink: #E0A94A;
+  --teal-ink: #5CBBAC;
+  --hair: #3A3A3E;
+  /* 档案头仅在暗色模式下去蓝，改中性以满足「整站不见蓝」；
+     浅色模式仍是 :root 里的深靛蓝 #0E1C31，那是设计的记忆点。 */
+  --head-bg: #131316;
+  /* 行号与竖线在暗色代码底 #24292E 上重新取值，判定同浅色处注释 */
+  --code-lineno: #86909C;
+  --code-rule: #3F464E;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+/* 默认按浅色区取值：#7A5200 在 --paper 上 6.10，满足 WCAG 1.4.11 的 3:1。
+   页面大部分区域是浅色，深色区（顶栏、档案头）在下面单独覆盖回原色琥珀
+   ——同一个取值不可能在两种底色上都达标，见下一条规则的注释。 */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber-ink);
+  outline-offset: 2px;
+}
+
+/* 深色区（--head-bg 背景）：#7A5200 在其上仅 2.47，改回原色 #D99A2B 达
+   7.00。焦点框是非文本 UI 组件，按 WCAG 1.4.11 要求 ≥3:1，不适用文字的
+   4.5:1。
+   .head-top 必须列在这里：它原本嵌在 .archive-head 内、跟着吃到深色取值，
+   改成 sticky 时被提到了同级，选择器就不再命中它了——顶栏里每一个链接和
+   按钮的键盘焦点框都会退回浅色取值，在深蓝底上几乎看不见。 */
+.head-top a:focus-visible,
+.head-top button:focus-visible,
+.archive-head a:focus-visible,
+.archive-head button:focus-visible {
+  outline-color: var(--amber);
+}
+
+img { max-width: 100%; height: auto; }
+
+/* 长词换行：正文里有裸链接（如微信文章的长 URL）和长英文标识符，
+   它们是不可断的连续串，在窄屏会撑破容器并导致整页横向溢出——
+   顶条按钮被挤出屏幕、标题被截断，都是这一个原因的连锁反应。
+   anywhere 而非 break-word：后者对已经溢出的单行仍可能失效。 */
+body { overflow-wrap: anywhere; }
+
+/* 但代码块例外：代码靠自身横向滚动，断行会破坏缩进与可读性。 */
+.post pre, .post pre code { overflow-wrap: normal; word-break: normal; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* Shiki 以 CSS 变量输出双主题配色（defaultColor:false），此处绑定浅色。
+   暗色模式改绑 --shiki-dark，见下方 [data-theme="dark"] 规则，无需改动构建。
+   注意 <pre> 与 <span> 携带的变量不同，故分开绑定，见下方说明。
+
+   background-color 这里没有用 var(--shiki-light-bg)（Shiki 内联样式给的
+   纯白 #fff），而是硬编码暖白 #F7F4EC：浅色纸从 L88.1% 压到方案 B 的
+   L82%（#EDE7DA）后，纯白代码块在新纸上实测明显发跳（截图对比可见块状
+   边界发白刺眼），故覆盖为与新纸同色系的暖白，仅比新纸亮 1.12:1，视觉
+   上是"更亮一档的纸"而不是一块异色的白。这连带要求 github-light 主题
+   全部语法色对新背景重新核算对比度，见下方四条补丁规则。 */
+.shiki {
+  color: var(--shiki-light);
+  background-color: #F7F4EC;
+}
+
+.shiki span {
+  color: var(--shiki-light);
+}
+
+[data-theme="dark"] .shiki {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+[data-theme="dark"] .shiki span {
+  color: var(--shiki-dark);
+}
+
+/* github-dark 主题给注释配的 --shiki-dark 是 #6A737D（与它给浅色主题配的
+   --shiki-light 完全同值——多数 token 两套主题各配一色，唯独注释共用了
+   一个"通用灰"），对 --shiki-dark-bg #24292E 只有 3.05:1，不达 WCAG AA
+   4.5:1（其余 token 颜色实测都 ≥5.5:1，只有这一种需要单独处理）。
+   不能改 eleventy.config.js 重配 Shiki，只能在 CSS 里按 Shiki 已经写出的
+   内联样式值精确打补丁：把这一种注释灰单独调亮到 4.84:1。 */
+[data-theme="dark"] .shiki span[style*="--shiki-dark:#6A737D" i] {
+  color: #8B95A3;
+}
+
+/* 上面把代码块底色从纯白 #fff 改成暖白 #F7F4EC 后，github-light 的语法色
+   要重新核算：多数 token 仍 ≥4.5（如 #005CC5 5.73、#032F62 12.04、
+   #24292e 13.35、#6F42C1 5.92），但下面四种在新底色上跌破或仍未达
+   4.5:1——其中 #E36209 在旧纯白底下本就只有 3.49（上一轮就已知的缺口，
+   当时因此判定不改底色；这轮改了底色就必须一并修，不能继续放着）：
+     #22863A（字符串）  4.63 → 4.21
+     #6A737D（注释）    4.82 → 4.38
+     #D73A49（标签/属性）4.57 → 4.16
+     #E36209（数字）    3.49 → 3.18（本就不达标，非本轮新增）
+   同暗色注释色补丁的做法：按 Shiki 已写出的内联样式值精确匹配，只降低
+   明度、不改色相/饱和度，压到对 #F7F4EC ≥4.7:1（留出安全余量）。
+
+   必须加 :root:not([data-theme="dark"]) 限定在浅色模式：Shiki 给每个
+   token 的内联样式同时写了 --shiki-light 和 --shiki-dark 两个变量，
+   属性选择器只按字符串匹配、不关心当前主题，暗色模式下这些 span 也会
+   命中同一个 [style*="--shiki-light:#22863A"]；如果不加限定，补丁颜色
+   会在暗色模式把 [data-theme="dark"] .shiki span 的 --shiki-dark 取色
+   规则覆盖掉（属性选择器令特异性更高），把给浅纸算的深色字面量糊到
+   Shiki 自己的暗色底 #24292e 上——实测 #207D36 对 #24292e 只有 2.82:1，
+   这正是加限定前 Lighthouse 在文章页暗色模式测出的 96 分（1 项
+   color-contrast 失败）的成因。 */
+:root:not([data-theme="dark"]) .shiki span[style*="--shiki-light:#22863A" i] {
+  color: #207D36;
+}
+
+:root:not([data-theme="dark"]) .shiki span[style*="--shiki-light:#6A737D" i] {
+  color: #656E78;
+}
+
+:root:not([data-theme="dark"]) .shiki span[style*="--shiki-light:#D73A49" i] {
+  color: #CF2A3A;
+}
+
+:root:not([data-theme="dark"]) .shiki span[style*="--shiki-light:#E36209" i] {
+  color: #B54E07;
+}
+
+.axis { position: relative; height: 78px; margin-bottom: 6px; }
+
+/* 以下三条时间轴白色线条（底线 / 年份刻度 / 缺口虚线）都是承载时间轴
+   结构的非文本图形，按 WCAG 1.4.11 须 ≥3:1。旧靛蓝 --head-bg 下这三条
+   本就分别只有 1.63/1.88/2.03，全部不达标（换成中性 #131316 后基本
+   同值，不是本轮引入的退步）；借这次连带核算的机会一并把 alpha 提到
+   跨过 3:1 门槛，同时保留原有的"底线最淡、刻度次之、缺口线最显"三级
+   递进关系。amber 色的 .tick 本身是实色（非透明白），对新 #131316
+   已有 7.60:1，不受影响。 */
+.axis-base {
+  position: absolute; left: 0; right: 0; bottom: 26px;
+  height: 1px; background: rgba(255,255,255,.35);
+}
+
+.tick {
+  position: absolute; bottom: 26px; width: 2px;
+  background: var(--amber); border-radius: 1px;
+  transform-origin: bottom;
+  animation: tick-grow .5s cubic-bezier(.2,.7,.3,1) backwards;
+}
+
+@keyframes tick-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+.axis-year {
+  position: absolute; bottom: 4px; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 10px;
+  color: rgba(255,255,255,.55); letter-spacing: .06em;
+}
+
+.axis-year::before {
+  content: ""; position: absolute; left: 50%; bottom: 16px;
+  width: 1px; height: 7px; background: rgba(255,255,255,.38);
+}
+
+.axis-gap {
+  position: absolute; bottom: 32px; right: 0;
+  border-top: 1px dashed rgba(255,255,255,.4);
+  display: flex; justify-content: center;
+}
+
+.axis-gap span {
+  font-family: var(--mono); font-size: 10px;
+  color: rgba(255,255,255,.55); transform: translateY(-19px);
+  letter-spacing: .06em; white-space: nowrap;
+}
+
+.archive-head { background: var(--head-bg); color: #fff; padding: 38px 44px 30px; }
+
+/* 全站唯一的顶栏，六种页面共用一份，页面之间切换时它一动不动。
+   sticky 而非 fixed——fixed 会脱离文档流，得再给 body 补一段等高的
+   padding-top 才不遮住内容，两个数字从此必须手工保持同步；sticky 占着
+   自己的位置，滚到顶才开始粘，没有这笔账要算。
+   z-index 50 压过正文里唯一会浮起来的东西（代码块行号的 z-index:1、
+   复制按钮的 auto），保证代码块滚过顶栏时是从下面穿过去的。 */
+.head-top {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--head-bg); color: #fff;
+  padding: 16px 44px;
+  display: flex; justify-content: space-between;
+  align-items: center;
+  /* 正文的 1.7 行高是给段落读的，用在顶栏上会被 20px 的衬线站名撑到
+     76px 高——钉在顶部时这是白占的一大条。压到 1.2 后约 56px。 */
+  line-height: 1.2;
+}
+
+.head-top-right { display: flex; align-items: center; gap: 20px; }
+
+.brand {
+  font-family: var(--serif); font-size: 20px; font-weight: 600;
+  font-variation-settings: "opsz" 20;
+}
+
+.brand em {
+  font-style: normal; font-family: var(--sans); font-size: 13px;
+  color: rgba(255,255,255,.5); margin-left: 10px;
+}
+
+.head-top nav { display: flex; gap: 20px; font-size: 13px; }
+.head-top nav a { position: relative; color: rgba(255,255,255,.55); text-decoration: none; transition: color .15s; }
+.head-top nav a:hover { color: var(--amber); }
+/* 当前页在导航里点亮。用 [aria-current] 而不是另挂一个 class：无障碍标记
+   本来就要写，让它同时承担样式钩子，就不会出现"改了 class 忘了改 aria"
+   这种两处不同步的情况。 */
+.head-top nav a[aria-current="page"] { color: #fff; }
+
+/* 触摸目标：这三个链接的可见文字只有约 24×21px，移动端实测远小于
+   WCAG 2.5.8 的 44×44px。用不可见的 ::before 扩大点击/触摸区域而不
+   改变可见样式——相邻链接间距（nav 的 20px gap）足够让 44px 的扩展区
+   互不重叠，320px 实测确认过。 */
+.head-top nav a::before {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 44px; height: 44px; transform: translate(-50%, -50%);
+}
+
+/* 主题开关：始终位于常驻深色区（档案头 / 文章顶条），故直接用不随主题
+   变化的白色系取色，同 nav 链接一致。44×44 触摸区域见 WCAG 2.5.8。
+   边框是标识控件边界的非文本图形，须 ≥3:1：旧靛蓝下 .3 alpha 只有
+   2.68:1，换新中性背景后 2.69:1，同样不达标（非本轮退步），一并调到
+   .35（3.24:1）；文字用的 .75 alpha 本就 ≥10:1，未动。 */
+.theme-toggle {
+  appearance: none; -webkit-appearance: none;
+  background: transparent; border: 1px solid rgba(255,255,255,.35);
+  border-radius: 6px; color: rgba(255,255,255,.75);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .06em;
+  min-width: 44px; padding: 7px 14px;
+  line-height: 1; cursor: pointer; transition: color .15s, border-color .15s;
+  position: relative;
+}
+
+/* 触摸目标扩到 44×44，但不靠 min-height 撑大按钮本体——顶栏钉在顶部之后，
+   一个 44px 高的实心边框会把整条撑到 76px，白占一大块屏幕。改用与
+   .head-top nav a、.copy-btn 相同的手法：可见边框保持 27px 高，由不可见的
+   ::before 向上下各溢出 8.5px 补足 44px 的可点区域。 */
+.theme-toggle::before {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 100%; min-width: 44px; height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.theme-toggle:hover { color: var(--amber); border-color: var(--amber); }
+
+.hero { display: flex; align-items: flex-end; gap: 18px; margin-bottom: 8px; }
+
+.hero-num {
+  font-family: var(--serif); font-size: 82px; line-height: .86;
+  font-weight: 600; font-variation-settings: "opsz" 120; letter-spacing: -.02em;
+}
+
+.hero-lab { font-size: 19px; font-weight: 500; padding-bottom: 9px; }
+
+.hero-sub {
+  color: var(--amber); font-family: var(--mono); font-size: 12.5px;
+  letter-spacing: .1em; text-transform: uppercase; margin-bottom: 34px;
+}
+
+/* scroll-margin-top 是给顶栏让出的位置：顶栏 sticky 之后，nav 里的
+   「笔记」跳到 #list 会让 2022 那行标题正好停在顶栏底下被挡住。这个值
+   比顶栏实测高度（约 53px）略大，留一点呼吸的余地。 */
+.list { padding: 38px 44px 60px; scroll-margin-top: 64px; }
+.grp { margin-bottom: 34px; }
+.grp-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px; }
+
+.grp-head b {
+  font-family: var(--serif); font-size: 38px; font-weight: 400;
+  line-height: 1; font-variation-settings: "opsz" 60; letter-spacing: -.01em;
+}
+
+.grp-head i { flex: 1; height: 1px; background: var(--hair); }
+.grp-head span { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+
+.row {
+  display: grid; grid-template-columns: 54px minmax(0,1fr) auto;
+  gap: 16px; align-items: baseline; padding: 8px 12px; margin: 0 -12px;
+  border-radius: 6px; text-decoration: none; transition: background .14s, color .14s;
+}
+
+.row:hover { background: var(--surface); }
+.row-dt { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.row-ti { font-size: 16px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* hover 后标题仍是文字，按 9.1 的文字/图形规则该用 --teal-ink：原来这里
+   用的是给深色区算的 --teal，在白色 --surface 上只有 3.96:1，浅色模式一
+   直没达标（自动化工具测不出 hover 态，故未被发现）；加暗色模式顺手一并
+   修了。--teal-ink 对 --surface：浅色 6.02:1，暗色 4.85:1，均达标。 */
+.row:hover .row-ti { color: var(--teal-ink); }
+.row-tg { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); white-space: nowrap; }
+
+/* ── /categories/、/tags/ 与单个标签页 ────────────────────────────────
+   三页共用 .term-page 的外壳，内部各不相同：分类是可折叠清单、标签是云、
+   单个标签页复用首页的年份分组。 */
+.term-head { margin-bottom: 30px; }
+.term-head h1 { font-family: var(--serif); font-size: 34px; font-weight: 600; line-height: 1.1; margin: 0 0 8px; }
+.term-lead { font-size: 14px; color: var(--ink-soft); margin: 0; max-width: 60ch; }
+.term-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; margin: 0 0 6px; text-transform: uppercase; }
+.term-kicker a { color: var(--ink-soft); text-decoration: none; }
+.term-kicker a:hover { color: var(--teal-ink); }
+
+.term-page .row { grid-template-columns: 88px minmax(0,1fr) auto; }
+.term-page .grp { scroll-margin-top: 72px; }
+
+/* 可折叠的分类清单 ─────────────────────────────────────────────────── */
+/* 每行只留一条线。此前每个分类既有一条贯穿标题的细线（沿用自首页年份
+   分组），又有一条底边分隔线，五个分类画出十条线，页面比内容还密。
+   贯穿线在这里也没有首页那份职责——首页要用它把年份和篇数在视觉上连起来，
+   这里的行本身就是一个可点的整体。分隔线只画在分类之间，末尾不画，
+   避免清单尾部悬一条没有下文的线。 */
+.cat { scroll-margin-top: 72px; }
+.cat + .cat { border-top: 1px solid var(--hair); }
+
+.cat summary {
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 15px 12px; margin: 0 -12px; border-radius: 6px;
+  cursor: pointer; list-style: none;
+  transition: background .14s;
+}
+/* Safari 仍用 -webkit-details-marker 画那个默认三角，且不认 list-style */
+.cat summary::-webkit-details-marker { display: none; }
+.cat summary:hover { background: var(--surface); }
+
+/* 展开箭头自己画：跟着 [open] 转 90°，读者不用去猜这一行能不能点。
+   currentColor + border 画的箭头会随主题走，不需要两套颜色。 */
+.cat summary::before {
+  content: ""; flex: none; align-self: center;
+  width: 6px; height: 6px; margin-right: 2px;
+  border-right: 1.6px solid var(--ink-soft);
+  border-bottom: 1.6px solid var(--ink-soft);
+  transform: rotate(-45deg); transform-origin: 60% 60%;
+  transition: transform .18s ease;
+}
+.cat[open] summary::before { transform: rotate(45deg); }
+
+.cat-name { font-size: 19px; font-weight: 600; }
+/* 篇数靠 auto 外边距推到右端——去掉贯穿线之后，这里不再需要一个撑开的
+   占位元素来分开两侧。 */
+.cat-count {
+  margin-left: auto;
+  font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.cat-body { padding: 2px 0 16px; }
+
+/* 标签云 ───────────────────────────────────────────────────────────
+   字号由 --w（0–1，见 lib/terms.mjs 的 cloudWeights）插值出来：一篇的
+   标签 15px，最多的 34px。颜色只分两档而不是跟着字号连续变浅——连续变浅
+   会让长尾那批小字掉到对比度门槛以下，而它们恰恰是最需要看清的。 */
+.cloud {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 14px 30px; padding: 6px 0 10px;
+  /* 收窄容器，让 15 个标签铺成三四行。不限宽的话它们在 1280px 上排成
+     孤零零的一行，下面留着大半屏空白，云也就不成其为云了。 */
+  max-width: 740px;
+}
+
+.cloud a {
+  position: relative;
+  font-size: calc(16px + var(--w) * 26px);
+  line-height: 1.4; font-weight: 500;
+  text-decoration: none; transition: color .14s;
+  /* 颜色跟着篇数一起从弱色走到正文色，与字号同向，两者叠加才拉得开层次。
+     第一行是 color-mix 不可用时的兜底，那时全部标签都是弱色——仍然达标，
+     只是少一层区分。混合方向只会让颜色更深，不会掉到对比度门槛以下。 */
+  color: var(--ink-soft);
+  color: color-mix(in oklab, var(--ink-soft), var(--ink) calc(var(--w) * 100%));
+}
+.cloud a:hover { color: var(--teal-ink); }
+
+/* 篇数跟在标签右上角，小一号且始终是弱色——它是注解，不该跟标签本身抢。
+   字号写死不跟着 --w 缩放：跟着缩放的话一篇的那些标签角标只有 8px。 */
+.cloud-n {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-soft);
+  vertical-align: super; margin-left: 3px; font-variant-numeric: tabular-nums;
+}
+
+/* 触摸目标：长尾那些标签只有 16px 高，补到 44px。用 min-height 而不是写死
+   44px——字号最大的那几个本体已经超过 44px 了，写死反而会把可点区缩小。 */
+.cloud a::before {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 100%; min-width: 44px; height: 100%; min-height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* 文章页的分类/标签链接。正文区是随主题切换的纸面，用 --teal-ink
+   （浅色 6.02:1、暗色 4.85:1，均达标）；不加下划线，靠 hover 时才出现，
+   避免这一行在标题下方喧宾夺主。 */
+.post-meta a { color: inherit; text-decoration: none; }
+.post-meta a:hover { color: var(--teal-ink); text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 640px) {
+  .archive-head { padding: 26px 20px 24px; }
+  /* 顶栏钉住之后，它在小屏占掉的高度是实打实的损失，所以这里做两件事：
+     内边距收到 12px/16px，并把站名后面的
+     「人生如戏」藏起来——藏掉这四个字，剩下的站名+导航+主题开关在 375px
+     上正好一行放得下，不会换行把顶栏撑成两行高。flex-wrap 保留作兜底：
+     再窄的屏（320px）宁可换行，也不能溢出。 */
+  .head-top { flex-wrap: wrap; row-gap: 12px; padding: 12px 16px; }
+  .head-top .brand em { display: none; }
+  /* 导航从 3 项变成 5 项后，375px 上一行放不下了。收紧字距，并藏掉 RSS
+     ——它是这五项里唯一不指向站内页面的，读者用得最少，/feed.xml 直接
+     访问仍然有效。剩下四项加站名和主题开关正好一行。 */
+  .head-top nav { gap: 14px; }
+  .head-top .nav-rss { display: none; }
+  .list { padding: 28px 20px 50px; scroll-margin-top: 50px; }
+  .term-page .grp { scroll-margin-top: 58px; }
+  .term-head h1 { font-size: 26px; }
+  .term-page .row { grid-template-columns: 76px minmax(0,1fr); }
+  .hero-num { font-size: 60px; }
+  .row { grid-template-columns: 48px minmax(0,1fr); padding: 11px 12px; }
+  .row-tg { display: none; }
+}
+
+@media (max-width: 400px) {
+  .archive-head { padding: 22px 16px 20px; }
+  .head-top-right { gap: 12px; }
+  .hero-num { font-size: 46px; }
+  .hero-lab { font-size: 16px; }
+  /* 这一行在 320px 机型上按原字距换行会孤零零剩一个"天"字，收紧字距让
+     它多数情况下一行放得下；放不下时至少断得不那么突兀。 */
+  .hero-sub { font-size: 11.5px; letter-spacing: .04em; }
+  .list { padding: 24px 16px 44px; }
+  .grp-head b { font-size: 30px; }
+  .axis-year { font-size: 9px; }
+  .axis-gap span { font-size: 9px; }
+}
+
+/* 正文宽度：原为 660px（spec 9.5），所有者本地预览后反馈桌面端偏窄，
+   现场改到了 760px，当时没记录理由，补在这里。760px 约合一行 45 个汉字，
+   再宽中文长段落容易"跑行"（读完一行找不到下一行起点）；这批文章里大量
+   长标识符行内代码（如 shouldComponentUpdate）在更窄的栏宽下容易挤到换
+   行，所以取 760 而非更保守的 660。 */
+.post { max-width: 760px; margin: 0 auto; padding: 50px 30px 80px; }
+
+.crumb {
+  font-family: var(--mono); font-size: 11px; color: var(--amber-ink);
+  letter-spacing: .12em; margin-bottom: 14px;
+}
+
+/* 文章标题：直接子元素，与正文内的章节标题区分开 */
+.post > h1 { font-size: 37px; line-height: 1.28; font-weight: 600; margin: 0 0 14px; letter-spacing: -.01em; }
+
+.post-meta {
+  font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft);
+  letter-spacing: .05em; padding-bottom: 26px;
+  border-bottom: 1px solid var(--hair); margin-bottom: 34px;
+}
+
+/* 正文标题层级。作者用 # 作章节、## 作子节，故整体下移一档：
+   正文 h1 承担「章节」角色（原本给 h2 的样式），h2 为子节，h3 再次一级。 */
+/* 标记用 inline-block 而非 flex：flex 会把标题里的文字与 <code> 各自变成
+   独立的 flex item 横向排列且不换行，长标题放不下时末段会被压成竖排一列。 */
+.post-body h1 {
+  font-size: 21px; font-weight: 600; margin: 38px 0 13px; line-height: 1.5;
+}
+
+.post-body h1::before {
+  content: ""; display: inline-block;
+  width: 9px; height: 9px; background: var(--amber);
+  border-radius: 1px; margin-right: 10px; vertical-align: 0.1em;
+}
+
+.post-body h2 {
+  font-size: 18px; font-weight: 600; margin: 30px 0 11px; line-height: 1.5;
+}
+
+.post-body h2::before {
+  content: ""; display: inline-block;
+  width: 5px; height: 5px; background: var(--amber);
+  border-radius: 50%; opacity: .8; margin-right: 8px; vertical-align: 0.2em;
+}
+
+.post-body h3 { font-size: 15px; font-weight: 600; color: var(--ink-soft); margin: 24px 0 9px; }
+.post p { margin: 0 0 20px; line-height: 1.92; font-size: 16.5px; }
+.post ul, .post ol { line-height: 1.9; padding-left: 1.4em; }
+
+.post blockquote {
+  margin: 28px 0; padding: 16px 20px; background: var(--surface);
+  border-left: 3px solid var(--teal); border-radius: 0 6px 6px 0; color: var(--ink-soft);
+}
+
+.post blockquote p { margin: 0; font-size: 16px; }
+
+.post pre {
+  border-radius: 7px; padding: 16px 18px; overflow-x: auto;
+  margin: 0 0 22px; font-size: 13px; line-height: 1.7;
+}
+
+/* 复制按钮：由 base.njk 里的运行时 JS 插入，只有 navigator.clipboard 可用
+   时才会出现，因此这里的样式在没有按钮时完全不生效，不会有点了没反应
+   的死 UI。JS 会在 <pre> 外包一层 .code-block 作为定位容器——不能直接
+   在 <pre> 上定位，<pre> 自身 overflow-x:auto 横向滚动，按钮若绝对定位
+   在它内部会跟着代码一起被滚出视野；margin-bottom 相应从 <pre> 挪到
+   .code-block 上，避免两层都算一遍导致间距翻倍。再给 <pre> 加
+   .has-copy-btn 腾出顶部空间，保证按钮不会压住代码首行——不论首行多长
+   都不会被遮挡。 */
+.post .code-block { position: relative; margin: 0 0 22px; }
+.post .code-block pre { margin-bottom: 0; }
+
+/* 顶部只留出一行图标的高度即可。此前用过 60px，全站 194 个代码块都因此
+   空出一大片，版面松散；实测 34px 足够让右上角的图标+语言标签不压住首行。
+   左内边距归零，改由行号的 padding-left 提供——行号是 sticky 的，只有让
+   它自己带上这段留白，横向滚动时它的背景才能一直盖到容器左沿，代码不会
+   从行号左侧漏出来。单行代码块不显示行号，其左留白在下方单独补回。 */
+.post pre.has-copy-btn { padding-top: 34px; padding-left: 0; }
+
+/* 行号：用 CSS counter 生成，不改 Shiki 配置也不引插件。
+   counter 产生的内容位于 ::before 的 content 中，不进入 textContent，
+   因此复制时不会被带走——已实测验证。 */
+.post .shiki code { counter-reset: line; }
+
+.post .shiki .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2ch;                 /* 全站最长代码块 83 行，两位数足够 */
+  margin-right: 1.1em;
+  padding-right: .9em;
+  border-right: 1px solid var(--code-rule);
+  text-align: right;
+  color: var(--code-lineno);
+  user-select: none;          /* 双击选中代码时不会连行号一起选中 */
+  -webkit-user-select: none;
+
+  /* 横向滚动时行号钉在左侧不跟着走（对照原站行为）。
+     sticky 的定位上下文是最近的滚动祖先，即 overflow-x:auto 的 <pre>。
+     必须给不透明背景，否则滚过来的代码会从行号下面透出来；
+     z-index 确保行号盖在代码之上而不是被压住。 */
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: #F7F4EC;        /* 同 .shiki 的浅色底，见上方说明 */
+
+  /* 背景需向左连续覆盖 <pre> 的 18px 左内边距，否则代码横向滚进那段区域时
+     会从行号左侧透出字符。用 padding-left + 等量负 margin 实现：背景铺满
+     加宽后的整块，而负 margin 把它拉回原位，视觉位置不变。
+     （不能用 box-shadow：其第一个参数是偏移量而非延伸量，阴影会整体平移、
+     与本体之间留出空隙，实测仍会漏字。）
+     必须显式 content-box —— 全局的 `* { box-sizing: border-box }` 会把
+     padding 算进 width，导致数字所在的内容区被压没。 */
+  box-sizing: content-box;
+  padding-left: 18px;
+}
+
+/* 暗色下行号背景取 Shiki 内联在 <pre> 上的 --shiki-dark-bg（CSS 变量可继承） */
+[data-theme="dark"] .post .shiki .line::before {
+  background: var(--shiki-dark-bg);
+}
+
+/* 单行代码块不显示行号——只有一个「1」反而是噪音。
+   它没有行号，也就没了行号带的 padding-left，故在此把左留白补回。 */
+.post .shiki code:not(:has(.line ~ .line)) .line::before { content: none; border: 0; margin: 0; padding: 0; width: 0; }
+.post .shiki code:not(:has(.line ~ .line)) { display: block; padding-left: 18px; }
+
+/* 默认走 --hair 描边 + --ink-soft 弱化文字色，比 hover/聚焦时的
+   --teal-ink 低调，不跟代码抢注意力；颜色全部是本文件已验证过对比度的
+   token，对代码块实际背景（浅色 shiki 底 #F7F4EC、暗色 #24292E，都比
+   --paper/--surface 更朝各自主题的极端靠一档）重新核算：--ink-soft 浅色
+   ≈6.0:1、暗色 5.98:1，--teal-ink 浅色 ≈6.3:1、暗色 6.40:1，均超过已知
+   对 --paper/--surface 的数值（背景更接近纯白/纯黑，对比度只升不降），
+   全部大幅超过 4.5:1。焦点框沿用全局 button:focus-visible 规则（见文件
+   顶部），因为这里背景是随主题切换的纸面区，不是 .head-top/.archive-head
+   那种固定深色区，--amber-ink 会跟着主题自动切到对应色值，不需要单独
+   覆盖。 */
+/* 复制按钮：图标 + 语言标签，无边框无背景，只靠颜色深浅表达状态。
+   参照所有者原站（Fluid 主题）的克制做法——它是辅助功能，不该跟代码
+   抢注意力。视觉上很小，但下方用不可见的 ::before 把触摸目标撑到
+   44×44（同 .head-top nav a、.cloud a 的手法）。 */
+.copy-btn {
+  appearance: none; -webkit-appearance: none;
+  position: absolute; top: 9px; right: 12px;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--code-lineno);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .06em;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .15s;
+}
+
+.copy-btn::before {
+  content: ""; position: absolute; top: 50%; right: -4px;
+  width: 44px; height: 44px; transform: translateY(-50%);
+}
+
+.copy-btn svg {
+  width: 13px; height: 13px; flex: none;
+  fill: none; stroke: currentColor;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.copy-btn:hover,
+.copy-btn:focus-visible,
+.copy-btn.is-copied {
+  color: var(--teal-ink);
+}
+
+/* 复制失败态：新引入的唯一非 token 颜色，因为站内没有现成的"错误色"。
+   #B3261E 对浅色代码底 #F7F4EC ≈5.9:1，#F2B8B5 对暗色代码底 #24292E
+   ≈8.95:1，按文件其余处的同一套 WCAG 相对亮度公式换算，均达 AA
+   4.5:1。 */
+.copy-btn.is-error {
+  color: #B3261E;
+  border-color: #B3261E;
+}
+[data-theme="dark"] .copy-btn.is-error {
+  color: #F2B8B5;
+  border-color: #F2B8B5;
+}
+
+/* 触摸设备没有 hover，默认就用强调态，否则用户发现不了按钮存在。 */
+@media (hover: none) {
+  .copy-btn {
+    color: var(--teal-ink);
+    border-color: var(--teal-ink);
+  }
+}
+
+.post code { font-family: var(--mono); }
+/* 底色是字面量、不走 token，随浅色方案 B 的纸色再压暗一档同步微调：
+   #ECE5D3 是上一轮配的暖色，纸色从 L88.1% 压到 L82%（#EDE7DA）后，
+   与新纸拉开成对比度 1.13:1，和旧值对旧纸的 1.11:1 基本一致，视觉
+   层次不变，故取新暖色 #E4DAC4；--ink（#2A3542）压在其上 8.97:1，
+   远超 4.5:1。 */
+.post :not(pre) > code { background: #E4DAC4; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+/* 暗色方案 C 改用独立字面量而非 --surface：--surface 已提高为文字底
+   （表格 hover 行等），若行内代码复用会与那些区域同色、层次不清；
+   #2C2C30 是所有者对比页选定的暗色行内代码底色，比 --paper(#1C1C1F)
+   略亮、比 --surface(#252528) 也更亮一点，形成独立的第三级层次。
+   --ink（#E6E4E1）压在其上 10.96:1。 */
+[data-theme="dark"] .post :not(pre) > code { background: #2C2C30; }
+.post img { border-radius: 6px; margin: 6px 0 20px; }
+.post a:not(.crumb) { color: var(--teal-ink); }
+
+.post table { width: 100%; border-collapse: collapse; margin: 0 0 22px; display: block; overflow-x: auto; }
+.post th, .post td { border: 1px solid var(--hair); padding: 8px 12px; text-align: left; }
+
+@media (max-width: 640px) {
+  .theme-toggle { padding: 4px 10px; }
+
+  .post { padding: 34px 20px 60px; }
+  .post > h1 { font-size: 28px; }
+}
+
+@media (max-width: 400px) {
+  .post { padding: 28px 16px 50px; }
+  .post > h1 { font-size: 24px; }
+  .post p { font-size: 15.5px; }
+}

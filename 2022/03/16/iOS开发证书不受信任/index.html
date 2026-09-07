@@ -1,796 +1,180 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
-
-
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="邓伟彬">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="iOS开发证书不受信任">
-<meta property="og:type" content="article">
-<meta property="og:title" content="iOS开发证书不受信任">
-<meta property="og:url" content="https://iplus-studio.top/2022/03/16/iOS%E5%BC%80%E5%8F%91%E8%AF%81%E4%B9%A6%E4%B8%8D%E5%8F%97%E4%BF%A1%E4%BB%BB/index.html">
-<meta property="og:site_name" content="dwb">
-<meta property="og:description" content="iOS开发证书不受信任">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://picture-transmission.iplus-studio.top/uPic/l3OrPk.png">
-<meta property="og:image" content="https://picture-transmission.iplus-studio.top/uPic/Tv3YQq.png">
-<meta property="og:image" content="https://picture-transmission.iplus-studio.top/uPic/dud1Lo.png">
-<meta property="article:published_time" content="2022-03-16T03:00:08.000Z">
-<meta property="article:modified_time" content="2022-03-16T04:21:30.618Z">
-<meta property="article:author" content="邓伟彬">
-<meta property="article:tag" content="iOS">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://picture-transmission.iplus-studio.top/uPic/l3OrPk.png">
-  
-  
-  
-  <title>iOS开发证书不受信任 - dwb</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"iplus-studio.top","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"ca17515ca9f4d4c97b593b5753af777f","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gmTUOC5K8d9bnPNfJMK23STW-MdYXbMMI","app_key":"ckL6L4nkTmG4LEPPHjrjVUCE","server_url":null,"path":"window.location.pathname","ignore_local":"ture"}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function(){
+  try {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-  
-    <!-- Baidu Analytics -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?ca17515ca9f4d4c97b593b5753af777f";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-
-
-  
-<meta name="generator" content="Hexo 5.4.1"></head>
-
-
+  } catch (e) {}
+})();
+</script>
+<title>iOS开发证书不受信任 · dwb</title>
+<meta name="description" content="iOS开发证书不受信任">
+<link rel="icon" href="/img/site/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/css/site.css">
+</head>
 <body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>dwb</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="iOS开发证书不受信任"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-03-16 11:00" pubdate>
-          2022年3月16日 上午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          <!-- compatible with older versions-->
-          216 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          <!-- compatible with older versions-->
-          1 分钟
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
-    
-  </div>
 
 
-        
-      </div>
-
-      
-    </div>
+<div class="head-top">
+  <div class="brand">dwb<em>人生如戏</em></div>
+  <div class="head-top-right">
+    <nav>
+      <a href="/">笔记</a>
+      <a href="/categories/">分类</a>
+      <a href="/tags/">标签</a>
+      <a href="/about/">关于</a>
+      <a class="nav-rss" href="/feed.xml">RSS</a>
+    </nav>
+    <button type="button" class="theme-toggle" aria-label="切换到深色模式" aria-pressed="false">深色</button>
   </div>
 </div>
 
-</div>
 
-  </header>
+<main>
+<article class="post">
+  <div class="crumb">2022 / 03 / 16</div>
 
-  <main>
-    
-      
+  <h1>iOS开发证书不受信任</h1>
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
+  <div class="post-meta">
+    <a href="/categories/#移动端">移动端</a> · <a href="/tags/iOS/">iOS</a>
+  </div>
 
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">iOS开发证书不受信任</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h1 id="场景">场景</h1>
+  <div class="post-body"><h1>场景</h1>
 <p>昨晚开开心心的给项目申请推送证书，一顿操作。</p>
 <p>证书安装完毕后，钥匙串中开发证书和发布证书均提示：</p>
 <p><strong>证书不受信任</strong></p>
 <p>我这刚从开发者官网下回来的东西，咋回事？</p>
 <p>不信邪，我重新把证书都<code>revoke</code>了，电脑的证书也删掉，重新申请过，重新导入，此时出现下面这图。</p>
-<figure>
-<img src="https://picture-transmission.iplus-studio.top/uPic/l3OrPk.png" srcset="/img/loading.gif" lazyload
-alt="l3OrPk" />
-<figcaption aria-hidden="true">l3OrPk</figcaption>
-</figure>
+<p><img src="/img/posts/iOS%E5%BC%80%E5%8F%91%E8%AF%81%E4%B9%A6%E4%B8%8D%E5%8F%97%E4%BF%A1%E4%BB%BB/l3OrPk.png" alt="l3OrPk"></p>
 <p>此时我保证你重新申请100遍都一样。立马打开谷歌...</p>
-<h2 id="正宗的解决办法">正宗的解决办法</h2>
+<h2>正宗的解决办法</h2>
 <p>重新安装所有的Apple全球开发者关系认证中间证书WWDRCA。</p>
-<p><a
-target="_blank" rel="noopener" href="https://www.apple.com/certificateauthority/">Apple证书列表</a></p>
-<figure>
-<img src="https://picture-transmission.iplus-studio.top/uPic/Tv3YQq.png" srcset="/img/loading.gif" lazyload
-alt="Tv3YQq" />
-<figcaption aria-hidden="true">Tv3YQq</figcaption>
-</figure>
-<figure>
-<img src="https://picture-transmission.iplus-studio.top/uPic/dud1Lo.png" srcset="/img/loading.gif" lazyload
-alt="dud1Lo" />
-<figcaption aria-hidden="true">dud1Lo</figcaption>
-</figure>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" class="category-chain-item">移动端</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/iOS/">#iOS</a>
-      
-    </div>
-  
+<p><a href="https://www.apple.com/certificateauthority/">Apple证书列表</a></p>
+<p><img src="/img/posts/iOS%E5%BC%80%E5%8F%91%E8%AF%81%E4%B9%A6%E4%B8%8D%E5%8F%97%E4%BF%A1%E4%BB%BB/Tv3YQq.png" alt="Tv3YQq"></p>
+<p><img src="/img/posts/iOS%E5%BC%80%E5%8F%91%E8%AF%81%E4%B9%A6%E4%B8%8D%E5%8F%97%E4%BF%A1%E4%BB%BB/dud1Lo.png" alt="dud1Lo"></p>
 </div>
+</article>
+</main>
 
+<script>
+(function(){
+  var btn = document.querySelector('.theme-toggle');
+  if (!btn) return;
+  function apply(theme) {
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    btn.textContent = theme === 'dark' ? '浅色' : '深色';
+    btn.setAttribute('aria-label', theme === 'dark' ? '切换到浅色模式' : '切换到深色模式');
+    btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+  }
+  apply(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+  btn.addEventListener('click', function () {
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    apply(next);
+  });
+})();
+</script>
+<script>
+(function(){
+  function openTarget() {
+    if (!location.hash) return;
+    var el;
+    try { el = document.getElementById(decodeURIComponent(location.hash.slice(1))); }
+    catch (e) { return; }
+    if (el && el.tagName === 'DETAILS') {
+      el.open = true;
+      el.scrollIntoView();
+    }
+  }
+  openTarget();
+  window.addEventListener('hashchange', openTarget);
+})();
+</script>
+<script>
+(function(){
+  if (!(window.navigator && navigator.clipboard && navigator.clipboard.writeText)) return;
+  var blocks = document.querySelectorAll('.post-body pre.shiki');
+  var RESET_DELAY = 2000;
+  for (var i = 0; i < blocks.length; i++) {
+    (function (pre) {
+      var wrap = document.createElement('div');
+      wrap.className = 'code-block';
+      pre.parentNode.insertBefore(wrap, pre);
+      wrap.appendChild(pre);
+      pre.classList.add('has-copy-btn');
 
-              
-  
+      // 语言标签取自 Shiki 写在 <code> 上的 language-xxx。
+      // text 是 Shiki 对无语言标记代码块的兜底值，不显示标签。
+      var codeEl = pre.querySelector('code');
+      var cls = (codeEl && codeEl.className) || '';
+      var m = cls.match(/language-([\w-]+)/);
+      var raw = m ? m[1] : '';
+      var lang = ({
+        js: 'JS', typescript: 'TS', html: 'HTML', css: 'CSS', bash: 'Bash',
+        'objective-c': 'Obj-C', json: 'JSON', xml: 'XML', java: 'Java',
+        ini: 'INI', ruby: 'Ruby', c: 'C', groovy: 'Groovy'
+      })[raw] || (raw && raw !== 'text' ? raw.toUpperCase() : '');
 
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>iOS开发证书不受信任</div>
-      <div>https://iplus-studio.top/2022/03/16/iOS开发证书不受信任/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>邓伟彬</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年3月16日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
+      var COPY_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
+        + '<rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/>'
+        + '<path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3.5A1.5 1.5 0 0 0 2 3.5V9a1.5 1.5 0 0 0 1.5 1.5h2"/></svg>';
+      var DONE_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
+        + '<path d="M3 8.5 6.5 12 13 4.5"/></svg>';
 
+      // 无障碍名里必须含有按钮上那两个可见字符（语言标签），否则用语音
+      // 控制的人说「点击 JS」——他们能看到的就是这两个字——不会命中这个
+      // 按钮。WCAG 2.5.3 Label in Name 说的就是这件事。
+      var idleLabel = lang ? '复制 ' + lang + ' 代码' : '复制代码';
 
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy-btn';
+      btn.innerHTML = COPY_ICON + (lang ? '<span>' + lang + '</span>' : '');
+      btn.setAttribute('aria-label', idleLabel);
+      btn.setAttribute('aria-live', 'polite');
+      wrap.appendChild(btn);
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/10/04/OC%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B1%9E%E6%80%A7/" title="OC成员变量与属性">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">OC成员变量与属性</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/03/05/Mac%E7%BB%88%E7%AB%AF%E5%A4%A7%E5%B0%8F%E5%86%99%E4%B8%8D%E6%95%8F%E6%84%9F/" title="Mac终端大小写不敏感">
-                        <span class="hidden-mobile">Mac终端大小写不敏感</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+      var resetTimer = null;
+      function setState(icon, label, stateClass) {
+        if (resetTimer) { clearTimeout(resetTimer); }
+        btn.innerHTML = icon + (label ? '<span>' + label + '</span>' : '');
+        // 反馈态的可见文字就是完整的一句话，无障碍名直接用它，两者一致。
+        btn.setAttribute('aria-label', label || idleLabel);
+        btn.classList.remove('is-copied', 'is-error');
+        btn.classList.add(stateClass);
+        resetTimer = setTimeout(function () {
+          btn.innerHTML = COPY_ICON + (lang ? '<span>' + lang + '</span>' : '');
+          btn.setAttribute('aria-label', idleLabel);
+          btn.classList.remove(stateClass);
+          resetTimer = null;
+        }, RESET_DELAY);
+      }
 
-            
-  <article id="comments" lazyload>
-    
-  <div id="waline"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/1.5.2/waline.min.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/waline/1.5.2/waline.min.js', function() {
-        var options = Object.assign(
-          {"serverURL":"https://blog-api-okfyab6i0-gdoudeng.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"说点什么","avatar":"retro","highlight":true,"avatarForce":false,"requiredFields":[],"emojiCDN":"","emojiMaps":{}},
-          {
-            el: '#waline',
-            path: window.location.pathname
-          }
-        )
-        Waline.init(options);
-        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
-          var imgSelector = '#waline .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
+      btn.addEventListener('click', function () {
+        // textContent 不含 CSS counter 生成的行号（那在 ::before 的 content 里）
+        var text = (codeEl || pre).textContent;
+        navigator.clipboard.writeText(text).then(function () {
+          setState(DONE_ICON, '已复制', 'is-copied');
+        }, function () {
+          setState(COPY_ICON, '复制失败', 'is-error');
+        });
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-  </article>
-
-
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
-    </div>
-  
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
-</div>
-
-  
-  
-    <!-- 备案信息 ICP for China -->
-    <div class="beian">
-  <span>
-    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-      粤ICP备18085104号
-    </a>
-  </span>
-  
-    
-      <span>
-        <a
-          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18085104"
-          rel="nofollow noopener"
-          class="beian-police"
-          target="_blank"
-        >
-          
-            <span style="visibility: hidden; width: 0">|</span>
-            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
-          
-          <span>粤ICP备18085104号-1</span>
-        </a>
-      </span>
-    
-  
-</div>
-
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
+    })(blocks[i]);
+  }
+})();
 </script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
 </body>
 </html>
