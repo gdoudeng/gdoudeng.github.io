@@ -294,7 +294,15 @@ body { overflow-wrap: anywhere; }
 .brand {
   font-family: var(--serif); font-size: 20px; font-weight: 600;
   font-variation-settings: "opsz" 20;
+  display: flex; align-items: center;
 }
+
+/* logo 与站名之间的 11px 比 em 的 10px 略宽：logo 右端是那根孤立刻度，
+   它与「d」之间只有图形留白、没有字形侧边承压，10px 看上去会比字与字
+   之间的同样 10px 更挤。
+   flex:none 是必须的——.brand 是 flex 容器，SVG 作为可伸缩的替换元素
+   在空间不足时会被压扁成一条，而不是像文字那样把容器撑开换行。 */
+.brand-mark { flex: none; margin-right: 11px; }
 
 .brand em {
   font-style: normal; font-family: var(--sans); font-size: 13px;
@@ -516,6 +524,16 @@ body { overflow-wrap: anywhere; }
 @media (max-width: 400px) {
   .archive-head { padding: 22px 16px 20px; }
   .head-top-right { gap: 12px; }
+  /* logo 在这里让位。实测：带 logo 的 .brand 宽 124px（72 的图 + 11 间距
+     + 41 的「dwb」），右侧导航加主题开关 203px，合计 327px；可用宽是
+     视口减 32px 内边距，所以视口要 ≥359px 才放得下。320px 机型上它会
+     触发 flex-wrap，把 sticky 顶栏从 48px 顶到 81px——这正是上面 640px
+     断点里为了避免而砍掉「人生如戏」和 RSS 的那件事，不能为 logo 破例。
+     断点取 400 而不是贴着 359：字体加载时机、系统字号缩放都会让这几个
+     宽度浮动几个像素，留出余量比卡在临界值上稳。
+     代价是 375px 机型也看不到 logo——小屏顶栏的空间是全站最紧张的，
+     导航的优先级高于标识，favicon 那一路仍然带着这个图形。 */
+  .brand-mark { display: none; }
   .hero-num { font-size: 46px; }
   .hero-lab { font-size: 16px; }
   /* 这一行在 320px 机型上按原字距换行会孤零零剩一个"天"字，收紧字距让

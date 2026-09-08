@@ -1,0 +1,31 @@
+<!-- dwb 站点 logo · 横版 · 浅底用（暖纸 #EDE7DA / #F5F1E7）
+
+     图形＝首页那条时间轴的浓缩：一簇由高到低的刻度（写得越来越少），
+     一道断口（沉寂），最后一根孤立的琥珀刻度。
+
+     颜色写死而非 currentColor：这份文件是给 <img src> / 外部引用用的，
+     而 currentColor 在 <img> 里取不到宿主页面的颜色（SVG 作为图像加载时
+     是独立文档，继承不了父级 color），会退化成黑色。需要跟随主题的场合
+     用 logo-mono.svg 内联，见那份文件。
+
+     深底（顶栏 / 档案头 #0E1C31）请用 logo-dark.svg，那份把刻度换成米色。 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 24" width="108" height="24" fill="none" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">dwb — 2020 到 2022 的技术笔记，此后沉寂</title>
+
+  <!-- 四根递减的刻度 -->
+  <g fill="#2A3542">
+    <rect x="2"  y="1"  width="4" height="19" rx="1.5"/>
+    <rect x="15" y="8"  width="4" height="12" rx="1.5"/>
+    <rect x="28" y="13" width="4" height="7"  rx="1.5"/>
+    <rect x="41" y="15" width="4" height="5"  rx="1.5"/>
+  </g>
+
+  <!-- 基线：刻度段实线，断口段虚线，末段跟着孤立刻度转琥珀 -->
+  <path d="M2 22 H47"  stroke="#2A3542" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+  <path d="M53 22 H93" stroke="#2A3542" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="1.8 6" opacity=".4"/>
+  <path d="M97 22 H106" stroke="#B07E1E" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- 断口之后仅存的一根。浅底用 #B07E1E 而非原色琥珀 #D99A2B：
+       后者在暖纸上只有 2.1:1，作为图形的重音读不出来。 -->
+  <rect x="100" y="11" width="4" height="9" rx="1.5" fill="#B07E1E"/>
+</svg>

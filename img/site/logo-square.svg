@@ -1,0 +1,28 @@
+<!-- dwb 站点 logo · 方版（favicon / 头像 / 任何需要正方形的场合）
+
+     横版塞不进正方形，所以这里不是等比缩放而是重新排版：刻度从 4 根减到
+     3 根、断口相应收窄，保住「递减 → 断口 → 孤立一根」这三段结构在 16px
+     下仍读得出来。这是 favicon 尺寸下唯一还成立的信息量。
+
+     颜色写死、自带深靛底：favicon 不跟随站点主题（浏览器标签页的底色由
+     浏览器决定，深浅都可能），所以不能用 currentColor，也不能透明底——
+     透明底的浅色刻度在浅色标签栏上会直接消失。深靛底同时让它在 macOS
+     书签栏、iOS 主屏这类浅色环境里自成一块，边界清楚。
+
+     断口在这个尺寸下不画虚线：1.8/6 的 dasharray 在 16px 下每个点不足
+     半个物理像素，只会糊成一条灰边，反而把断口填平。留白即断口。 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-labelledby="logo-square-title">
+  <title id="logo-square-title">dwb</title>
+
+  <rect width="32" height="32" rx="7" fill="#0E1C31"/>
+
+  <g fill="#EDE7DA">
+    <rect x="6"    y="7"  width="2.4" height="15" rx="1.2"/>
+    <rect x="11.6" y="13" width="2.4" height="9"  rx="1.2"/>
+    <rect x="17.2" y="17" width="2.4" height="5"  rx="1.2"/>
+  </g>
+  <rect x="24.4" y="15" width="2.4" height="7" rx="1.2" fill="#D99A2B"/>
+
+  <path d="M5.2 23.4 H20.4" stroke="#EDE7DA" stroke-width="1.3" stroke-linecap="round" opacity=".8"/>
+  <path d="M23.6 23.4 H27.6" stroke="#D99A2B" stroke-width="1.3" stroke-linecap="round"/>
+</svg>

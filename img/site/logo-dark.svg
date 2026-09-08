@@ -1,0 +1,21 @@
+<!-- dwb 站点 logo · 横版 · 深底用（顶栏 / 档案头 #0E1C31、暗色模式 #1C1C1F）
+
+     与 logo.svg 同一套几何，只换颜色：刻度改米色 #EDE7DA，孤立那根用原色
+     琥珀 #D99A2B——深底上它有足够对比（对 #0E1C31 实测 7.60:1，见
+     site.css 顶部的核算记录），不必像浅底版那样压暗成 #B07E1E。 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 24" width="108" height="24" fill="none" role="img" aria-labelledby="logo-dark-title">
+  <title id="logo-dark-title">dwb — 2020 到 2022 的技术笔记，此后沉寂</title>
+
+  <g fill="#EDE7DA">
+    <rect x="2"  y="1"  width="4" height="19" rx="1.5"/>
+    <rect x="15" y="8"  width="4" height="12" rx="1.5"/>
+    <rect x="28" y="13" width="4" height="7"  rx="1.5"/>
+    <rect x="41" y="15" width="4" height="5"  rx="1.5"/>
+  </g>
+
+  <path d="M2 22 H47"  stroke="#EDE7DA" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+  <path d="M53 22 H93" stroke="#EDE7DA" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="1.8 6" opacity=".4"/>
+  <path d="M97 22 H106" stroke="#D99A2B" stroke-width="1.6" stroke-linecap="round"/>
+
+  <rect x="100" y="11" width="4" height="9" rx="1.5" fill="#D99A2B"/>
+</svg>

@@ -1,0 +1,25 @@
+<!-- dwb 站点 logo · 横版 · 单色自适应版
+
+     全部走 currentColor，包括断口之后那根刻度——单色版靠位置（断口另一侧）
+     而不是颜色来点出它，所以在任何底色上都成立，也是唯一能安全用在未知
+     背景上的一份。
+
+     只在**内联**时有意义：currentColor 需要从宿主 DOM 继承 color，作为
+     <img src> 加载时 SVG 是独立文档，继承不到，会退化成黑色。顶栏用的
+     就是这份的内联副本（见 src/_includes/head-top.njk），那里额外把孤立
+     刻度改成了琥珀。需要用 <img> 引用时请改用 logo.svg / logo-dark.svg。 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 24" width="108" height="24" fill="none" role="img" aria-labelledby="logo-mono-title">
+  <title id="logo-mono-title">dwb — 2020 到 2022 的技术笔记，此后沉寂</title>
+
+  <g fill="currentColor">
+    <rect x="2"   y="1"  width="4" height="19" rx="1.5"/>
+    <rect x="15"  y="8"  width="4" height="12" rx="1.5"/>
+    <rect x="28"  y="13" width="4" height="7"  rx="1.5"/>
+    <rect x="41"  y="15" width="4" height="5"  rx="1.5"/>
+    <rect x="100" y="11" width="4" height="9"  rx="1.5"/>
+  </g>
+
+  <path d="M2 22 H47"   stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+  <path d="M53 22 H93"  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="1.8 6" opacity=".4"/>
+  <path d="M97 22 H106" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
